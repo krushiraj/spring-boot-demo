@@ -1,0 +1,12 @@
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/config/AppConfig.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/controller/ContactController.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/model/User.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/model/Contact.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/repository/UserRepository.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/controller/AuthController.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/service/CustomUserDetails.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/config/SecurityConfig.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/repository/ContactRepository.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/service/ContactService.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/service/UserService.java
+/Users/krushi/Downloads/springboot/spring-contacts-app/src/main/java/com/example/demo/Application.java
