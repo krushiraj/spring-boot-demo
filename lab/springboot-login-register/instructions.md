@@ -1,12 +1,13 @@
 # Spring Boot Login and Registration System with Thymeleaf
 
-This project demonstrates a simple login and registration system using Spring Boot, Spring Security, MongoDB, and Thymeleaf.
+This project demonstrates a server-side rendered authentication system using Spring Boot, Spring Security, Thymeleaf, and MongoDB.
 
 ## Prerequisites
 
-1. Java 1.8 installed
+1. Java 1.8 or higher
 2. MongoDB installed and running on default port (27017)
 3. Maven installed
+4. Modern web browser
 
 ## Project Structure
 
@@ -21,145 +22,195 @@ src/main/java/com/lab/auth/
 │   └── User.java               # User entity class
 ├── repository/
 │   └── UserRepository.java     # MongoDB repository interface
-└── service/
-    ├── UserService.java        # User management service
-    └── CustomUserDetailsService.java # Spring Security user details service
+├── service/
+│   ├── UserService.java        # User management service
+│   └── CustomUserDetailsService.java # Security user details
+└── validator/
+    └── UserValidator.java      # Custom validation rules
 ```
 
 ## Key Features
 
 1. User Registration with validation
-2. User Login with Spring Security
-3. MongoDB integration for data persistence
-4. Thymeleaf templates for views
-5. Basic CSS styling
+2. Secure Login with Spring Security
+3. Remember-me functionality
+4. Password encryption
+5. MongoDB persistence
+6. Custom error pages
+7. Responsive UI with Thymeleaf
+8. Session management
 
-## Running the Application
+## User Interface Pages
 
-1. Start MongoDB:
-   ```bash
-   mongod
-   ```
+### 1. Login Page (/login)
+- Username/email input
+- Password input
+- Remember me checkbox
+- Registration link
+- Error message display
+- CSRF protection
 
-2. Build the project:
-   ```bash
-   mvn clean install
-   ```
+### 2. Registration Page (/register)
+- Username input
+- Email input
+- Password input
+- Validation messages
+- Login page link
+- Success/error alerts
 
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
+### 3. Home Page (/home)
+- Welcome message
+- User information
+- Logout button
+- Protected access
 
-4. Access the application at: http://localhost:8080
+## Data Validation Rules
 
-## Understanding the Code
+1. Username:
+   - Required
+   - 3-20 characters
+   - Alphanumeric only
+   - Must be unique
 
-### Important Components:
+2. Password:
+   - Required
+   - Minimum 6 characters
+   - At least one number
+   - At least one letter
 
-1. **User.java**
-   - Defines the user model with validation annotations
-   - Fields: username, email, password
+3. Email:
+   - Required
+   - Valid email format
+   - Must be unique
+   - Maximum 100 characters
 
-2. **SecurityConfig.java**
-   - Configures Spring Security
-   - Sets up authentication and authorization rules
-   - Configures password encryption
+## Security Implementation
 
-3. **AuthController.java**
-   - Handles HTTP requests for login and registration
-   - Maps URLs to specific views
-   - Processes form submissions
+1. Authentication:
+   - Form-based login
+   - Remember-me cookies
+   - Session management
+   - Password encryption
 
-4. **UserService.java**
-   - Contains business logic for user registration
-   - Handles password encryption
-   - Validates user data
+2. Authorization:
+   - URL-based security
+   - Role-based access
+   - Session timeout
+   - CSRF protection
 
-### Views:
-
-1. **login.html**
-   - Login form with username and password fields
-   - Shows error messages for invalid credentials
-   - Links to registration page
-
-2. **register.html**
-   - Registration form with validation
-   - Shows error messages for invalid inputs
-   - Links back to login page
-
-3. **home.html**
-   - Simple welcome page after successful login
-   - Logout button
-
-## Common Issues and Solutions
-
-1. **MongoDB Connection Issues**
-   - Ensure MongoDB is running on port 27017
-   - Check application.properties configuration
-
-2. **Password Encryption**
-   - Passwords are encrypted using BCrypt
-   - Never store plain-text passwords
-
-3. **Form Validation**
-   - Check error messages in the web interface
-   - Validation rules are defined in User.java
+3. Password Security:
+   - BCrypt hashing
+   - Salt generation
+   - No plain text storage
 
 ## Lab Tasks
 
-1. Run the application and create a new user account
-2. Try logging in with the created account
-3. Test validation by entering invalid data
-4. Examine the MongoDB database to see stored users
-5. Try accessing protected pages without logging in
-6. Test the logout functionality
+1. User Interface:
+   - Style login form
+   - Create registration form
+   - Add validation messages
+   - Implement responsive design
 
-## Additional Challenge
+2. Authentication:
+   - Configure security
+   - Implement login logic
+   - Add remember-me
+   - Handle session management
 
-1. Add password confirmation field in registration
-2. Implement "Remember Me" functionality
-3. Add user profile page with update capability
-4. Implement password reset functionality
+3. Registration:
+   - Implement validation
+   - Add duplicate checking
+   - Create success messages
+   - Handle error cases
 
-## Code Explanations
+4. Error Handling:
+   - Create error pages
+   - Add validation messages
+   - Handle exceptions
+   - Display user feedback
 
-### User Model
-```java
-@Document(collection = "users")
-public class User {
-    @Id
-    private String id;
-    // Username validation ensures 3-20 characters
-    @NotBlank(message = "Username is required")
-    private String username;
-    // Email must be valid format
-    @Email(message = "Please provide a valid email")
-    private String email;
-    // Password must be at least 6 characters
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    private String password;
-}
-```
+## Testing Requirements
 
-### Security Configuration
-```java
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    // Configures which URLs are public/private
-    // Sets up login form configuration
-    // Configures password encryption
-}
-```
+1. Form Validation:
+   - Empty fields
+   - Invalid formats
+   - Duplicate entries
+   - Password strength
 
-### Authentication Controller
-```java
-@Controller
-public class AuthController {
-    // Handles GET /login - Shows login form
-    // Handles GET /register - Shows registration form
-    // Handles POST /register - Processes registration
-    // Handles GET /home - Shows home page after login
-}
-```
+2. Authentication:
+   - Valid credentials
+   - Invalid credentials
+   - Remember-me function
+   - Session timeout
+
+3. Security:
+   - URL protection
+   - CSRF tokens
+   - Password encryption
+   - Session handling
+
+## Common Issues and Solutions
+
+1. Authentication Problems:
+   - Check credentials
+   - Verify password encoding
+   - Check user status
+   - Review security config
+
+2. Registration Issues:
+   - Validate input data
+   - Check unique constraints
+   - Verify email format
+   - Test password rules
+
+3. Session Problems:
+   - Check timeout settings
+   - Verify cookie config
+   - Test remember-me
+   - Monitor session state
+
+## Additional Challenges
+
+1. Add password reset
+2. Implement email verification
+3. Create admin dashboard
+4. Add user profiles
+5. Implement account lockout
+6. Add social login
+
+## Best Practices
+
+1. Security:
+   - Use HTTPS
+   - Implement CSRF
+   - Encode passwords
+   - Validate input
+
+2. User Experience:
+   - Clear error messages
+   - Responsive design
+   - Loading indicators
+   - Success feedback
+
+3. Code Quality:
+   - Follow conventions
+   - Add comments
+   - Write tests
+   - Handle errors
+
+## Resources
+
+1. Documentation:
+   - [Spring Security](https://docs.spring.io/spring-security/reference/index.html)
+   - [Thymeleaf](https://www.thymeleaf.org/documentation.html)
+   - [MongoDB](https://docs.mongodb.com/)
+
+2. UI Resources:
+   - [Bootstrap](https://getbootstrap.com/)
+   - [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/Forms)
+   - [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout)
+
+3. Security Guidelines:
+   - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+   - [Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
+   - [Session Management](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)

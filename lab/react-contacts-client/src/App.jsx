@@ -1,6 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './components/Login'
-import Register from './components/Register'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Contacts from './components/Contacts'
 import './styles.css'
 
@@ -8,10 +6,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Contacts />} />
       </Routes>
     </Router>
   )

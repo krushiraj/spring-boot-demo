@@ -1,12 +1,13 @@
 # Contact Management System with Spring Boot and MongoDB
 
-This project demonstrates a simple CRUD (Create, Read, Update, Delete) application for managing contacts using Spring Boot, MongoDB, and Thymeleaf.
+This project demonstrates a server-side rendered CRUD application for managing contacts using Spring Boot, MongoDB, and Thymeleaf templates.
 
 ## Prerequisites
 
-1. Java 1.8 installed
+1. Java 1.8 or higher
 2. MongoDB installed and running on default port (27017)
 3. Maven installed
+4. Modern web browser
 
 ## Project Structure
 
@@ -19,147 +20,194 @@ src/main/java/com/lab/contacts/
 │   └── Contact.java            # Contact entity class
 ├── repository/
 │   └── ContactRepository.java  # MongoDB repository interface
-└── service/
-    └── ContactService.java     # Business logic layer
+├── service/
+│   └── ContactService.java     # Business logic layer
+└── validator/
+    └── ContactValidator.java   # Custom validation rules
 ```
 
-## Features
+## Key Features
 
-1. Create new contacts with name, email, and mobile number
+1. Create new contacts
 2. View list of all contacts
 3. Update existing contacts
 4. Delete contacts
 5. Input validation
-6. Duplicate email/mobile check
+6. Duplicate checking
+7. Responsive UI
+8. Error handling
 
-## Running the Application
+## User Interface Pages
 
-1. Start MongoDB:
-   ```bash
-   mongod
-   ```
+### 1. Contact List Page (/contacts)
+- Display all contacts in a table
+- Add new contact button
+- Edit/Delete actions
+- Sorting and filtering
+- Pagination controls
 
-2. Build the project:
-   ```bash
-   mvn clean install
-   ```
+### 2. Add/Edit Contact Form
+- Name input field
+- Email input field
+- Mobile number input
+- Validation messages
+- Submit/Cancel buttons
 
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
+### 3. Error Pages
+- Not found page
+- Error messages
+- Return to list link
 
-4. Access the application at: http://localhost:8080/contacts
+## Data Validation Rules
 
-## Understanding the Code
+1. Name:
+   - Required
+   - 2-50 characters
+   - No special characters except spaces
+   - Server-side validation
 
-### Important Components:
+2. Email:
+   - Required
+   - Valid email format
+   - Must be unique
+   - Maximum 100 characters
+   - Client and server validation
 
-1. **Contact.java**
-   - Defines the contact model with validation annotations
-   - Uses @Document for MongoDB mapping
-   - Implements validation for email and mobile number format
-
-2. **ContactController.java**
-   - Handles all CRUD operations
-   - Maps URLs to specific actions
-   - Manages form submission and validation
-
-3. **ContactService.java**
-   - Contains business logic
-   - Handles duplicate checking
-   - Manages CRUD operations with repository
-
-### Data Validation Rules:
-
-1. Name: Cannot be empty
-2. Email: Must be valid email format
-3. Mobile: Must be exactly 10 digits
-4. Email and Mobile must be unique
+3. Mobile:
+   - Required
+   - Exactly 10 digits
+   - Must be unique
+   - Numbers only
+   - Pattern validation
 
 ## Lab Tasks
 
-1. Run the application
-2. Create a new contact with valid data
-3. Try creating a contact with invalid data to test validation
-4. Edit an existing contact
-5. Delete a contact
-6. Try creating a contact with duplicate email/mobile
+1. Basic CRUD:
+   - Create contact list view
+   - Implement add contact form
+   - Add edit functionality
+   - Create delete confirmation
+
+2. Validation:
+   - Add input constraints
+   - Implement unique checks
+   - Create error messages
+   - Add client validation
+
+3. User Interface:
+   - Style contact list
+   - Format input forms
+   - Add responsive design
+   - Create error pages
+
+4. Error Handling:
+   - Add validation messages
+   - Create error pages
+   - Handle exceptions
+   - Show user feedback
+
+## Testing Strategy
+
+1. Unit Testing:
+   - Service methods
+   - Validation rules
+   - Repository queries
+   - Error handling
+
+2. Integration Testing:
+   - Controller endpoints
+   - Form submission
+   - Database operations
+   - View rendering
+
+3. UI Testing:
+   - Form validation
+   - CRUD operations
+   - Responsive design
+   - Error messages
 
 ## Common Issues and Solutions
 
-1. **MongoDB Connection Issues**
-   - Ensure MongoDB is running on port 27017
-   - Check application.properties configuration
-   - Verify database name in configuration
+1. MongoDB Connection:
+   - Check MongoDB service
+   - Verify connection string
+   - Check database name
+   - Test connection
 
-2. **Validation Errors**
-   - Check error messages in the web interface
-   - Make sure mobile number is exactly 10 digits
-   - Ensure email format is valid
+2. Validation Issues:
+   - Review constraints
+   - Check error messages
+   - Test edge cases
+   - Verify unique rules
 
-3. **Form Submission Issues**
-   - Check for validation error messages
-   - Ensure all required fields are filled
-   - Verify unique email/mobile constraints
+3. UI Problems:
+   - Check templates
+   - Verify CSS paths
+   - Test responsiveness
+   - Debug JavaScript
 
-## Code Explanations
+## Additional Challenges
 
-### Contact Model
-```java
-@Document(collection = "contacts")
-public class Contact {
-    @Id
-    private String id;
-    
-    @NotBlank(message = "Name is required")
-    private String name;
-    
-    @Email(message = "Please provide a valid email")
-    private String email;
-    
-    @Pattern(regexp = "^\\d{10}$", message = "Mobile number must be 10 digits")
-    private String mobile;
-}
-```
+1. Add contact search
+2. Implement pagination
+3. Add sorting options
+4. Create contact groups
+5. Add contact import/export
+6. Implement contact sharing
 
-### Controller Methods
-```java
-@Controller
-@RequestMapping("/contacts")
-public class ContactController {
-    // GET /contacts - List all contacts
-    // POST /contacts - Create new contact
-    // GET /contacts/edit/{id} - Show edit form
-    // POST /contacts/update/{id} - Update contact
-    // GET /contacts/delete/{id} - Delete contact
-}
-```
+## Best Practices
 
-### Additional Challenges
+1. Code Organization:
+   - Follow MVC pattern
+   - Use service layer
+   - Implement validation
+   - Handle errors
 
-1. Add search functionality by name or email
-2. Implement pagination for the contacts list
-3. Add sorting functionality
-4. Implement bulk delete feature
-5. Add contact categories or groups
+2. User Experience:
+   - Clear messages
+   - Responsive design
+   - Fast loading
+   - Easy navigation
 
-## Testing the Application
+3. Data Management:
+   - Validate input
+   - Check duplicates
+   - Secure data
+   - Optimize queries
 
-1. Unit Testing:
-   - Test validation rules
-   - Test service layer logic
-   - Test duplicate checking
+## Testing Requirements
 
-2. Integration Testing:
-   - Test MongoDB operations
-   - Test controller endpoints
-   - Test form submission
+1. Form Testing:
+   - Required fields
+   - Invalid formats
+   - Unique constraints
+   - Error messages
 
-3. Manual Testing Checklist:
-   - Create contact with valid data
-   - Create contact with invalid data
-   - Edit existing contact
+2. CRUD Operations:
+   - Create contact
+   - Read contact list
+   - Update contact
    - Delete contact
-   - Verify validation messages
-   - Check duplicate entry handling
+
+3. Error Cases:
+   - Invalid input
+   - Duplicate data
+   - Not found
+   - Server errors
+
+## Resources
+
+1. Documentation:
+   - [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+   - [Thymeleaf](https://www.thymeleaf.org/documentation.html)
+   - [MongoDB](https://docs.mongodb.com/)
+
+2. UI Resources:
+   - [Bootstrap](https://getbootstrap.com/)
+   - [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/Forms)
+   - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+
+3. Development Tools:
+   - [MongoDB Compass](https://www.mongodb.com/products/compass)
+   - [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools)
+   - [VS Code Spring Boot Extension](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)

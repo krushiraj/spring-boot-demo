@@ -1,10 +1,10 @@
 # Spring Boot REST Authentication API with JWT
 
-This project demonstrates a REST API authentication system using Spring Boot, Spring Security, MongoDB, and JSON Web Tokens (JWT).
+This project implements a secure REST API authentication system using Spring Boot, Spring Security, MongoDB, and JSON Web Tokens (JWT).
 
 ## Prerequisites
 
-1. Java 1.8 installed
+1. Java 1.8 or higher
 2. MongoDB installed and running on default port (27017)
 3. Maven installed
 4. Postman or similar tool for testing REST APIs
@@ -36,8 +36,10 @@ src/main/java/com/lab/auth/
 2. User Login with JWT authentication
 3. Token validation endpoint
 4. MongoDB for user storage
-5. Password encryption
+5. Password encryption with BCrypt
 6. CORS configuration for frontend access
+7. Comprehensive error handling
+8. Input validation and sanitization
 
 ## REST API Endpoints
 
@@ -47,17 +49,12 @@ src/main/java/com/lab/auth/
   ```json
   {
     "username": "user123",
-    "password": "password123",
-    "email": "user@example.com"
+    "email": "user@example.com",
+    "password": "password123"
   }
   ```
-- **Response**:
-  ```json
-  {
-    "token": "jwt-token-here",
-    "username": "user123"
-  }
-  ```
+- **Success Response**: 201 Created
+- **Error Response**: 400 Bad Request if validation fails
 
 ### 2. Login User
 - **URL**: POST /api/auth/login
@@ -68,161 +65,158 @@ src/main/java/com/lab/auth/
     "password": "password123"
   }
   ```
-- **Response**:
-  ```json
-  {
-    "token": "jwt-token-here",
-    "username": "user123"
-  }
-  ```
+- **Success Response**: JWT token
+- **Error Response**: 401 Unauthorized
 
 ### 3. Validate Token
 - **URL**: GET /api/auth/validate
 - **Headers**: 
   - Authorization: Bearer your-jwt-token
-- **Response**: 200 OK if valid, 400 Bad Request if invalid
-
-## Running the Application
-
-1. Start MongoDB:
-   ```bash
-   mongod
-   ```
-
-2. Build the project:
-   ```bash
-   mvn clean install
-   ```
-
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-4. Test the endpoints using Postman or curl
-
-## Understanding the Code
-
-### 1. Security Configuration
-```java
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    // Configures security settings
-    // Sets up JWT authentication
-    // Configures CORS
-    // Defines public/private endpoints
-}
-```
-
-### 2. JWT Authentication Filter
-```java
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    // Extracts JWT from request header
-    // Validates JWT token
-    // Sets up Spring Security context
-}
-```
-
-### 3. JWT Utility
-```java
-@Component
-public class JwtUtil {
-    // Generates JWT tokens
-    // Validates tokens
-    // Extracts user information
-}
-```
+- **Success Response**: 200 OK
+- **Error Response**: 401 Unauthorized
 
 ## Data Validation Rules
 
 1. Username:
    - Required
    - 3-20 characters
+   - Alphanumeric characters only
+   - Must be unique
 
 2. Password:
    - Required
    - Minimum 6 characters
+   - At least one number
+   - At least one letter
 
 3. Email:
    - Required
    - Valid email format
    - Must be unique
 
+## Security Implementation
+
+1. Password Storage:
+   - BCrypt hashing
+   - Salt generation
+   - No plain text storage
+
+2. JWT Configuration:
+   - Token expiration
+   - Signature verification
+   - Role-based claims
+
+3. Request Security:
+   - CORS configuration
+   - XSS protection
+   - CSRF protection
+
 ## Lab Tasks
 
-1. Test user registration:
-   - Create a new user with valid data
-   - Try creating a user with invalid data
-   - Try creating a user with duplicate username/email
+1. User Registration:
+   - Implement validation rules
+   - Add duplicate check
+   - Create error responses
+   - Test with valid/invalid data
 
-2. Test user login:
-   - Login with valid credentials
-   - Try logging in with invalid credentials
-   - Verify JWT token in response
+2. User Login:
+   - Implement authentication
+   - Generate JWT token
+   - Handle invalid credentials
+   - Test token generation
 
-3. Test token validation:
-   - Use a valid token
-   - Try an invalid/expired token
-   - Try without a token
+3. Token Validation:
+   - Implement token verification
+   - Add expiration check
+   - Create protected endpoints
+   - Test with valid/invalid tokens
+
+4. Error Handling:
+   - Implement global error handler
+   - Create custom exceptions
+   - Add validation messages
+   - Test error scenarios
+
+## Testing Strategy
+
+1. Unit Testing:
+   - Service layer logic
+   - JWT utility methods
+   - Password encryption
+   - Validation rules
+
+2. Integration Testing:
+   - API endpoints
+   - Database operations
+   - Authentication flow
+   - Error handling
+
+3. Security Testing:
+   - Token validation
+   - Password hashing
+   - Authorization checks
+   - Input validation
 
 ## Common Issues and Solutions
 
-1. **MongoDB Connection Issues**
-   - Verify MongoDB is running
-   - Check connection string in application.properties
-   - Ensure correct database name
-
-2. **JWT Token Issues**
+1. Token Issues:
    - Check token expiration time
-   - Verify secret key configuration
-   - Ensure proper token format in Authorization header
+   - Verify signature key
+   - Validate token format
+   - Check authorization header
 
-3. **CORS Issues**
-   - Check CORS configuration in SecurityConfig
-   - Verify allowed origins
-   - Check request headers
+2. Authentication Problems:
+   - Verify credentials
+   - Check password encryption
+   - Validate user existence
+   - Check role assignments
 
-## Testing with Postman
-
-1. **Registration Test**
-   - Create POST request to /api/auth/register
-   - Set Content-Type: application/json
-   - Add user data in request body
-   - Verify JWT token in response
-
-2. **Login Test**
-   - Create POST request to /api/auth/login
-   - Set Content-Type: application/json
-   - Add credentials in request body
-   - Save JWT token for next requests
-
-3. **Protected Endpoint Test**
-   - Add Authorization header
-   - Use format: Bearer your-jwt-token
-   - Try accessing protected endpoints
+3. CORS Issues:
+   - Configure allowed origins
+   - Set allowed methods
+   - Add required headers
+   - Test with frontend
 
 ## Additional Challenges
 
 1. Add password reset functionality
-2. Implement token refresh mechanism
-3. Add role-based authorization
-4. Implement account verification via email
-5. Add OAuth2 authentication
+2. Implement email verification
+3. Add OAuth2 integration
+4. Create role-based access
+5. Add session management
+6. Implement rate limiting
 
 ## Troubleshooting Tips
 
-1. **JWT Token Invalid**
-   - Check token format
-   - Verify secret key
-   - Check token expiration
+1. Authentication Fails:
+   - Check password hashing
+   - Verify user exists
+   - Validate credentials
+   - Check token validity
 
-2. **Authentication Failed**
-   - Verify credentials
-   - Check password encryption
-   - Monitor debug logs
+2. Token Validation Fails:
+   - Check expiration time
+   - Verify signature
+   - Validate token format
+   - Check header format
 
-3. **CORS Errors**
-   - Add proper CORS headers
-   - Check allowed methods
-   - Verify origin configuration
+3. Database Issues:
+   - Check MongoDB connection
+   - Verify indexes
+   - Check unique constraints
+   - Monitor performance
+
+## Resources
+
+1. Documentation:
+   - [Spring Security](https://docs.spring.io/spring-security/reference/index.html)
+   - [JWT](https://jwt.io/)
+   - [MongoDB](https://docs.mongodb.com/)
+
+2. Testing Tools:
+   - [Postman](https://www.postman.com/)
+   - [JUnit](https://junit.org/)
+
+3. Security Resources:
+   - [OWASP](https://owasp.org/)
+   - [Web Security](https://developer.mozilla.org/en-US/docs/Web/Security)

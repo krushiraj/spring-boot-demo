@@ -1,37 +1,25 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([])
-  const [newContact, setNewContact] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     mobile: ''
   })
   const [error, setError] = useState('')
-  const navigate = useNavigate()
+  const [isEditing, setIsEditing] = useState(false)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) {
-      navigate('/login')
-      return
-    }
     fetchContacts()
-  }, [navigate])
+  }, [])
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/contacts', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      const response = await fetch('http://localhost:8080/api/contacts')
       if (response.ok) {
         const data = await response.json()
         setContacts(data)
-      } else if (response.status === 401) {
-        navigate('/login')
       }
     } catch (error) {
       setError('Failed to fetch contacts')
@@ -41,36 +29,56 @@ const Contacts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:8080/api/contacts', {
-        method: 'POST',
+      const url = isEditing 
+        ? `http://localhost:8080/api/contacts/${formData.id}`
+        : 'http://localhost:8080/api/contacts'
+      
+      const response = await fetch(url, {
+        method: isEditing ? 'PUT' : 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newContact)
+        body: JSON.stringify(formData)
       })
+
       if (response.ok) {
         const data = await response.json()
-        setContacts([...contacts, data])
-        setNewContact({ name: '', email: '', mobile: '' })
+        if (isEditing) {
+          setContacts(contacts.map(contact => 
+            contact.id === data.id ? data : contact
+          ))
+          setIsEditing(false)
+        } else {
+          setContacts([...contacts, data])
+        }
+        setFormData({ name: '', email: '', mobile: '' })
         setError('')
       } else {
         const errorData = await response.json()
-        setError(errorData.error || 'Failed to create contact')
+        setError(errorData.error || `Failed to ${isEditing ? 'update' : 'create'} contact`)
       }
     } catch (error) {
-      setError('Failed to create contact')
+      setError(`Failed to ${isEditing ? 'update' : 'create'} contact`)
     }
+  }
+
+  const handleEdit = (contact) => {
+    setFormData(contact)
+    setIsEditing(true)
+    setError('')
+  }
+
+  const handleCancel = () => {
+    setFormData({ name: '', email: '', mobile: '' })
+    setIsEditing(false)
+    setError('')
   }
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this contact?')) {
       try {
         const response = await fetch(`http://localhost:8080/api/contacts/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
+          method: 'DELETE'
         })
         if (response.ok) {
           setContacts(contacts.filter(contact => contact.id !== id))
@@ -83,30 +91,24 @@ const Contacts = () => {
     }
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
-
   return (
     <div className="container">
       <div className="header">
         <h2>Contacts</h2>
-        <button onClick={handleLogout} className="btn btn-danger">Logout</button>
       </div>
 
       {error && <div className="error">{error}</div>}
 
       <div className="form-section">
-        <h3>Add New Contact</h3>
+        <h3>{isEditing ? 'Edit Contact' : 'Add New Contact'}</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="text"
               className="form-input"
               placeholder="Name"
-              value={newContact.name}
-              onChange={(e) => setNewContact({...newContact, name: e.target.value})}
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
               required
             />
           </div>
@@ -115,8 +117,8 @@ const Contacts = () => {
               type="email"
               className="form-input"
               placeholder="Email"
-              value={newContact.email}
-              onChange={(e) => setNewContact({...newContact, email: e.target.value})}
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
               required
             />
           </div>
@@ -125,13 +127,19 @@ const Contacts = () => {
               type="text"
               className="form-input"
               placeholder="Mobile"
-              value={newContact.mobile}
-              onChange={(e) => setNewContact({...newContact, mobile: e.target.value})}
+              value={formData.mobile}
+              onChange={(e) => setFormData({...formData, mobile: e.target.value})}
               required
-              pattern="\\d{10}"
             />
           </div>
-          <button type="submit" className="btn">Add Contact</button>
+          <button type="submit" className="btn">
+            {isEditing ? 'Update Contact' : 'Add Contact'}
+          </button>
+          {isEditing && (
+            <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+              Cancel
+            </button>
+          )}
         </form>
       </div>
 
@@ -153,6 +161,12 @@ const Contacts = () => {
                 <td>{contact.email}</td>
                 <td>{contact.mobile}</td>
                 <td>
+                  <button 
+                    onClick={() => handleEdit(contact)}
+                    className="btn btn-small"
+                  >
+                    Edit
+                  </button>
                   <button 
                     onClick={() => handleDelete(contact.id)}
                     className="btn btn-small btn-danger"
