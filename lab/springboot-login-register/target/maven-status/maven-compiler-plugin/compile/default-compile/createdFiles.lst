@@ -1,0 +1,7 @@
+com/lab/auth/config/SecurityConfig.class
+com/lab/auth/service/UserService.class
+com/lab/auth/model/User.class
+com/lab/auth/controller/AuthController.class
+com/lab/auth/AuthApplication.class
+com/lab/auth/repository/UserRepository.class
+com/lab/auth/service/CustomUserDetailsService.class

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Management</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Contact Management</h2>
+        
+        <!-- Error Messages -->
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+
+        <!-- Contact Form -->
+        <div class="form-container">
+            <h3 th:text="${contact.id != null ? 'Edit Contact' : 'Add New Contact'}">Add New Contact</h3>
+            <form th:action="${contact.id != null ? '/contacts/update/' + contact.id : '/contacts'}" 
+                  th:object="${contact}" 
+                  method="post">
+                
+                <div class="form-group">
+                    <input type="text" th:field="*{name}" placeholder="Name" class="form-input"/>
+                    <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" th:field="*{email}" placeholder="Email" class="form-input"/>
+                    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" th:field="*{mobile}" placeholder="Mobile Number" class="form-input"/>
+                    <div class="error" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></div>
+                </div>
+
+                <button type="submit" class="btn" th:text="${contact.id != null ? 'Update' : 'Save'}">Save</button>
+                <a th:if="${contact.id != null}" href="/contacts" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+
+        <!-- Contacts List -->
+        <div class="contacts-list">
+            <h3>Contact List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cont : ${contacts}">
+                        <td th:text="${cont.name}"></td>
+                        <td th:text="${cont.email}"></td>
+                        <td th:text="${cont.mobile}"></td>
+                        <td>
+                            <a th:href="@{/contacts/edit/{id}(id=${cont.id})}" class="btn btn-small">Edit</a>
+                            <a th:href="@{/contacts/delete/{id}(id=${cont.id})}" 
+                               class="btn btn-small btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this contact?')">Delete</a>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(contacts)}">
+                        <td colspan="4">No contacts found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
