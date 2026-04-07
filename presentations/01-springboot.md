@@ -269,7 +269,7 @@ public class OrderController {
 
 ## IoC Container
 
-![w:700](images/sb-ioc-container.png)
+![w:950](images/sb-ioc-container.png)
 
 ---
 

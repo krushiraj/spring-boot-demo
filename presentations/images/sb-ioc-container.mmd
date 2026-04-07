@@ -1,15 +1,13 @@
-flowchart TB
+flowchart LR
+    APP["Application\nStart"] --> IoC
+
     subgraph IoC["Spring IoC Container"]
-        direction TB
-        B1["@Component<br/>MyBean"]
-        B2["@Service<br/>UserService"]
-        B3["@Repository<br/>UserRepo"]
-        B4["@Controller<br/>UserCtrl"]
+        direction LR
+        B4["@Controller\nUserCtrl"] -->|"@Autowired"| B2["@Service\nUserService"]
+        B2 -->|"@Autowired"| B3["@Repository\nUserRepo"]
+        B1["@Component\nMyBean"]
     end
-    APP["Application Start"] --> IoC
-    IoC -->|"Creates & Manages"| B1 & B2 & B3 & B4
-    B4 -->|"@Autowired"| B2
-    B2 -->|"@Autowired"| B3
+
     style IoC fill:#E8F5E9,stroke:#2E7D32
     style B1 fill:#C8E6C9,stroke:#2E7D32
     style B2 fill:#A5D6A7,stroke:#2E7D32
