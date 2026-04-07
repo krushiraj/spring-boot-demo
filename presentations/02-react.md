@@ -1098,21 +1098,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ## Defining Routes
 
 ```jsx
-import { Routes, Route, Link } from 'react-router-dom';
-
 function App() {
   return (
     <div>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/students">Students</Link>
-        <Link to="/about">About</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/students" element={<StudentList />}/>
-        <Route path="/students/:id"
-               element={<StudentDetail />} />
+        <Route path="/students/:id" element={<StudentDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
@@ -1120,8 +1116,7 @@ function App() {
 }
 ```
 
-- `path="*"` catches all unmatched routes (404 page)
-- `:id` is a **URL parameter** (dynamic route)
+- `path="*"` catches unmatched routes (404) | `:id` is a dynamic URL parameter
 
 <!-- Speaker notes: Walk through each route. The order doesn't matter in v6 (React Router picks the most specific match). Live demo: Set up these routes and navigate between them. Show that the URL changes but the page doesn't reload. -->
 
@@ -1130,23 +1125,16 @@ function App() {
 ## Link, NavLink, useNavigate
 
 ```jsx
-import { Link, NavLink, useNavigate }
-  from 'react-router-dom';
-
 function Navigation() {
   const navigate = useNavigate();
-
   return (
     <nav>
       <Link to="/">Home</Link>
-
       <NavLink to="/students"
         className={({ isActive }) =>
-          isActive ? "nav-active" : ""
-        }>
+          isActive ? "active" : ""}>
         Students
       </NavLink>
-
       <button onClick={() => navigate('/login')}>
         Logout
       </button>
@@ -1155,9 +1143,11 @@ function Navigation() {
 }
 ```
 
-- **Link** - simple navigation (like `<a>` without reload)
-- **NavLink** - adds active class for current route
-- **useNavigate** - programmatic navigation in handlers
+| Hook/Component | Purpose |
+|---|---|
+| `Link` | Navigation without page reload |
+| `NavLink` | Link with active class styling |
+| `useNavigate` | Programmatic navigation in handlers |
 
 <!-- Speaker notes: Three ways to navigate: (1) Link - simple navigation, (2) NavLink - knows if it's the active route, (3) useNavigate - programmatic navigation in event handlers. Show the difference between Link and a regular <a> tag in DevTools. -->
 
@@ -1166,8 +1156,6 @@ function Navigation() {
 ## useParams - Reading URL Parameters
 
 ```jsx
-import { useParams } from 'react-router-dom';
-
 function StudentDetail() {
   const { id } = useParams();
   const [student, setStudent] = useState(null);
@@ -1175,22 +1163,16 @@ function StudentDetail() {
   useEffect(() => {
     fetch(`/api/students/${id}`)
       .then(res => res.json())
-      .then(data => setStudent(data));
+      .then(setStudent);
   }, [id]);
 
   if (!student) return <p>Loading...</p>;
-  return (
-    <div>
-      <h2>{student.name}</h2>
-      <p>Email: {student.email}</p>
-      <Link to="/students">Back to List</Link>
-    </div>
-  );
+  return <h2>{student.name} - {student.email}</h2>;
 }
 ```
 
-- Route: `<Route path="/students/:id" element={<StudentDetail />} />`
-- `useParams` extracts dynamic segments (always strings)
+- Route: `<Route path="/students/:id" ... />`
+- `useParams()` returns `{ id: "42" }` — always strings
 
 <!-- Speaker notes: useParams extracts the dynamic segments from the URL. If the route is /students/:id and the URL is /students/42, then id = "42" (always a string!). Notice the useEffect depends on [id]. -->
 
@@ -1198,13 +1180,9 @@ function StudentDetail() {
 
 ## Building a Complete SPA
 
-![w:700](images/fullstack-arch.png)
+![w:500](images/fullstack-arch.png)
 
-### SPA Architecture:
-1. **React Router** handles URL changes
-2. **Components** render the right view
-3. **useState/useEffect** manage data
-4. **Props** pass data down the tree
+**React Router** handles URLs | **Components** render views | **useState/useEffect** manage data
 
 <!-- Speaker notes: This ties everything together. Draw this architecture on the whiteboard. Each page is a component, each component manages its own state and effects. The router decides which component to show based on the URL. Ask: "What Spring Boot endpoints would we need for this?" -->
 
@@ -1250,17 +1228,15 @@ function Students() {
 
   return (
     <ul>
-      {students.map(s => (
+      {students.map(s =>
         <li key={s.id}>{s.name} - {s.email}</li>
-      ))}
+      )}
     </ul>
   );
 }
 ```
 
-- Fetches data from a public API on mount
-- Renders a list with proper keys
-- Combines useState, useEffect, and map()
+Combines **useState** + **useEffect** + **map()** + **keys** — everything we've learned!
 
 <!-- Speaker notes: Walk through each concept as you code: components, state, effects, routing, lists, keys. This is the culmination of everything we've learned. If time allows, add a search filter. -->
 
@@ -1268,35 +1244,24 @@ function Students() {
 
 ## useState with Objects
 
-Managing complex state:
-
 ```jsx
-function StudentForm() {
-  const [student, setStudent] = useState({
-    name: '', email: '', grade: 'A'
-  });
+const [student, setStudent] = useState({
+  name: '', email: '', department: ''
+});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStudent(prev => ({
-      ...prev,          // Keep existing fields
-      [name]: value     // Update only changed field
-    }));
-  };
+const handleChange = (e) => {
+  setStudent(prev => ({
+    ...prev,              // keep other fields
+    [e.target.name]: e.target.value  // update this field
+  }));
+};
 
-  return (
-    <form>
-      <input name="name" value={student.name}
-             onChange={handleChange} />
-      <input name="email" value={student.email}
-             onChange={handleChange} />
-    </form>
-  );
-}
+// One handler for all inputs:
+<input name="name" value={student.name} onChange={handleChange} />
+<input name="email" value={student.email} onChange={handleChange} />
 ```
 
-- Single handler for all inputs using computed property `[name]`
-- Spread `...prev` ensures other fields are preserved
+- `...prev` spread keeps existing fields, `[name]` updates only the changed one
 
 <!-- Speaker notes: This pattern uses a single state object instead of multiple useState calls. The handleChange function uses computed property names [name] to update the right field. -->
 
@@ -1336,26 +1301,31 @@ When siblings need to share data, lift state to their parent:
 ```jsx
 function App() {
   const [students, setStudents] = useState([]);
-
-  const addStudent = (student) => {
-    setStudents([...students, {
-      ...student, id: Date.now()
-    }]);
+  const addStudent = (s) => {
+    setStudents([...students, { ...s, id: Date.now() }]);
   };
-
   return (
     <div>
       <AddStudentForm onAdd={addStudent} />
       <StudentList students={students} />
-      <p>Total: {students.length}</p>
     </div>
   );
 }
 ```
 
-![w:500](images/react-data-flow.png)
+<!-- Speaker notes: This is a crucial React pattern. When two components need the same data, move the state to their closest common parent. -->
 
-<!-- Speaker notes: This is a crucial React pattern. When two components need the same data, move the state to their closest common parent. The parent owns the state and passes it down as props. The child can "send data up" by calling a callback function (onAdd). -->
+---
+
+## Data Flow in React
+
+![w:700](images/react-data-flow.png)
+
+- **Props flow down** — parent passes data to children
+- **Callbacks flow up** — child calls parent's function to update state
+- This is **one-way data binding** — data has a single source of truth
+
+<!-- Speaker notes: Draw this on the board. The parent owns the state and passes it down as props. The child can "send data up" by calling a callback function (onAdd). This is fundamentally different from Angular's two-way binding. -->
 
 ---
 
