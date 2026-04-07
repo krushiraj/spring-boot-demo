@@ -29,25 +29,25 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 | Topic | Theory Doc | Presentation | Live Coding Snippet | Lab Experiment | Exam Scaffold |
 |-------|-----------|-------------|---------------------|----------------|--------------|
-| Spring Boot Introduction | `docs/springboot/01-introduction.md` | `presentations/01-springboot.pptx` | `snippets/springboot/hello-world/` | -- | -- |
-| Spring Initializr | `docs/springboot/02-spring-initializr.md` | `presentations/01-springboot.pptx` | `snippets/springboot/hello-world/` | -- | -- |
-| Dependency Injection | `docs/springboot/03-dependency-injection.md` | `presentations/01-springboot.pptx` | `snippets/springboot/dependency-injection/` | -- | -- |
-| Web Applications and REST | `docs/springboot/04-web-application.md` | `presentations/01-springboot.pptx` | `snippets/springboot/rest-controller/` | -- | -- |
-| Database Connectivity | `docs/springboot/05-database-connectivity.md` | `presentations/01-springboot.pptx` | `snippets/springboot/mongo-connection/` | `labs/springboot-crud-mongodb/` | `exams/springboot-crud-mongodb/` |
-| Registration and Login | `docs/springboot/qa.md` (Q40: Security) | `presentations/01-springboot.pptx` | -- | `labs/springboot-login-register/` | `exams/springboot-login-register/` |
-| React Introduction | `docs/react/01-introduction.md` | `presentations/02-react.pptx` | `snippets/react/jsx-basics/` | -- | -- |
-| JSX and Rendering | `docs/react/02-jsx-rendering.md` | `presentations/02-react.pptx` | `snippets/react/jsx-basics/` | -- | -- |
-| Components and Props | `docs/react/03-components-props.md` | `presentations/02-react.pptx` | `snippets/react/components-props/` | -- | -- |
-| State and Lifecycle | `docs/react/04-state-lifecycle.md` | `presentations/02-react.pptx` | `snippets/react/state-events/` | -- | -- |
-| Events and Forms | `docs/react/05-events-forms.md` | `presentations/02-react.pptx` | `snippets/react/forms-validation/` | -- | -- |
-| Lists and Conditional | `docs/react/06-lists-conditional.md` | `presentations/02-react.pptx` | `snippets/react/components-props/` | -- | -- |
-| Single Page Apps | `docs/react/07-single-page-apps.md` | `presentations/02-react.pptx` | `snippets/react/react-router-spa/` | -- | -- |
-| Full-Stack App | -- | -- | -- | `labs/fullstack-student-app/` | `exams/fullstack-student-app/` |
-| Node.js Introduction | `docs/nodejs-mongodb/01-introduction-nodejs.md` | `presentations/03-nodejs-mongodb.pptx` | `snippets/nodejs-mongodb/hello-node/` | -- | -- |
-| Events and Callbacks | `docs/nodejs-mongodb/02-events-callbacks.md` | `presentations/03-nodejs-mongodb.pptx` | `snippets/nodejs-mongodb/events-timers/` + `callbacks-async/` | -- | -- |
-| MongoDB Introduction | `docs/nodejs-mongodb/03-introduction-mongodb.md` | `presentations/03-nodejs-mongodb.pptx` | `snippets/nodejs-mongodb/mongo-crud/` | -- | -- |
-| MongoDB from Node.js | `docs/nodejs-mongodb/04-mongodb-from-nodejs.md` | `presentations/03-nodejs-mongodb.pptx` | `snippets/nodejs-mongodb/mongo-crud/` | -- | -- |
-| Q&A / Exam Prep | `docs/springboot/qa.md`, `docs/react/qa.md`, `docs/nodejs-mongodb/qa.md` | -- | -- | -- | All in `exams/` |
+| Spring Boot Introduction | [docs/springboot/01-introduction.md](../docs/springboot/01-introduction.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | -- | -- |
+| Spring Initializr | [docs/springboot/02-spring-initializr.md](../docs/springboot/02-spring-initializr.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | -- | -- |
+| Dependency Injection | [docs/springboot/03-dependency-injection.md](../docs/springboot/03-dependency-injection.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) | -- | -- |
+| Web Applications and REST | [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) | -- | -- |
+| Database Connectivity | [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) | [labs/springboot-crud-mongodb/](../labs/springboot-crud-mongodb/) | [exams/springboot-crud-mongodb/](../exams/springboot-crud-mongodb/) |
+| Registration and Login | [docs/springboot/qa.md](../docs/springboot/qa.md) (Q40: Security) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | -- | [labs/springboot-login-register/](../labs/springboot-login-register/) | [exams/springboot-login-register/](../exams/springboot-login-register/) |
+| React Introduction | [docs/react/01-introduction.md](../docs/react/01-introduction.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) | -- | -- |
+| JSX and Rendering | [docs/react/02-jsx-rendering.md](../docs/react/02-jsx-rendering.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) | -- | -- |
+| Components and Props | [docs/react/03-components-props.md](../docs/react/03-components-props.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/components-props/](../snippets/react/components-props/) | -- | -- |
+| State and Lifecycle | [docs/react/04-state-lifecycle.md](../docs/react/04-state-lifecycle.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/state-events/](../snippets/react/state-events/) | -- | -- |
+| Events and Forms | [docs/react/05-events-forms.md](../docs/react/05-events-forms.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/forms-validation/](../snippets/react/forms-validation/) | -- | -- |
+| Lists and Conditional | [docs/react/06-lists-conditional.md](../docs/react/06-lists-conditional.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/components-props/](../snippets/react/components-props/) | -- | -- |
+| Single Page Apps | [docs/react/07-single-page-apps.md](../docs/react/07-single-page-apps.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/react-router-spa/](../snippets/react/react-router-spa/) | -- | -- |
+| Full-Stack App | -- | -- | -- | [labs/fullstack-student-app/](../labs/fullstack-student-app/) | [exams/fullstack-student-app/](../exams/fullstack-student-app/) |
+| Node.js Introduction | [docs/nodejs-mongodb/01-introduction-nodejs.md](../docs/nodejs-mongodb/01-introduction-nodejs.md) | [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx) | [snippets/nodejs-mongodb/hello-node/](../snippets/nodejs-mongodb/hello-node/) | -- | -- |
+| Events and Callbacks | [docs/nodejs-mongodb/02-events-callbacks.md](../docs/nodejs-mongodb/02-events-callbacks.md) | [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx) | [snippets/nodejs-mongodb/events-timers/](../snippets/nodejs-mongodb/events-timers/) + `callbacks-async/` | -- | -- |
+| MongoDB Introduction | [docs/nodejs-mongodb/03-introduction-mongodb.md](../docs/nodejs-mongodb/03-introduction-mongodb.md) | [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx) | [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/) | -- | -- |
+| MongoDB from Node.js | [docs/nodejs-mongodb/04-mongodb-from-nodejs.md](../docs/nodejs-mongodb/04-mongodb-from-nodejs.md) | [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx) | [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/) | -- | -- |
+| Q&A / Exam Prep | [docs/springboot/qa.md](../docs/springboot/qa.md), [docs/react/qa.md](../docs/react/qa.md), [docs/nodejs-mongodb/qa.md](../docs/nodejs-mongodb/qa.md) | -- | -- | -- | All in [exams/](../exams/) |
 
 ### Snippet File Quick-Reference
 
@@ -55,45 +55,45 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 | Snippet Folder | Key Files |
 |---------------|-----------|
-| `snippets/springboot/hello-world/` | `pom.xml`, `src/main/java/com/demo/HelloApplication.java`, `src/main/java/com/demo/HelloController.java` |
-| `snippets/springboot/dependency-injection/` | `pom.xml`, `src/main/java/com/demo/DiApplication.java`, `src/main/java/com/demo/service/GreetingService.java`, `EnglishGreetingService.java`, `TeluguGreetingService.java`, `src/main/java/com/demo/controller/ConstructorInjectionController.java`, `FieldInjectionController.java`, `SetterInjectionController.java` |
-| `snippets/springboot/rest-controller/` | `pom.xml`, `src/main/java/com/demo/RestControllerApplication.java`, `src/main/java/com/demo/Message.java`, `src/main/java/com/demo/MessageController.java` |
-| `snippets/springboot/mongo-connection/` | `pom.xml`, `src/main/java/com/demo/MongoApplication.java`, `src/main/java/com/demo/Student.java`, `src/main/java/com/demo/StudentRepository.java`, `src/main/java/com/demo/StudentController.java`, `src/main/resources/application.properties` |
+| [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | `pom.xml`, `src/main/java/com/demo/HelloApplication.java`, `src/main/java/com/demo/HelloController.java` |
+| [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) | `pom.xml`, `src/main/java/com/demo/DiApplication.java`, `src/main/java/com/demo/service/GreetingService.java`, `EnglishGreetingService.java`, `TeluguGreetingService.java`, `src/main/java/com/demo/controller/ConstructorInjectionController.java`, `FieldInjectionController.java`, `SetterInjectionController.java` |
+| [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) | `pom.xml`, `src/main/java/com/demo/RestControllerApplication.java`, `src/main/java/com/demo/Message.java`, `src/main/java/com/demo/MessageController.java` |
+| [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) | `pom.xml`, `src/main/java/com/demo/MongoApplication.java`, `src/main/java/com/demo/Student.java`, `src/main/java/com/demo/StudentRepository.java`, `src/main/java/com/demo/StudentController.java`, `src/main/resources/application.properties` |
 
 **React snippets:**
 
 | Snippet Folder | Key Files |
 |---------------|-----------|
-| `snippets/react/jsx-basics/` | `package.json`, `vite.config.js`, `src/main.jsx`, `src/App.jsx` |
-| `snippets/react/components-props/` | `src/App.jsx`, `src/components/Header.jsx`, `src/components/StudentCard.jsx`, `src/components/StudentList.jsx` |
-| `snippets/react/state-events/` | `src/App.jsx`, `src/main.jsx` |
-| `snippets/react/forms-validation/` | `src/App.jsx`, `src/main.jsx` |
-| `snippets/react/react-router-spa/` | `src/App.jsx`, `src/main.jsx`, `src/components/Navbar.jsx`, `src/pages/Home.jsx`, `src/pages/About.jsx`, `src/pages/StudentDetails.jsx`, `src/App.css` |
+| [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) | `package.json`, `vite.config.js`, `src/main.jsx`, `src/App.jsx` |
+| [snippets/react/components-props/](../snippets/react/components-props/) | `src/App.jsx`, `src/components/Header.jsx`, `src/components/StudentCard.jsx`, `src/components/StudentList.jsx` |
+| [snippets/react/state-events/](../snippets/react/state-events/) | `src/App.jsx`, `src/main.jsx` |
+| [snippets/react/forms-validation/](../snippets/react/forms-validation/) | `src/App.jsx`, `src/main.jsx` |
+| [snippets/react/react-router-spa/](../snippets/react/react-router-spa/) | `src/App.jsx`, `src/main.jsx`, `src/components/Navbar.jsx`, `src/pages/Home.jsx`, `src/pages/About.jsx`, `src/pages/StudentDetails.jsx`, `src/App.css` |
 
 **Node.js/MongoDB snippets:**
 
 | Snippet Folder | Key Files |
 |---------------|-----------|
-| `snippets/nodejs-mongodb/hello-node/` | `01-hello.js`, `02-http-server.js`, `03-file-system.js`, `04-modules.js`, `math.js` |
-| `snippets/nodejs-mongodb/events-timers/` | `01-events.js`, `02-timers.js`, `03-event-driven-app.js` |
-| `snippets/nodejs-mongodb/callbacks-async/` | `01-callbacks.js`, `02-callback-hell.js`, `03-promises.js`, `04-async-await.js`, `sample.txt` |
-| `snippets/nodejs-mongodb/mongo-crud/` | `package.json`, `01-connect.js`, `02-insert.js`, `03-find.js`, `04-update.js`, `05-delete.js`, `06-express-api.js` |
+| [snippets/nodejs-mongodb/hello-node/](../snippets/nodejs-mongodb/hello-node/) | `01-hello.js`, `02-http-server.js`, `03-file-system.js`, `04-modules.js`, `math.js` |
+| [snippets/nodejs-mongodb/events-timers/](../snippets/nodejs-mongodb/events-timers/) | `01-events.js`, `02-timers.js`, `03-event-driven-app.js` |
+| [snippets/nodejs-mongodb/callbacks-async/](../snippets/nodejs-mongodb/callbacks-async/) | `01-callbacks.js`, `02-callback-hell.js`, `03-promises.js`, `04-async-await.js`, `sample.txt` |
+| [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/) | `package.json`, `01-connect.js`, `02-insert.js`, `03-find.js`, `04-update.js`, `05-delete.js`, `06-express-api.js` |
 
 **Lab starter files (what students edit):**
 
 | Lab | Starter Path | Key TODO Files |
 |-----|-------------|----------------|
-| Login/Register | `labs/springboot-login-register/starter/` | `src/main/java/com/lab/auth/model/User.java`, `repository/UserRepository.java`, `service/UserService.java`, `service/CustomUserDetailsService.java`, `config/SecurityConfig.java`, `controller/AuthController.java` |
-| CRUD MongoDB | `labs/springboot-crud-mongodb/starter/` | `src/main/java/com/lab/student/model/Student.java`, `repository/StudentRepository.java`, `service/StudentService.java`, `controller/StudentController.java` |
-| Full-Stack | `labs/fullstack-student-app/starter/` | Backend: `backend/src/main/java/com/lab/student/...` (same structure as CRUD), Frontend: `frontend/src/App.jsx`, `src/pages/StudentList.jsx`, `AddStudent.jsx`, `EditStudent.jsx`, `src/components/Navbar.jsx`, `SearchBar.jsx`, `StudentCard.jsx`, `src/services/studentService.js` |
+| Login/Register | [labs/springboot-login-register/starter/](../labs/springboot-login-register/starter/) | `src/main/java/com/lab/auth/model/User.java`, `repository/UserRepository.java`, `service/UserService.java`, `service/CustomUserDetailsService.java`, `config/SecurityConfig.java`, `controller/AuthController.java` |
+| CRUD MongoDB | [labs/springboot-crud-mongodb/starter/](../labs/springboot-crud-mongodb/starter/) | `src/main/java/com/lab/student/model/Student.java`, `repository/StudentRepository.java`, `service/StudentService.java`, `controller/StudentController.java` |
+| Full-Stack | [labs/fullstack-student-app/starter/](../labs/fullstack-student-app/starter/) | Backend: `backend/src/main/java/com/lab/student/...` (same structure as CRUD), Frontend: `frontend/src/App.jsx`, `src/pages/StudentList.jsx`, `AddStudent.jsx`, `EditStudent.jsx`, `src/components/Navbar.jsx`, `SearchBar.jsx`, `StudentCard.jsx`, `src/services/studentService.js` |
 
 **Exam scaffolds:**
 
 | Exam | Question Paper | Starter Code |
 |------|---------------|-------------|
-| Login/Register | `exams/springboot-login-register/question.md` | `exams/springboot-login-register/starter/` |
-| CRUD MongoDB | `exams/springboot-crud-mongodb/question.md` | `exams/springboot-crud-mongodb/starter/` |
-| Full-Stack | `exams/fullstack-student-app/question.md` | `exams/fullstack-student-app/starter/` |
+| Login/Register | [exams/springboot-login-register/question.md](../exams/springboot-login-register/question.md) | [exams/springboot-login-register/starter/](../exams/springboot-login-register/starter/) |
+| CRUD MongoDB | [exams/springboot-crud-mongodb/question.md](../exams/springboot-crud-mongodb/question.md) | [exams/springboot-crud-mongodb/starter/](../exams/springboot-crud-mongodb/starter/) |
+| Full-Stack | [exams/fullstack-student-app/question.md](../exams/fullstack-student-app/question.md) | [exams/fullstack-student-app/starter/](../exams/fullstack-student-app/starter/) |
 
 ---
 
@@ -106,11 +106,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/01-introduction.md` (theory reference)
-- `presentations/01-springboot.pptx` (slides)
-- `presentations/01-springboot.md` (speaker notes)
-- `snippets/springboot/hello-world/` folder in IDE
-- Terminal ready in `snippets/springboot/hello-world/`
+- [docs/springboot/01-introduction.md](../docs/springboot/01-introduction.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
+- [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) folder in IDE
+- Terminal ready in [snippets/springboot/hello-world/](../snippets/springboot/hello-world/)
 - Browser tab at `http://localhost:8080` (do not navigate yet)
 
 **Step-by-step instruction:**
@@ -127,7 +127,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Stop the server (Ctrl+C).
 
 **[0:05 - 0:20] Slides: Spring Framework and Spring Boot**
-- Open `presentations/01-springboot.pptx`
+- Open [presentations/01-springboot.pptx](../presentations/01-springboot.pptx)
 - Cover these points in order:
   1. **Spring Framework history** -- born in 2003, created by Rod Johnson as alternative to heavy J2EE. Emphasize: "Spring simplified Java enterprise development."
   2. **Inversion of Control (IoC)** -- explain with a real-world analogy: "Instead of you making your own coffee (creating objects), the cafe (Spring container) prepares it for you and hands it to you."
@@ -137,10 +137,10 @@ This table maps every topic to its exact resources in the repository. Use this a
   6. **Spring vs Spring Boot comparison table** -- pause on this slide. Ask: "Which column looks simpler? Which would you rather write?" Let students point out differences.
   7. **Auto-configuration** -- "Spring Boot looks at your dependencies and automatically configures everything. You add `spring-boot-starter-web` and it sets up Tomcat, Spring MVC, and JSON serialization."
   8. **Embedded server** -- "No need to install Tomcat separately. It is built into your JAR file."
-- For each slide, refer to the corresponding section in `docs/springboot/01-introduction.md` if students want to read more.
+- For each slide, refer to the corresponding section in [docs/springboot/01-introduction.md](../docs/springboot/01-introduction.md) if students want to read more.
 
 **[0:20 - 0:35] Live Coding Demo**
-- Open `snippets/springboot/hello-world/` in IDE
+- Open [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) in IDE
 - Walk through these files in this exact order:
   1. **`pom.xml`** (5 min) -- point out:
      - `<parent>` tag: `spring-boot-starter-parent` -- "This gives us all the Spring Boot defaults"
@@ -174,8 +174,8 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. Spring Boot = Spring Framework + Auto-configuration + Embedded Server
   2. `@SpringBootApplication` is the entry point; `@RestController` handles web requests
   3. Zero XML configuration needed -- convention over configuration
-- "Before next class, read: `docs/springboot/02-spring-initializr.md`"
-- "Try running the `snippets/springboot/hello-world/` project on your own machine. If it does not work, note the error -- we will fix it in Lab L1."
+- "Before next class, read: [docs/springboot/02-spring-initializr.md](../docs/springboot/02-spring-initializr.md)"
+- "Try running the [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) project on your own machine. If it does not work, note the error -- we will fix it in Lab L1."
 
 **Checklist:**
 - [ ] Session completed
@@ -190,11 +190,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/02-spring-initializr.md` (theory reference)
-- `presentations/01-springboot.pptx` (slides -- continue from where T1 ended)
-- `presentations/01-springboot.md` (speaker notes)
+- [docs/springboot/02-spring-initializr.md](../docs/springboot/02-spring-initializr.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- continue from where T1 ended)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
 - Browser tab open at `https://start.spring.io`
-- `snippets/springboot/hello-world/` folder in IDE (for reference)
+- [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) folder in IDE (for reference)
 - Terminal ready
 
 **Step-by-step instruction:**
@@ -225,14 +225,14 @@ This table maps every topic to its exact resources in the repository. Use this a
   - **Spring Boot DevTools** -- explain: "Auto-restarts the server when you change code"
 - Click **Explore** to show the generated project structure without downloading
 - Walk through the preview:
-  - `pom.xml` -- compare with `snippets/springboot/hello-world/pom.xml` side by side
+  - `pom.xml` -- compare with [snippets/springboot/hello-world/pom.xml](../snippets/springboot/hello-world/pom.xml) side by side
   - `src/main/java/.../DemoApplication.java` -- "Same `@SpringBootApplication` we saw yesterday"
   - `src/main/resources/application.properties` -- "Empty for now. This is where you put database URLs, server port, etc."
   - `src/test/` -- "Test folder. We will not focus on testing this semester."
 - Click **Generate** and download the ZIP (or tell students they can use the starter code)
 
 **[0:20 - 0:35] Maven and pom.xml Deep Dive**
-- Open `snippets/springboot/hello-world/pom.xml` in IDE
+- Open [snippets/springboot/hello-world/pom.xml](../snippets/springboot/hello-world/pom.xml) in IDE
 - Explain each section:
   1. **`<parent>`** (3 min) -- "This inherits from `spring-boot-starter-parent`. It defines default versions for all Spring Boot libraries so you do not have to specify versions yourself."
   2. **`<groupId>`, `<artifactId>`, `<version>`** (2 min) -- "These three together uniquely identify your project, like a postal address for your code."
@@ -245,7 +245,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Run `mvn dependency:tree` in terminal to show all transitive dependencies -- "One starter pulled in 30+ libraries automatically."
 
 **[0:35 - 0:45] application.properties and First Run**
-- Open `snippets/springboot/hello-world/src/main/resources/` -- note there is no `application.properties` file here (or it is empty)
+- Open [snippets/springboot/hello-world/src/main/resources/](../snippets/springboot/hello-world/src/main/resources/) -- note there is no `application.properties` file here (or it is empty)
 - Explain: "Spring Boot has sensible defaults. Port 8080, no database, etc. You only add properties when you want to change a default."
 - Show common properties (write on board or slide):
   ```
@@ -265,7 +265,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. Spring Initializr generates a ready-to-run project skeleton
   2. `pom.xml` manages dependencies -- starters bundle related libraries
   3. `application.properties` overrides defaults -- you only configure what you need
-- "Before next class, read: `docs/springboot/03-dependency-injection.md`"
+- "Before next class, read: [docs/springboot/03-dependency-injection.md](../docs/springboot/03-dependency-injection.md)"
 - "Try generating your own project at start.spring.io with a different Group and Artifact name. Run it on your machine."
 
 **Checklist:**
@@ -281,11 +281,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/03-dependency-injection.md` (theory reference)
-- `presentations/01-springboot.pptx` (slides -- DI section)
-- `presentations/01-springboot.md` (speaker notes)
-- `snippets/springboot/dependency-injection/` folder in IDE
-- Terminal ready in `snippets/springboot/dependency-injection/`
+- [docs/springboot/03-dependency-injection.md](../docs/springboot/03-dependency-injection.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- DI section)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
+- [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) folder in IDE
+- Terminal ready in [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/)
 
 **Step-by-step instruction:**
 
@@ -323,7 +323,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      - Draw the layered architecture on board: Controller -> Service -> Repository -> Database
 
 **[0:25 - 0:45] Live Coding Demo**
-- Open `snippets/springboot/dependency-injection/` in IDE
+- Open [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) in IDE
 - Walk through files in this order:
   1. **`src/main/java/com/demo/service/GreetingService.java`** (3 min)
      - "This is an interface. It defines a contract: any greeting service must have a `greet()` method."
@@ -353,7 +353,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. DI means the Spring container creates and injects dependencies -- you never use `new` for Spring-managed beans
   2. Use `@Service`, `@Repository`, `@Controller` to register beans by layer
   3. Constructor injection is preferred; `@Autowired` on fields is the shortcut
-- "Before next class, read: `docs/springboot/04-web-application.md`"
+- "Before next class, read: [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md)"
 - "Try adding a third implementation (HindiGreetingService) to the DI snippet and making it the default with `@Primary`."
 
 **Checklist:**
@@ -369,11 +369,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/04-web-application.md` (theory reference)
-- `presentations/01-springboot.pptx` (slides -- REST/Web section)
-- `presentations/01-springboot.md` (speaker notes)
-- `snippets/springboot/rest-controller/` folder in IDE
-- Terminal ready in `snippets/springboot/rest-controller/`
+- [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- REST/Web section)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
+- [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) folder in IDE
+- Terminal ready in [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/)
 - Postman installed and open (or browser ready for GET requests)
 
 **Step-by-step instruction:**
@@ -412,7 +412,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      - `@RequestParam` -- "Captures a value from the query string (?name=Ravi)"
 
 **[0:20 - 0:40] Live Coding Demo**
-- Open `snippets/springboot/rest-controller/` in IDE
+- Open [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) in IDE
 - Walk through files in this order:
   1. **`src/main/java/com/demo/Message.java`** (3 min)
      - "This is a simple Java class (POJO). It holds data."
@@ -449,7 +449,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. `@RestController` handles web requests and returns JSON
   2. Use GET/POST/PUT/DELETE for Read/Create/Update/Delete
   3. `@RequestBody` converts JSON to objects; `@PathVariable` captures URL segments
-- "Before next class, read: `docs/springboot/05-database-connectivity.md`"
+- "Before next class, read: [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md)"
 - "Try adding a `/messages/search?text=hello` endpoint to the rest-controller snippet."
 
 **Checklist:**
@@ -465,11 +465,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/05-database-connectivity.md` (theory reference)
-- `presentations/01-springboot.pptx` (slides -- MongoDB section)
-- `presentations/01-springboot.md` (speaker notes)
-- `snippets/springboot/mongo-connection/` folder in IDE
-- Terminal ready in `snippets/springboot/mongo-connection/`
+- [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- MongoDB section)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
+- [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) folder in IDE
+- Terminal ready in [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/)
 - MongoDB running locally (`mongosh` should connect)
 - MongoDB Compass open (or `mongosh` in a second terminal)
 - Postman open
@@ -504,7 +504,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      ```
 
 **[0:15 - 0:35] Live Coding Demo**
-- Open `snippets/springboot/mongo-connection/` in IDE
+- Open [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) in IDE
 - Walk through files in this order:
   1. **`src/main/resources/application.properties`** (2 min)
      - Show the MongoDB URI: `spring.data.mongodb.uri=mongodb://localhost:27017/demo_db`
@@ -551,7 +551,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. `spring-boot-starter-data-mongodb` + `application.properties` = database connection
   2. `@Document` maps class to collection; `MongoRepository` gives free CRUD
   3. Custom queries are derived from method names -- no SQL needed
-- "Before next class, read the security section in `docs/springboot/qa.md` (Q40)"
+- "Before next class, read the security section in [docs/springboot/qa.md](../docs/springboot/qa.md) (Q40)"
 - "Try adding a `findByName(String name)` method to the Student repository and a search endpoint."
 
 **Checklist:**
@@ -567,11 +567,11 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/springboot/qa.md` -- Q40 section on Spring Security (theory reference)
-- `presentations/01-springboot.pptx` (slides -- security section)
-- `presentations/01-springboot.md` (speaker notes)
-- `labs/springboot-login-register/solution/` folder in IDE (reference implementation)
-- Terminal ready in `labs/springboot-login-register/solution/`
+- [docs/springboot/qa.md](../docs/springboot/qa.md) -- Q40 section on Spring Security (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- security section)
+- [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
+- [labs/springboot-login-register/solution/](../labs/springboot-login-register/solution/) folder in IDE (reference implementation)
+- Terminal ready in [labs/springboot-login-register/solution/](../labs/springboot-login-register/solution/)
 - MongoDB running locally
 - Browser ready
 
@@ -607,7 +607,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      ```
 
 **[0:15 - 0:35] Live Walkthrough of Login/Register App**
-- Open `labs/springboot-login-register/solution/` in IDE
+- Open [labs/springboot-login-register/solution/](../labs/springboot-login-register/solution/) in IDE
 - Walk through files in this order:
   1. **`pom.xml`** (2 min) -- point out `spring-boot-starter-security` and `thymeleaf` dependencies. "Security for authentication, Thymeleaf for HTML templates."
   2. **`src/main/resources/application.properties`** (1 min) -- MongoDB connection to `auth_db`.
@@ -662,7 +662,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   2. Passwords must always be hashed with BCrypt -- never stored in plain text
   3. `CustomUserDetailsService` bridges Spring Security with your MongoDB user data
 - "Lab L2 will have you build this from scratch using the starter code."
-- "Review: `docs/springboot/qa.md` questions Q1-Q40 for Internal Test 1."
+- "Review: [docs/springboot/qa.md](../docs/springboot/qa.md) questions Q1-Q40 for Internal Test 1."
 
 **Checklist:**
 - [ ] Session completed
@@ -677,13 +677,13 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/react/01-introduction.md` (theory reference)
-- `docs/react/02-jsx-rendering.md` (JSX theory)
-- `docs/react/03-components-props.md` (components theory)
-- `presentations/02-react.pptx` (slides)
-- `presentations/02-react.md` (speaker notes)
-- `snippets/react/jsx-basics/` folder in IDE
-- `snippets/react/components-props/` folder in IDE
+- [docs/react/01-introduction.md](../docs/react/01-introduction.md) (theory reference)
+- [docs/react/02-jsx-rendering.md](../docs/react/02-jsx-rendering.md) (JSX theory)
+- [docs/react/03-components-props.md](../docs/react/03-components-props.md) (components theory)
+- [presentations/02-react.pptx](../presentations/02-react.pptx) (slides)
+- [presentations/02-react.md](../presentations/02-react.md) (speaker notes)
+- [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) folder in IDE
+- [snippets/react/components-props/](../snippets/react/components-props/) folder in IDE
 - Terminal ready
 - Browser ready
 
@@ -698,7 +698,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - "We built this with reusable components. By the end of today, you will understand how."
 
 **[0:05 - 0:20] Slides: React Fundamentals**
-- Open `presentations/02-react.pptx`
+- Open [presentations/02-react.pptx](../presentations/02-react.pptx)
 - Cover in this order:
   1. **What is React?** (3 min) -- "A JavaScript library for building user interfaces. Created by Facebook in 2013. It is a library, not a framework -- it handles the view layer only."
   2. **SPA vs MPA** (3 min) -- draw comparison:
@@ -718,7 +718,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      - Show the analogy: "A component is like a function. Props are its parameters."
 
 **[0:20 - 0:35] Live Coding Demo: JSX Basics**
-- Open `snippets/react/jsx-basics/` in IDE
+- Open [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) in IDE
 - Walk through files:
   1. **`package.json`** (2 min) -- point out:
      - `react` and `react-dom` dependencies
@@ -733,7 +733,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      - Show conditional rendering with `{condition && <element>}`
      - Show list rendering with `.map()`
      - Modify something live (change a string, add an element) -- save the file and show hot reload in browser. "Vite updates instantly without a full page refresh."
-- Switch to `snippets/react/components-props/`:
+- Switch to [snippets/react/components-props/](../snippets/react/components-props/):
   6. **`src/components/Header.jsx`** (2 min) -- "A simple component that takes `title` as a prop."
   7. **`src/components/StudentCard.jsx`** (3 min) -- "Takes `name`, `department` etc. as props. Renders a card."
   8. **`src/components/StudentList.jsx`** (3 min) -- "Maps over an array of students and renders a `StudentCard` for each one."
@@ -750,7 +750,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. React = component-based UI library; JSX = HTML-like syntax in JavaScript
   2. Components are functions that return JSX; props are how data flows from parent to child
   3. Vite is the build tool; `yarn dev` starts the dev server with hot reload
-- "Before next class, read: `docs/react/04-state-lifecycle.md` and `docs/react/05-events-forms.md`"
+- "Before next class, read: [docs/react/04-state-lifecycle.md](../docs/react/04-state-lifecycle.md) and [docs/react/05-events-forms.md](../docs/react/05-events-forms.md)"
 - "Try modifying the `components-props` snippet: add a new StudentCard with your own data."
 
 **Checklist:**
@@ -766,13 +766,13 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/react/04-state-lifecycle.md` (state theory)
-- `docs/react/05-events-forms.md` (events/forms theory)
-- `docs/react/06-lists-conditional.md` (lists/conditional reference)
-- `presentations/02-react.pptx` (slides -- state/events section)
-- `presentations/02-react.md` (speaker notes)
-- `snippets/react/state-events/` folder in IDE
-- `snippets/react/forms-validation/` folder in IDE
+- [docs/react/04-state-lifecycle.md](../docs/react/04-state-lifecycle.md) (state theory)
+- [docs/react/05-events-forms.md](../docs/react/05-events-forms.md) (events/forms theory)
+- [docs/react/06-lists-conditional.md](../docs/react/06-lists-conditional.md) (lists/conditional reference)
+- [presentations/02-react.pptx](../presentations/02-react.pptx) (slides -- state/events section)
+- [presentations/02-react.md](../presentations/02-react.md) (speaker notes)
+- [snippets/react/state-events/](../snippets/react/state-events/) folder in IDE
+- [snippets/react/forms-validation/](../snippets/react/forms-validation/) folder in IDE
 - Terminal ready
 - Browser ready
 
@@ -799,7 +799,7 @@ This table maps every topic to its exact resources in the repository. Use this a
      - "`setCount` is the function to update it"
      - "Never modify state directly (`count = 5` is WRONG). Always use the setter."
      - "When you call `setCount(5)`, React re-renders the component with the new value."
-- Switch to `snippets/react/state-events/` in IDE:
+- Switch to [snippets/react/state-events/](../snippets/react/state-events/) in IDE:
   3. **`src/App.jsx`** (7 min) -- walk through:
      - Show `useState` import and usage
      - Show the counter example: button click updates state, UI reflects the change
@@ -809,7 +809,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   5. Demo in browser: click buttons, show the count updating in real time. "Notice: no page reload. React updates only the number."
 
 **[0:20 - 0:35] Live Demo: Forms**
-- Open `snippets/react/forms-validation/` in IDE
+- Open [snippets/react/forms-validation/](../snippets/react/forms-validation/) in IDE
 - Walk through `src/App.jsx`:
   1. **Controlled components** (5 min):
      - Show `<input value={name} onChange={e => setName(e.target.value)} />`
@@ -841,7 +841,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. `useState` declares state; always update with the setter function, never directly
   2. Controlled components tie input values to state via `value` + `onChange`
   3. `e.preventDefault()` stops page reload; conditional rendering shows/hides elements
-- "Before next class, read: `docs/react/07-single-page-apps.md`"
+- "Before next class, read: [docs/react/07-single-page-apps.md](../docs/react/07-single-page-apps.md)"
 - "Try adding a 'Delete' button next to each entry in the forms-validation snippet."
 
 **Checklist:**
@@ -857,12 +857,12 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/react/07-single-page-apps.md` (routing theory)
-- `presentations/02-react.pptx` (slides -- API integration and routing sections)
-- `presentations/02-react.md` (speaker notes)
-- `snippets/react/react-router-spa/` folder in IDE
-- `snippets/springboot/mongo-connection/` terminal ready (backend)
-- `labs/fullstack-student-app/solution/` in IDE (reference for full-stack)
+- [docs/react/07-single-page-apps.md](../docs/react/07-single-page-apps.md) (routing theory)
+- [presentations/02-react.pptx](../presentations/02-react.pptx) (slides -- API integration and routing sections)
+- [presentations/02-react.md](../presentations/02-react.md) (speaker notes)
+- [snippets/react/react-router-spa/](../snippets/react/react-router-spa/) folder in IDE
+- [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) terminal ready (backend)
+- [labs/fullstack-student-app/solution/](../labs/fullstack-student-app/solution/) in IDE (reference for full-stack)
 - Two terminals ready (one for backend, one for frontend)
 - Browser ready
 
@@ -889,10 +889,10 @@ This table maps every topic to its exact resources in the repository. Use this a
   3. **CORS** (3 min):
      - "Cross-Origin Resource Sharing. The browser blocks requests from one port (3000) to another (8080) by default."
      - "Fix it on the backend with `@CrossOrigin` annotation or a CorsConfig class."
-     - Show the `CorsConfig.java` from `labs/fullstack-student-app/starter/backend/src/main/java/com/lab/student/config/CorsConfig.java`
+     - Show the `CorsConfig.java` from [labs/fullstack-student-app/starter/backend/src/main/java/com/lab/student/config/CorsConfig.java](../labs/fullstack-student-app/starter/backend/src/main/java/com/lab/student/config/CorsConfig.java)
 
 **[0:15 - 0:25] Live Demo: React Router (SPA routing)**
-- Open `snippets/react/react-router-spa/` in IDE
+- Open [snippets/react/react-router-spa/](../snippets/react/react-router-spa/) in IDE
 - Walk through files:
   1. **`package.json`** (1 min) -- point out `react-router-dom` dependency
   2. **`src/App.jsx`** (4 min):
@@ -913,7 +913,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 **[0:25 - 0:40] Live Demo: Full-Stack Connection**
 - Start the Spring Boot backend: in terminal 1, run `cd snippets/springboot/mongo-connection && mvn spring-boot:run`
 - Verify it works: `http://localhost:8080/api/students` should return data (or empty array).
-- Open `labs/fullstack-student-app/solution/frontend/` in IDE and show:
+- Open [labs/fullstack-student-app/solution/frontend/](../labs/fullstack-student-app/solution/frontend/) in IDE and show:
   1. **`src/services/studentService.js`** (5 min):
      - Show the API base URL
      - Show `getAll()`, `create()`, `update()`, `remove()` functions
@@ -945,7 +945,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   2. React Router (`BrowserRouter`, `Routes`, `Route`, `Link`) = client-side navigation
   3. CORS must be configured on the Spring Boot backend for cross-origin requests
 - "Labs L5 and L6 will have you build the full-stack app from scratch."
-- "Review `docs/react/qa.md` for the upcoming assessments."
+- "Review [docs/react/qa.md](../docs/react/qa.md) for the upcoming assessments."
 
 **Checklist:**
 - [ ] Session completed
@@ -960,16 +960,16 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- `docs/nodejs-mongodb/01-introduction-nodejs.md` (Node.js theory)
-- `docs/nodejs-mongodb/02-events-callbacks.md` (events/callbacks theory)
-- `docs/nodejs-mongodb/03-introduction-mongodb.md` (MongoDB theory)
-- `docs/nodejs-mongodb/04-mongodb-from-nodejs.md` (MongoDB from Node.js theory)
-- `presentations/03-nodejs-mongodb.pptx` (slides)
-- `presentations/03-nodejs-mongodb.md` (speaker notes)
-- `snippets/nodejs-mongodb/hello-node/` folder in IDE
-- `snippets/nodejs-mongodb/events-timers/` folder in IDE
-- `snippets/nodejs-mongodb/callbacks-async/` folder in IDE
-- `snippets/nodejs-mongodb/mongo-crud/` folder in IDE
+- [docs/nodejs-mongodb/01-introduction-nodejs.md](../docs/nodejs-mongodb/01-introduction-nodejs.md) (Node.js theory)
+- [docs/nodejs-mongodb/02-events-callbacks.md](../docs/nodejs-mongodb/02-events-callbacks.md) (events/callbacks theory)
+- [docs/nodejs-mongodb/03-introduction-mongodb.md](../docs/nodejs-mongodb/03-introduction-mongodb.md) (MongoDB theory)
+- [docs/nodejs-mongodb/04-mongodb-from-nodejs.md](../docs/nodejs-mongodb/04-mongodb-from-nodejs.md) (MongoDB from Node.js theory)
+- [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx) (slides)
+- [presentations/03-nodejs-mongodb.md](../presentations/03-nodejs-mongodb.md) (speaker notes)
+- [snippets/nodejs-mongodb/hello-node/](../snippets/nodejs-mongodb/hello-node/) folder in IDE
+- [snippets/nodejs-mongodb/events-timers/](../snippets/nodejs-mongodb/events-timers/) folder in IDE
+- [snippets/nodejs-mongodb/callbacks-async/](../snippets/nodejs-mongodb/callbacks-async/) folder in IDE
+- [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/) folder in IDE
 - Terminal ready
 - MongoDB running locally
 
@@ -982,7 +982,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Quick demo: `cd snippets/nodejs-mongodb/hello-node && node 01-hello.js` -- show "Hello from Node.js" in terminal. "JavaScript running outside the browser."
 
 **[0:05 - 0:15] Slides: Node.js Fundamentals**
-- Open `presentations/03-nodejs-mongodb.pptx`
+- Open [presentations/03-nodejs-mongodb.pptx](../presentations/03-nodejs-mongodb.pptx)
 - Cover:
   1. **What is Node.js?** (2 min) -- "A JavaScript runtime built on Chrome's V8 engine. Single-threaded, non-blocking, event-driven."
   2. **Event loop** (4 min) -- draw on board:
@@ -997,26 +997,26 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **[0:15 - 0:30] Live Coding Demos: Node.js Snippets**
 - Demo 1: **Hello Node** (3 min)
-  - `snippets/nodejs-mongodb/hello-node/`
+  - [snippets/nodejs-mongodb/hello-node/](../snippets/nodejs-mongodb/hello-node/)
   - Run `node 01-hello.js` -- console output
   - Run `node 02-http-server.js` -- open `http://localhost:3000` in browser. "A web server in 10 lines."
   - Run `node 03-file-system.js` -- show file read
   - Run `node 04-modules.js` -- show `require('./math')` and `module.exports`
 - Demo 2: **Events and Timers** (5 min)
-  - `snippets/nodejs-mongodb/events-timers/`
+  - [snippets/nodejs-mongodb/events-timers/](../snippets/nodejs-mongodb/events-timers/)
   - Run `node 01-events.js` -- show EventEmitter pattern
   - "This is the core of Node.js. Everything is event-driven."
   - Run `node 02-timers.js` -- show setTimeout, setInterval, setImmediate
   - "Notice how setTimeout(0) does not run first -- the event loop has phases."
   - Run `node 03-event-driven-app.js` -- show a practical example
 - Demo 3: **Callbacks and Async** (5 min)
-  - `snippets/nodejs-mongodb/callbacks-async/`
+  - [snippets/nodejs-mongodb/callbacks-async/](../snippets/nodejs-mongodb/callbacks-async/)
   - Run `node 01-callbacks.js` -- show basic callback pattern
   - Run `node 02-callback-hell.js` -- show nested callbacks. "This is callback hell. Ugly and hard to maintain."
   - Run `node 03-promises.js` -- show the same logic with Promises. "Cleaner."
   - Run `node 04-async-await.js` -- show async/await. "Cleanest. Modern Node.js code uses this."
 - Demo 4: **MongoDB from Node.js** (5 min)
-  - `snippets/nodejs-mongodb/mongo-crud/`
+  - [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/)
   - Run `cd snippets/nodejs-mongodb/mongo-crud && npm install` (first time only)
   - Run `node 01-connect.js` -- show successful MongoDB connection
   - Run `node 02-insert.js` -- insert documents
@@ -1052,7 +1052,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   2. Callbacks -> Promises -> async/await: three ways to handle async code (prefer async/await)
   3. MongoDB from Node.js uses the `mongodb` driver: connect, insertOne, find, updateOne, deleteOne
 - "Lab L7 will have you write these scripts yourself."
-- "Review `docs/nodejs-mongodb/qa.md` for Internal Test 2."
+- "Review [docs/nodejs-mongodb/qa.md](../docs/nodejs-mongodb/qa.md) for Internal Test 2."
 
 **Checklist:**
 - [ ] Session completed
@@ -1075,9 +1075,9 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Verify all software is installed; create first Spring Boot project; run it and access localhost:8080.
 
 **Before the lab -- prepare:**
-- `PREREQUISITES.md` printed or projected (installation checklist)
-- `docs/springboot/01-introduction.md` open for reference
-- `snippets/springboot/hello-world/` ready as fallback
+- [PREREQUISITES.md](../PREREQUISITES.md) printed or projected (installation checklist)
+- [docs/springboot/01-introduction.md](../docs/springboot/01-introduction.md) open for reference
+- [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) ready as fallback
 - Write the verification commands on the board:
   ```
   java -version        (expect 1.8.x)
@@ -1195,18 +1195,18 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Build a registration and login system using Spring Boot, Spring Security, Thymeleaf, and MongoDB.
 
 **Before the lab -- prepare:**
-- `labs/springboot-login-register/README.md` projected or printed (contains all step-by-step instructions)
-- `labs/springboot-login-register/starter/` distributed to students (or they use Spring Initializr)
-- `labs/springboot-login-register/solution/` on your machine only (for reference if students get stuck)
+- [labs/springboot-login-register/README.md](../labs/springboot-login-register/README.md) projected or printed (contains all step-by-step instructions)
+- [labs/springboot-login-register/starter/](../labs/springboot-login-register/starter/) distributed to students (or they use Spring Initializr)
+- [labs/springboot-login-register/solution/](../labs/springboot-login-register/solution/) on your machine only (for reference if students get stuck)
 - MongoDB running, verified with `mongosh`
 
 **Step-by-step instruction:**
 
 **[0:00 - 0:10] Lab Introduction**
 - Say: "Today you build a real login/registration system. This is Lab Experiment 1 that will be evaluated."
-- Show the running solution briefly: open `labs/springboot-login-register/solution/`, run it, show the register -> login -> home flow in browser.
+- Show the running solution briefly: open [labs/springboot-login-register/solution/](../labs/springboot-login-register/solution/), run it, show the register -> login -> home flow in browser.
 - Stop the solution. "Now you build this from the starter code."
-- Students open `labs/springboot-login-register/starter/` in their IDE.
+- Students open [labs/springboot-login-register/starter/](../labs/springboot-login-register/starter/) in their IDE.
 
 **[0:10 - 0:30] Task 1: Review Structure and Configure MongoDB (20 min)**
 - Students open the starter project and examine the structure.
@@ -1305,9 +1305,9 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Build a full CRUD REST API for a Student Management System with MongoDB.
 
 **Before the lab -- prepare:**
-- `labs/springboot-crud-mongodb/README.md` projected or printed
-- `labs/springboot-crud-mongodb/starter/` distributed to students
-- `labs/springboot-crud-mongodb/solution/` on your machine only
+- [labs/springboot-crud-mongodb/README.md](../labs/springboot-crud-mongodb/README.md) projected or printed
+- [labs/springboot-crud-mongodb/starter/](../labs/springboot-crud-mongodb/starter/) distributed to students
+- [labs/springboot-crud-mongodb/solution/](../labs/springboot-crud-mongodb/solution/) on your machine only
 - Postman or Thunder Client installed on student machines
 - MongoDB running
 
@@ -1317,7 +1317,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Say: "Today you build a REST API for student management. This is Lab Experiment 2."
 - Show the running solution briefly: start it, open Postman, do a quick POST and GET to show it working.
 - Stop the solution.
-- Students open `labs/springboot-crud-mongodb/starter/` in their IDE.
+- Students open [labs/springboot-crud-mongodb/starter/](../labs/springboot-crud-mongodb/starter/) in their IDE.
 
 **[0:10 - 0:30] Task 1: Create Student Model (20 min)**
 - Students open `model/Student.java` and complete it:
@@ -1403,9 +1403,9 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Create a React frontend with components, state management, and forms for the Student Management System.
 
 **Before the lab -- prepare:**
-- `snippets/react/components-props/` as reference
-- `snippets/react/forms-validation/` as reference
-- `snippets/react/state-events/` as reference
+- [snippets/react/components-props/](../snippets/react/components-props/) as reference
+- [snippets/react/forms-validation/](../snippets/react/forms-validation/) as reference
+- [snippets/react/state-events/](../snippets/react/state-events/) as reference
 - Terminal with Node.js and yarn ready
 - Browser ready
 
@@ -1413,7 +1413,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **[0:00 - 0:10] Lab Introduction**
 - Say: "Today you build the React frontend for the Student Management System. In the next lab, you will connect it to the Spring Boot backend."
-- Show the final full-stack app briefly (from `labs/fullstack-student-app/solution/frontend/`) to give students a target.
+- Show the final full-stack app briefly (from [labs/fullstack-student-app/solution/frontend/](../labs/fullstack-student-app/solution/frontend/)) to give students a target.
 - Stop the demo.
 
 **[0:10 - 0:25] Task 1: Create a New Vite React Project (15 min)**
@@ -1531,9 +1531,9 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Connect the React frontend (Lab L4) to the Spring Boot backend (Lab L3) to create a full-stack Student Management System.
 
 **Before the lab -- prepare:**
-- `labs/fullstack-student-app/starter/` distributed to students (contains both `backend/` and `frontend/` folders)
-- `labs/fullstack-student-app/solution/` on your machine only
-- `labs/fullstack-student-app/README.md` projected or printed
+- [labs/fullstack-student-app/starter/](../labs/fullstack-student-app/starter/) distributed to students (contains both `backend/` and `frontend/` folders)
+- [labs/fullstack-student-app/solution/](../labs/fullstack-student-app/solution/) on your machine only
+- [labs/fullstack-student-app/README.md](../labs/fullstack-student-app/README.md) projected or printed
 - Two terminals needed per student (one for backend, one for frontend)
 - MongoDB running
 - Postman ready (for testing backend independently)
@@ -1547,7 +1547,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   Browser (React, port 5173) --HTTP--> Spring Boot (port 8080) --MongoDB driver--> MongoDB (port 27017)
   ```
 - Show the running solution briefly to give students a target.
-- Students open `labs/fullstack-student-app/starter/` in their IDE. Show the folder structure:
+- Students open [labs/fullstack-student-app/starter/](../labs/fullstack-student-app/starter/) in their IDE. Show the folder structure:
   - `backend/` -- Spring Boot app (similar to L3 but with CORS config)
   - `frontend/` -- React app (similar to L4 but with service layer)
 
@@ -1702,8 +1702,8 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Add search, filters, error handling, and validation to the full-stack Student Management System.
 
 **Before the lab -- prepare:**
-- Students continue with their L5 project (or use `labs/fullstack-student-app/starter/` with L5 tasks done)
-- `labs/fullstack-student-app/solution/` on your machine for reference
+- Students continue with their L5 project (or use [labs/fullstack-student-app/starter/](../labs/fullstack-student-app/starter/) with L5 tasks done)
+- [labs/fullstack-student-app/solution/](../labs/fullstack-student-app/solution/) on your machine for reference
 - Both backend and frontend running
 
 **Step-by-step instruction:**
@@ -1775,7 +1775,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   - Form styling (labels, inputs, buttons)
   - Responsive design (optional)
   - Color scheme for different actions (green for add, red for delete, blue for edit)
-- Reference: `labs/fullstack-student-app/solution/frontend/src/App.css`
+- Reference: [labs/fullstack-student-app/solution/frontend/src/App.css](../labs/fullstack-student-app/solution/frontend/src/App.css)
 
 **[1:45 - 2:00] Task 6: Final Testing and Demo (15 min)**
 - Students run through the complete feature checklist:
@@ -1806,8 +1806,8 @@ This table maps every topic to its exact resources in the repository. Use this a
 **Objective:** Write Node.js scripts to perform MongoDB CRUD operations; optionally build a minimal Express API.
 
 **Before the lab -- prepare:**
-- `snippets/nodejs-mongodb/` folder available to students as reference
-- `docs/nodejs-mongodb/qa.md` for reference
+- [snippets/nodejs-mongodb/](../snippets/nodejs-mongodb/) folder available to students as reference
+- [docs/nodejs-mongodb/qa.md](../docs/nodejs-mongodb/qa.md) for reference
 - MongoDB running
 - Node.js and npm/yarn verified
 
@@ -1816,7 +1816,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 **[0:00 - 0:10] Lab Introduction**
 - Say: "Today you write Node.js scripts from scratch to interact with MongoDB. This is the last lab -- after this, you have seen all three stacks: Spring Boot, React, and Node.js."
 - Quick verification: `node -v` should show v20.x.
-- Show the target: run through `snippets/nodejs-mongodb/mongo-crud/01-connect.js` to `05-delete.js` to show what students will build.
+- Show the target: run through [snippets/nodejs-mongodb/mongo-crud/01-connect.js](../snippets/nodejs-mongodb/mongo-crud/01-connect.js) to `05-delete.js` to show what students will build.
 
 **[0:10 - 0:25] Task 1: Initialize Project and Connect (15 min)**
 - Students create a new folder and initialize:
@@ -1873,7 +1873,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Verify in mongosh: `use node_lab_db` -> `db.students.find().pretty()`
 
 **[0:40 - 1:10] Task 3: Write CRUD Scripts (30 min)**
-- Students create four scripts (reference `snippets/nodejs-mongodb/mongo-crud/`):
+- Students create four scripts (reference [snippets/nodejs-mongodb/mongo-crud/](../snippets/nodejs-mongodb/mongo-crud/)):
 
   **`find.js`** -- Read operations:
   - `collection.find({}).toArray()` -- find all
@@ -1937,7 +1937,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 - Test with Postman or browser:
   - GET `http://localhost:3000/api/students`
   - POST `http://localhost:3000/api/students` with JSON body
-- Reference: `snippets/nodejs-mongodb/mongo-crud/06-express-api.js` for a more complete example.
+- Reference: [snippets/nodejs-mongodb/mongo-crud/06-express-api.js](../snippets/nodejs-mongodb/mongo-crud/06-express-api.js) for a more complete example.
 
 **[1:40 - 1:55] Task 5: Compare with Spring Boot (15 min)**
 - Students write a brief comparison (in a comment block or on paper):
@@ -2173,9 +2173,9 @@ Week 8  [Revision] ................ INTERNAL TEST 2 ..........
 
 | File | Question Count | Sections |
 |------|---------------|----------|
-| `docs/springboot/qa.md` | 50 questions (Q1-Q50) | Section 1: Intro (Q1-Q11), Section 2: Architecture (Q12-Q13), Section 3: Initializr (Q14-Q17), Section 4: Web/REST (Q18-Q24), Section 5: DI (Q25-Q31), Section 6: MongoDB (Q32-Q39), Security (Q40), Additional (Q41-Q50) |
-| `docs/react/qa.md` | 30 short (Q1-Q30) + 15 essay (E1-E15) | Short answers: React basics, JSX, components, state, hooks, routing. Essays: Virtual DOM, JSX, components/props, state, lifecycle, events, forms, lists, routing, full-stack |
-| `docs/nodejs-mongodb/qa.md` | 33 short (Q1-Q33) + 14 essay (Q1-Q14 essays) | Topic 1: Node.js intro (Q1-Q8), Topic 2: Installing (Q9-Q11), Topic 3: Events/Callbacks (Q12-Q19), Topic 4: MongoDB intro (Q20-Q30), Topic 5: MongoDB from Node.js (Q31-Q33) |
+| [docs/springboot/qa.md](../docs/springboot/qa.md) | 50 questions (Q1-Q50) | Section 1: Intro (Q1-Q11), Section 2: Architecture (Q12-Q13), Section 3: Initializr (Q14-Q17), Section 4: Web/REST (Q18-Q24), Section 5: DI (Q25-Q31), Section 6: MongoDB (Q32-Q39), Security (Q40), Additional (Q41-Q50) |
+| [docs/react/qa.md](../docs/react/qa.md) | 30 short (Q1-Q30) + 15 essay (E1-E15) | Short answers: React basics, JSX, components, state, hooks, routing. Essays: Virtual DOM, JSX, components/props, state, lifecycle, events, forms, lists, routing, full-stack |
+| [docs/nodejs-mongodb/qa.md](../docs/nodejs-mongodb/qa.md) | 33 short (Q1-Q33) + 14 essay (Q1-Q14 essays) | Topic 1: Node.js intro (Q1-Q8), Topic 2: Installing (Q9-Q11), Topic 3: Events/Callbacks (Q12-Q19), Topic 4: MongoDB intro (Q20-Q30), Topic 5: MongoDB from Node.js (Q31-Q33) |
 
 ### Internal Test 1 -- Recommended Q&A Questions (Spring Boot)
 
@@ -2216,7 +2216,7 @@ Week 8  [Revision] ................ INTERNAL TEST 2 ..........
 
 **Short answer questions (2 marks each) -- pick 5 from these:**
 
-**React (from `docs/react/qa.md`):**
+**React (from [docs/react/qa.md](../docs/react/qa.md)):**
 
 | Question | Topic | Session |
 |----------|-------|---------|
@@ -2232,7 +2232,7 @@ Week 8  [Revision] ................ INTERNAL TEST 2 ..........
 | Q15. What is a SPA? | Routing | T9 |
 | Q16. What is React Router? | Routing | T9 |
 
-**Node.js/MongoDB (from `docs/nodejs-mongodb/qa.md`):**
+**Node.js/MongoDB (from [docs/nodejs-mongodb/qa.md](../docs/nodejs-mongodb/qa.md)):**
 
 | Question | Topic | Session |
 |----------|-------|---------|
