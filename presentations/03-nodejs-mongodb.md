@@ -98,11 +98,9 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Node.js Architecture - Event Loop
 
-![w:700](images/node-event-loop.png)
+![w:550](images/node-event-loop.png)
 
-- **Single thread** handles all incoming requests
-- Heavy tasks (file I/O, crypto) go to the **thread pool**
-- Event loop picks up completed tasks via **callbacks**
+**Single thread** handles requests | Heavy I/O goes to **thread pool** | Completed tasks return via **callbacks**
 
 <!-- Speaker notes: This is the most important concept in Node.js. The event loop is what makes Node.js non-blocking. When a request comes in, Node.js does not create a new thread. Instead, the single thread puts I/O operations into the thread pool managed by libuv, and continues processing the next request. When the I/O completes, the callback is placed in the event queue, and the event loop picks it up. The event loop has phases: timers, pending callbacks, poll (for I/O), check (setImmediate), and close callbacks. -->
 
@@ -440,14 +438,10 @@ process.nextTick(() => {
 ```javascript
 const fs = require('fs');
 
-// Synchronous (BLOCKING - bad for servers)
-const data = fs.readFileSync('students.txt', 'utf8');
-console.log(data);
-
-// Asynchronous with Callback (NON-BLOCKING - good!)
+// Asynchronous with Callback (NON-BLOCKING)
 fs.readFile('students.txt', 'utf8', (err, data) => {
   if (err) {
-    console.error('Error reading file:', err.message);
+    console.error('Error:', err.message);
     return;
   }
   console.log(data);
@@ -455,31 +449,22 @@ fs.readFile('students.txt', 'utf8', (err, data) => {
 console.log('This runs BEFORE file is read!');
 ```
 
-### Error-First Convention
+**Error-First Convention:** first arg = error (`null` if success), second arg = result
 
-- First argument is always the error (`null` if success)
-- Second argument is the result
-
-<!-- Speaker notes: Callbacks are the original way Node.js handles asynchronous operations. The convention in Node.js is error-first callbacks - the first parameter of the callback is always the error object (null if no error), and the second parameter is the result. Notice that the synchronous version (readFileSync) blocks the entire thread until the file is read. The async version with a callback does not block - 'This runs BEFORE file is read' prints first because Node.js continues executing while waiting for the file I/O to complete. -->
+<!-- Speaker notes: Callbacks are the original way Node.js handles asynchronous operations. The convention in Node.js is error-first callbacks. Notice 'This runs BEFORE file is read' prints first because Node.js continues executing while waiting for the file I/O to complete. -->
 
 ---
 
 ## Callback Hell - "Pyramid of Doom"
 
 ```javascript
-// Deeply nested callbacks - hard to read and maintain!
 fs.readFile('students.json', 'utf8', (err, data) => {
   if (err) return console.error(err);
-  const students = JSON.parse(data);
-
   db.query('SELECT * FROM courses', (err, courses) => {
     if (err) return console.error(err);
-
     api.fetch('/departments', (err, depts) => {
       if (err) return console.error(err);
-
       fs.writeFile('report.json', result, (err) => {
-        if (err) return console.error(err);
         console.log('Done!');  // 4 levels deep!
       });
     });
@@ -487,8 +472,7 @@ fs.readFile('students.json', 'utf8', (err, data) => {
 });
 ```
 
-- Each async step adds another nesting level
-- Error handling repeated at every level
+- Each async step adds nesting | Error handling repeated everywhere
 - Solution: **Promises** and **async/await**
 
 <!-- Speaker notes: When you have multiple asynchronous operations that depend on each other, callbacks create deeply nested code that is very hard to read and maintain. This is called 'callback hell' or the 'pyramid of doom'. Each callback adds another level of indentation. Error handling must be repeated at every level. This was a major pain point in early Node.js development and led to the creation of Promises and later async/await. -->
@@ -983,60 +967,54 @@ main();
 ## CRUD from Node.js
 
 ```javascript
-const { MongoClient } = require('mongodb');
+const students = client.db('studentDB').collection('students');
 
-async function crudOperations() {
-  const client = new MongoClient('mongodb://localhost:27017');
-  await client.connect();
-  const students = client.db('studentDB').collection('students');
+// CREATE
+await students.insertOne({ name: 'Ravi', rollNo: '21B01A1201' });
 
-  // CREATE
-  await students.insertOne({
-    name: 'Ravi Kumar', rollNo: '21B01A1201',
-    branch: 'IT', cgpa: 8.5
-  });
+// READ
+const list = await students.find({ branch: 'IT' }).toArray();
 
-  // READ
-  const itStudents = await students
-    .find({ branch: 'IT' }).toArray();
-  console.log('IT Students:', itStudents);
+// UPDATE
+await students.updateOne(
+  { rollNo: '21B01A1201' }, { $set: { cgpa: 8.7 } });
 
-  // UPDATE
-  await students.updateOne(
-    { rollNo: '21B01A1201' },
-    { $set: { cgpa: 8.7 } }
-  );
-
-  // DELETE
-  await students.deleteOne({ rollNo: '21B01A1201' });
-
-  await client.close();
-}
-crudOperations();
+// DELETE
+await students.deleteOne({ rollNo: '21B01A1201' });
 ```
 
-<!-- Speaker notes: This slide shows all four CRUD operations using the MongoDB Node.js driver. The methods are exactly the same names as in mongosh - insertOne, find, updateOne, deleteOne. The key difference is that in Node.js, these methods return Promises, so we use await. For find(), it returns a cursor, and we call .toArray() to get all results as a JavaScript array. You can also use .forEach() to iterate one by one which is more memory efficient for large result sets. All the same query operators work - $set, $gt, $in, etc. The pattern is: connect, get a database reference, get a collection reference, perform operations, and close. This same pattern applies whether you are building a CLI tool, a REST API, or any server-side application. -->
+- Same methods as `mongosh`, but returns **Promises** (use `await`)
+- `find()` returns a cursor — use `.toArray()` to get results
+
+<!-- Speaker notes: The methods are exactly the same names as in mongosh - insertOne, find, updateOne, deleteOne. The key difference is that in Node.js, these methods return Promises, so we use await. For find(), it returns a cursor, and we call .toArray() to get all results as a JavaScript array. -->
 
 ---
 
-## Express.js + MongoDB REST API Pattern
+## Express.js + MongoDB - Setup
 
 ```javascript
 const express = require('express');
 const { MongoClient } = require('mongodb');
-
 const app = express();
-app.use(express.json());    // Parse JSON request bodies
+app.use(express.json());
 
 const client = new MongoClient('mongodb://localhost:27017');
 let db;
-
-// Connect to DB and start server
 client.connect().then(() => {
   db = client.db('studentDB');
-  app.listen(3000, () => console.log('API on port 3000'));
+  app.listen(3000, () => console.log('API on :3000'));
 });
+```
 
+- Connect once, reuse | `express.json()` parses JSON bodies
+
+<!-- Speaker notes: This is the real-world pattern you will use most often - Express.js as the web framework combined with MongoDB as the database. We connect to MongoDB once when the server starts and reuse the connection. -->
+
+---
+
+## Express.js + MongoDB - GET & POST
+
+```javascript
 // GET all students
 app.get('/api/students', async (req, res) => {
   const students = await db.collection('students')
@@ -1052,11 +1030,11 @@ app.post('/api/students', async (req, res) => {
 });
 ```
 
-<!-- Speaker notes: This is the real-world pattern you will use most often - Express.js as the web framework combined with MongoDB as the database. Express simplifies routing compared to the raw http module we saw earlier. We connect to MongoDB once when the server starts and reuse the connection. app.get handles GET requests, app.post handles POST requests. The async/await pattern makes the code clean and readable. express.json() middleware parses incoming JSON request bodies so you can access them via req.body. res.json() sends a JSON response. This pattern forms the foundation of REST APIs. In a production application, you would add error handling, input validation, authentication, and organize code into separate route and controller files. We will build this in detail in the lab sessions. -->
+<!-- Speaker notes: app.get handles GET requests, app.post handles POST requests. The async/await pattern makes the code clean and readable. res.json() sends a JSON response. This pattern forms the foundation of REST APIs. -->
 
 ---
 
-## Express.js + MongoDB (continued)
+## Express.js + MongoDB - GET by ID & PUT
 
 ```javascript
 // GET one student by roll number
@@ -1073,63 +1051,85 @@ app.put('/api/students/:rollNo', async (req, res) => {
   const result = await db.collection('students')
     .updateOne(
       { rollNo: req.params.rollNo },
-      { $set: req.body }
-    );
-  res.json(result);
-});
-
-// DELETE student
-app.delete('/api/students/:rollNo', async (req, res) => {
-  const result = await db.collection('students')
-    .deleteOne({ rollNo: req.params.rollNo });
+      { $set: req.body });
   res.json(result);
 });
 ```
 
-Full REST API: `GET`, `POST`, `PUT`, `DELETE` = CRUD!
-
-<!-- Speaker notes: Here we complete the REST API with GET by ID, PUT for update, and DELETE. Express uses colon syntax for URL parameters - :rollNo captures the value from the URL, and you access it with req.params.rollNo. For example, GET /api/students/21B01A1201 will set req.params.rollNo to '21B01A1201'. Notice the error handling in the GET endpoint - if findOne returns null, we send a 404 status. The PUT endpoint uses $set with req.body so it only updates the fields the client sends. The mapping is: HTTP GET = Read, POST = Create, PUT = Update, DELETE = Delete. This REST pattern is universal across web development. Testing these endpoints is easy with tools like Postman, Thunder Client in VS Code, or even curl from the terminal. -->
+<!-- Speaker notes: Express uses colon syntax for URL parameters - :rollNo captures the value from the URL, and you access it with req.params.rollNo. Notice the error handling in GET - if findOne returns null, we send a 404 status. The PUT endpoint uses $set with req.body so it only updates the fields the client sends. -->
 
 ---
 
-## Key Takeaways
+## Express.js + MongoDB - DELETE & Summary
 
-### Node.js
+```javascript
+app.delete('/api/students/:rollNo', async (req, res) => {
+  await db.collection('students')
+    .deleteOne({ rollNo: req.params.rollNo });
+  res.status(204).send();
+});
+```
 
-- Server-side JavaScript runtime built on V8 engine
+| Method | Route | Operation |
+|--------|-------|-----------|
+| GET | `/api/students` | Read all |
+| GET | `/api/students/:rollNo` | Read one |
+| POST | `/api/students` | Create |
+| PUT | `/api/students/:rollNo` | Update |
+| DELETE | `/api/students/:rollNo` | Delete |
+
+<!-- Speaker notes: The mapping is: HTTP GET = Read, POST = Create, PUT = Update, DELETE = Delete. This REST pattern is universal across web development. -->
+
+---
+
+## Key Takeaways - Node.js
+
+- Server-side JavaScript runtime built on **V8 engine**
 - **Single-threaded** with **event loop** for non-blocking I/O
 - npm ecosystem with 2M+ packages
 - Callbacks -> Promises -> **async/await** (evolution)
 - Best for I/O-bound applications (APIs, real-time)
 
-### MongoDB
+<!-- Speaker notes: Node.js brings JavaScript to the server with a unique event-driven, non-blocking architecture. The async evolution from callbacks to Promises to async/await makes asynchronous code much easier to write and read. -->
+
+---
+
+## Key Takeaways - MongoDB
 
 - **Document database** - stores JSON-like documents (BSON)
 - **Schema-flexible** - no CREATE TABLE, ALTER TABLE needed
-- Collections (tables) contain Documents (rows) with Fields (columns)
-- Rich query language with operators (`$gt`, `$in`, `$and`, etc.)
+- Collections (tables) -> Documents (rows) -> Fields (columns)
+- Rich query operators: `$gt`, `$in`, `$and`, `$set`, `$inc`
 - CRUD: `insertOne/Many`, `find/findOne`, `updateOne/Many`, `deleteOne/Many`
 
 ### Together
 
-- MongoDB Node.js driver for direct database access
 - Express.js + MongoDB = powerful REST API stack
 - Full CRUD API with just ~50 lines of code!
+- Foundation of the **MERN stack** (MongoDB, Express, React, Node.js)
 
-<!-- Speaker notes: Let us summarize what we covered today. Node.js brings JavaScript to the server with a unique event-driven, non-blocking architecture. The async evolution from callbacks to Promises to async/await makes asynchronous code much easier to write and read. MongoDB offers a flexible alternative to RDBMS that maps naturally to JavaScript objects. The key operations map directly to CRUD. When you combine Node.js with MongoDB and Express.js, you get a powerful, fast, and developer-friendly stack for building web APIs. The entire backend can be written in JavaScript, which means you use one language for frontend and backend. This is the foundation of the MERN stack (MongoDB, Express, React, Node.js). -->
+<!-- Speaker notes: MongoDB offers a flexible alternative to RDBMS that maps naturally to JavaScript objects. When you combine Node.js with MongoDB and Express.js, you get a powerful, fast, and developer-friendly stack for building web APIs. The entire backend can be written in JavaScript. -->
 
 ---
 
-## What's Next?
-
-### Lab Exercises
+## What's Next? - Lab Exercises
 
 1. **Lab 1**: Set up Node.js project, create HTTP server
 2. **Lab 2**: Build student CRUD API with Express + MongoDB
 3. **Lab 3**: Add query parameters, pagination, and sorting
 4. **Lab 4**: Error handling and input validation
 
-### Resources
+### Practice
+
+- Install Node.js 20 LTS and MongoDB 7.0 locally
+- Follow `PREREQUISITES.md` in the course repo
+- Complete each lab exercise before the next class
+
+<!-- Speaker notes: For the upcoming lab sessions, make sure you have Node.js 20 LTS and MongoDB 7.0 installed on your machines. Follow the PREREQUISITES.md file in our GitHub repository for installation steps. We will start with building a basic HTTP server, then progressively build a full REST API with MongoDB. -->
+
+---
+
+## Resources
 
 | Resource | Link |
 |----------|------|
@@ -1139,13 +1139,7 @@ Full REST API: `GET`, `POST`, `PUT`, `DELETE` = CRUD!
 | MongoDB University | learn.mongodb.com (free courses) |
 | Course Repository | github.com/krushiraj/spring-boot-demo |
 
-### Practice
-
-- Install Node.js 20 LTS and MongoDB 7.0 locally
-- Follow `PREREQUISITES.md` in the course repo
-- Complete each lab exercise before the next class
-
-<!-- Speaker notes: For the upcoming lab sessions, make sure you have Node.js 20 LTS and MongoDB 7.0 installed on your machines. Follow the PREREQUISITES.md file in our GitHub repository for installation steps. We will start with building a basic HTTP server, then progressively build a full REST API with MongoDB. The official documentation for Node.js and MongoDB are excellent resources. MongoDB University at learn.mongodb.com offers free courses with certificates. Practice is key - try to experiment with mongosh on your own, insert different types of data, and try various queries. All the code from today's slides is available in the course repository. Do not hesitate to raise issues on GitHub or ask questions in class. -->
+<!-- Speaker notes: The official documentation for Node.js and MongoDB are excellent resources. MongoDB University at learn.mongodb.com offers free courses with certificates. Practice is key - try to experiment with mongosh on your own, insert different types of data, and try various queries. All the code from today's slides is available in the course repository. -->
 
 ---
 
