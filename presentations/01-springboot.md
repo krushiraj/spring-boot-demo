@@ -6,27 +6,45 @@ backgroundColor: #fff
 style: |
   section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
   }
   h1 {
     color: #1a73e8;
+    font-size: 36px;
   }
   h2 {
     color: #2d2d2d;
     border-bottom: 2px solid #1a73e8;
-    padding-bottom: 0.3em;
+    padding-bottom: 0.2em;
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 22px;
+    margin-top: 0.3em;
+    margin-bottom: 0.2em;
   }
   code {
     background-color: #f5f5f5;
-    padding: 2px 6px;
+    padding: 1px 4px;
     border-radius: 3px;
+    font-size: 18px;
+  }
+  pre code {
+    font-size: 15px;
+    line-height: 1.3;
   }
   table {
-    font-size: 0.85em;
+    font-size: 18px;
   }
-  .columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  li {
+    font-size: 20px;
+    margin: 2px 0;
+  }
+  p {
+    margin: 4px 0;
+  }
+  blockquote {
+    font-size: 20px;
   }
 ---
 
@@ -275,7 +293,7 @@ public class OrderController {
 
 <!-- Speaker notes: Show each type with a live code example. Recommend constructor injection as best practice. Mention that field injection is convenient but harder to test. -->
 
-## Types of Dependency Injection
+## DI — Constructor & Field Injection
 
 ### 1. Constructor Injection (Recommended)
 ```java
@@ -299,13 +317,24 @@ public class StudentController {
 }
 ```
 
+---
+
+## DI — Setter Injection
+
 ### 3. Setter Injection
 ```java
-@Autowired
-public void setService(StudentService service) {
-    this.service = service;
+@RestController
+public class StudentController {
+    private StudentService service;
+
+    @Autowired
+    public void setService(StudentService service) {
+        this.service = service;
+    }
 }
 ```
+
+> **Best practice:** Use constructor injection for required dependencies. It makes dependencies explicit and classes easier to test.
 
 ---
 
@@ -336,9 +365,8 @@ All are specializations of `@Component` — Spring scans and registers them as b
 
 <!-- Speaker notes: Explain each annotation. @Controller returns view names (Thymeleaf templates). @RestController returns data (JSON). This is the key difference. -->
 
-## @Controller vs @RestController
+## @Controller (Server-Side Rendering)
 
-### @Controller (Server-Side Rendering)
 ```java
 @Controller
 public class PageController {
@@ -350,7 +378,12 @@ public class PageController {
 }
 ```
 
-### @RestController (REST API)
+Returns a **view name** — Thymeleaf resolves it to an HTML template.
+
+---
+
+## @RestController (REST API)
+
 ```java
 @RestController
 public class ApiController {
@@ -362,6 +395,8 @@ public class ApiController {
 ```
 
 `@RestController` = `@Controller` + `@ResponseBody`
+
+Returns **data directly** — Spring auto-converts to JSON.
 
 ---
 
@@ -393,7 +428,7 @@ public class StudentController {
 
 <!-- Speaker notes: Explain each annotation with a concrete example. @RequestBody converts JSON to Java object. @PathVariable extracts from URL path. @RequestParam extracts query parameters. -->
 
-## Request Data Annotations
+## @PathVariable & @RequestParam
 
 ### @PathVariable — from URL path
 ```java
@@ -409,6 +444,10 @@ public List<Student> search(@RequestParam String name) { ... }
 // GET /students/search?name=Ravi → name = "Ravi"
 ```
 
+---
+
+## @RequestBody
+
 ### @RequestBody — from request body (JSON)
 ```java
 @PostMapping("/students")
@@ -416,11 +455,13 @@ public Student create(@RequestBody Student student) { ... }
 // POST with JSON body → converted to Student object
 ```
 
+Spring automatically deserializes the JSON request body into the Java object using Jackson.
+
 ---
 
 <!-- Speaker notes: Explain ResponseEntity gives you full control over the HTTP response - status code, headers, body. Show the difference between returning an object directly vs wrapping in ResponseEntity. -->
 
-## ResponseEntity
+## ResponseEntity — Usage
 
 ```java
 @PostMapping
@@ -438,6 +479,10 @@ public ResponseEntity<Student> getById(@PathVariable String id) {
 }
 ```
 
+---
+
+## ResponseEntity — Status Codes
+
 | Status Code | Meaning | When to Use |
 |-------------|---------|-------------|
 | 200 OK | Success | GET, PUT |
@@ -445,11 +490,13 @@ public ResponseEntity<Student> getById(@PathVariable String id) {
 | 204 No Content | Deleted | DELETE |
 | 404 Not Found | Doesn't exist | Invalid ID |
 
+> `ResponseEntity` gives full control over HTTP status codes, headers, and response body.
+
 ---
 
 <!-- Speaker notes: Now transition to MongoDB. Ask who has used databases before (most will know Oracle/SQL). This slide bridges their SQL knowledge to MongoDB. -->
 
-## MongoDB — NoSQL Database
+## MongoDB — SQL vs NoSQL
 
 ### SQL vs MongoDB Terminology
 
@@ -461,6 +508,10 @@ public ResponseEntity<Student> getById(@PathVariable String id) {
 | Column | Field |
 | Primary Key | _id |
 | JOIN | Embedded documents / $lookup |
+
+---
+
+## MongoDB — Document Example
 
 ### A MongoDB Document
 
@@ -474,11 +525,13 @@ public ResponseEntity<Student> getById(@PathVariable String id) {
 }
 ```
 
+Documents are stored as **BSON** (Binary JSON). Fields can hold strings, numbers, arrays, and nested documents.
+
 ---
 
 <!-- Speaker notes: Show application.properties configuration. Emphasize that Spring Boot auto-configures the MongoDB connection - you just provide host/port/database. No driver code needed! -->
 
-## Spring Data MongoDB Setup
+## Spring Data MongoDB — Dependency
 
 ### 1. Add Dependency (in pom.xml)
 ```xml
@@ -495,9 +548,14 @@ spring.data.mongodb.port=27017
 spring.data.mongodb.database=student_db
 ```
 
-### 3. That's it!
+---
+
+## Spring Data MongoDB — Auto-Configuration
+
 Spring Boot auto-configures the MongoDB connection.
 No driver code, no connection pooling setup needed.
+
+> Just add the starter dependency and set the connection properties — Spring Boot handles the rest.
 
 ---
 
@@ -512,18 +570,13 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 @Document(collection = "students")
 public class Student {
-
     @Id
     private String id;              // MongoDB _id
-
     private String name;
-
     @Indexed(unique = true)
     private String rollNumber;      // Unique index
-
     private String department;
     private String email;
-
     // Constructors, Getters, Setters
 }
 ```
@@ -590,19 +643,10 @@ public class StudentController {
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
-
-    @PutMapping("/{id}")
-    public Student update(@PathVariable String id, @RequestBody Student s) {
-        return service.update(id, s);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 }
 ```
+
+> PUT and DELETE follow the same pattern.
 
 ---
 
@@ -628,22 +672,10 @@ public class StudentService {
     public Optional<Student> getById(String id) {
         return repository.findById(id);
     }
-
-    public Student update(String id, Student details) {
-        Student student = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Not found"));
-        student.setName(details.getName());
-        student.setRollNumber(details.getRollNumber());
-        student.setDepartment(details.getDepartment());
-        student.setEmail(details.getEmail());
-        return repository.save(student);
-    }
-
-    public void delete(String id) {
-        repository.deleteById(id);
-    }
 }
 ```
+
+> `update()` and `delete()` follow the same pattern using `repository.save()` and `repository.deleteById()`.
 
 ---
 
@@ -664,17 +696,11 @@ Content-Type: application/json
 }
 ```
 
-### GET — List All
-```
-GET http://localhost:8080/api/students
-```
-
-### Verify in MongoDB
-```bash
-mongosh
-> use student_db
-> db.students.find().pretty()
-```
+**Other endpoints to test:**
+- `GET /api/students` — List all
+- `GET /api/students/{id}` — Get by ID
+- `PUT /api/students/{id}` — Update
+- `DELETE /api/students/{id}` — Delete
 
 ---
 
@@ -686,26 +712,20 @@ mongosh
 // In Repository
 @Query("{ 'name': { $regex: ?0, $options: 'i' } }")
 List<Student> searchByName(String name);
-
 List<Student> findByDepartment(String department);
-```
 
-```java
 // In Controller
 @GetMapping("/search")
 public List<Student> search(@RequestParam String name) {
     return service.searchByName(name);
 }
-
 @GetMapping("/department/{dept}")
 public List<Student> filterByDept(@PathVariable String dept) {
     return service.getByDepartment(dept);
 }
 ```
 
-**Test:**
-- `GET /api/students/search?name=ravi` → finds "Ravi Kumar"
-- `GET /api/students/department/IT` → all IT students
+**Test:** `GET /api/students/search?name=ravi` or `GET /api/students/department/IT`
 
 ---
 
@@ -767,7 +787,7 @@ public class PageController {
 
 ## Spring Boot Layered Architecture
 
-![w:900](images/sb-layers.png)
+![w:700](images/sb-layers.png)
 
 Each layer only talks to the layer directly below it.
 

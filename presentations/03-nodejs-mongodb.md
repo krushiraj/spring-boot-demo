@@ -6,22 +6,45 @@ backgroundColor: #fff
 style: |
   section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
   }
   h1 {
     color: #1a73e8;
+    font-size: 36px;
   }
   h2 {
     color: #2d2d2d;
     border-bottom: 2px solid #1a73e8;
-    padding-bottom: 0.3em;
+    padding-bottom: 0.2em;
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 22px;
+    margin-top: 0.3em;
+    margin-bottom: 0.2em;
   }
   code {
     background-color: #f5f5f5;
-    padding: 2px 6px;
+    padding: 1px 4px;
     border-radius: 3px;
+    font-size: 18px;
+  }
+  pre code {
+    font-size: 15px;
+    line-height: 1.3;
   }
   table {
-    font-size: 0.85em;
+    font-size: 18px;
+  }
+  li {
+    font-size: 20px;
+    margin: 2px 0;
+  }
+  p {
+    margin: 4px 0;
+  }
+  blockquote {
+    font-size: 20px;
   }
 ---
 
@@ -75,7 +98,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Node.js Architecture - Event Loop
 
-![w:900](images/node-event-loop.png)
+![w:700](images/node-event-loop.png)
 
 - **Single thread** handles all incoming requests
 - Heavy tasks (file I/O, crypto) go to the **thread pool**
@@ -87,7 +110,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Node.js vs Traditional Multi-threaded Server
 
-![w:900](images/node-vs-traditional.png)
+![w:700](images/node-vs-traditional.png)
 
 - Traditional: **one thread per request** (blocks until done)
 - Node.js: **one thread, many requests** (non-blocking)
@@ -125,7 +148,7 @@ npm --version     // 10.x.x
 
 ---
 
-## Running Node.js
+## Running Node.js - REPL
 
 ### 1. REPL (Read-Eval-Print Loop)
 
@@ -137,6 +160,16 @@ $ node
 Hello IT students!
 > .exit
 ```
+
+- Type `node` in your terminal to enter REPL mode
+- Use `.exit` or Ctrl+C twice to exit
+- Great for quick experiments
+
+<!-- Speaker notes: There are two main ways to run Node.js. The REPL is interactive - you type JavaScript and see results immediately. It is great for quick experiments. Type 'node' in your terminal to enter REPL mode. Use .exit or Ctrl+C twice to exit. -->
+
+---
+
+## Running Node.js - Script Files
 
 ### 2. Running a Script File
 
@@ -153,11 +186,11 @@ Hello from IT Department!
 Node version: v20.11.0
 ```
 
-<!-- Speaker notes: There are two main ways to run Node.js. The REPL is interactive - you type JavaScript and see results immediately. It is great for quick experiments. Type 'node' in your terminal to enter REPL mode. Use .exit or Ctrl+C twice to exit. For actual programs, you write JavaScript in a .js file and run it with 'node filename.js'. Notice we used template literals with backticks - this is ES6 syntax. The process object is a global in Node.js that gives you information about the current process. -->
+<!-- Speaker notes: For actual programs, you write JavaScript in a .js file and run it with 'node filename.js'. Notice we used template literals with backticks - this is ES6 syntax. The process object is a global in Node.js that gives you information about the current process. -->
 
 ---
 
-## npm Basics
+## npm Basics - Project Setup
 
 ### Initialize a Project
 
@@ -183,6 +216,12 @@ $ npm init -y       # Creates package.json with defaults
 }
 ```
 
+<!-- Speaker notes: npm is the world's largest software registry with over 2 million packages. Every Node.js project should have a package.json file - it is like the project's identity card. It lists the project name, version, entry point, scripts, and dependencies. npm init -y creates one with default values. The scripts section lets you define shortcuts. -->
+
+---
+
+## npm Basics - Installing Packages
+
 ### Install Packages
 
 ```
@@ -190,11 +229,16 @@ $ npm install express        # Production dependency
 $ npm install nodemon -D     # Dev dependency
 ```
 
-<!-- Speaker notes: npm is the world's largest software registry with over 2 million packages. Every Node.js project should have a package.json file - it is like the project's identity card. It lists the project name, version, entry point, scripts, and dependencies. npm init -y creates one with default values. The scripts section lets you define shortcuts. npm install or npm i installs a package and adds it to dependencies. The -D flag adds it to devDependencies, which are only needed during development, not in production. The node_modules folder contains all installed packages - NEVER commit it to git. -->
+- `npm install` or `npm i` adds to `dependencies`
+- `-D` flag adds to `devDependencies` (development only)
+- `node_modules/` contains installed packages - **never commit to git**
+- Use `.gitignore` to exclude `node_modules/`
+
+<!-- Speaker notes: npm install or npm i installs a package and adds it to dependencies. The -D flag adds it to devDependencies, which are only needed during development, not in production. The node_modules folder contains all installed packages - NEVER commit it to git. -->
 
 ---
 
-## Modules in Node.js
+## Modules - CommonJS
 
 ### CommonJS (Traditional Node.js)
 
@@ -209,6 +253,15 @@ const { add, subtract } = require('./math');
 console.log(add(5, 3));       // 8
 ```
 
+- Uses `require()` and `module.exports`
+- Original Node.js module system, still very common
+
+<!-- Speaker notes: Node.js has two module systems. CommonJS uses require() and module.exports - this is the original Node.js way and is still very common. Node.js also ships with many built-in modules - you do not need to install them. For example, the fs module for file operations, http for creating servers, path for file path manipulation. -->
+
+---
+
+## Modules - ES Modules
+
 ### ES Modules (Modern - add `"type": "module"` in package.json)
 
 ```javascript
@@ -221,9 +274,12 @@ import { add, subtract } from './math.mjs';
 console.log(add(5, 3));       // 8
 ```
 
+- Same syntax as browser JavaScript (`import`/`export`)
+- Requires `"type": "module"` in package.json or `.mjs` extension
+
 > Node.js has built-in modules: `fs`, `path`, `http`, `os`, `crypto`
 
-<!-- Speaker notes: Node.js has two module systems. CommonJS uses require() and module.exports - this is the original Node.js way and is still very common. ES Modules use import/export syntax, which is the same as what you use in browser JavaScript. To use ES Modules in Node.js, you need to either add "type": "module" in package.json or use the .mjs file extension. Node.js also ships with many built-in modules - you do not need to install them. For example, the fs module for file operations, http for creating servers, path for file path manipulation. We will use both CommonJS and ES Modules in this course. -->
+<!-- Speaker notes: ES Modules use import/export syntax, which is the same as what you use in browser JavaScript. To use ES Modules in Node.js, you need to either add "type": "module" in package.json or use the .mjs file extension. We will use both CommonJS and ES Modules in this course. -->
 
 ---
 
@@ -245,15 +301,12 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
-});
+server.listen(3000, () =>
+  console.log('Server running at http://localhost:3000')
+);
 ```
 
-```
-$ node server.js
-Server running at http://localhost:3000
-```
+Run with: `$ node server.js`
 
 <!-- Speaker notes: This is how you create a basic HTTP server in Node.js without any framework. The http module is built-in. The createServer method takes a callback function that receives request (req) and response (res) objects. We check req.url to handle different routes and req.method for GET, POST, etc. res.writeHead sets the status code and headers. res.end sends the response body. The server listens on port 3000. This is low-level - in practice, we use Express.js which makes routing much easier. But understanding this helps you appreciate what Express does under the hood. -->
 
@@ -289,7 +342,7 @@ emitter.emit('studentEnrolled', {
 
 ---
 
-## Custom Events and Listeners
+## Custom Events - Extending EventEmitter
 
 ```javascript
 const EventEmitter = require('events');
@@ -303,11 +356,18 @@ class StudentManager extends EventEmitter {
 
 const manager = new StudentManager();
 
-// .on() - runs every time event fires
-manager.on('added', (s) => {
+manager.on('added', (s) => {    // runs every time
   console.log(`Notify HOD: ${s.name} joined ${s.branch}`);
 });
+```
 
+<!-- Speaker notes: You can create your own classes that extend EventEmitter. This is a very common pattern in Node.js libraries. The .on method registers a listener that fires every time the event is emitted. -->
+
+---
+
+## Custom Events - .on() vs .once()
+
+```javascript
 // .once() - runs only the first time
 manager.once('added', (s) => {
   console.log(`First student bonus for: ${s.name}`);
@@ -322,11 +382,15 @@ manager.addStudent({ name: 'Amit Reddy', branch: 'IT' });
 // (no bonus - .once already fired)
 ```
 
-<!-- Speaker notes: You can create your own classes that extend EventEmitter. This is a very common pattern in Node.js libraries. The .on method registers a listener that fires every time the event is emitted. The .once method registers a listener that fires only the first time - after that, it is automatically removed. You can also use .removeListener() or .off() to manually remove listeners, and .removeAllListeners() to remove all listeners for an event. The .listenerCount() method tells you how many listeners are registered for an event. Always be careful about memory leaks - if you keep adding listeners without removing them, you will get a warning when you exceed 10 listeners for a single event. -->
+- `.on()` - fires every time the event is emitted
+- `.once()` - fires only the first time, then auto-removed
+- `.off()` / `.removeListener()` - manually remove listeners
+
+<!-- Speaker notes: The .once method registers a listener that fires only the first time - after that, it is automatically removed. You can also use .removeListener() or .off() to manually remove listeners, and .removeAllListeners() to remove all listeners for an event. Always be careful about memory leaks - if you keep adding listeners without removing them, you will get a warning when you exceed 10 listeners for a single event. -->
 
 ---
 
-## Timers
+## Timers - setTimeout & setInterval
 
 ```javascript
 // setTimeout - run once after delay
@@ -341,14 +405,22 @@ const timer = setInterval(() => {
   console.log(`Tick ${count}`);
   if (count === 3) clearInterval(timer);
 }, 1000);
-// Tick 1 (at 1s), Tick 2 (at 2s), Tick 3 (at 3s), then stops
+// Tick 1 (at 1s), Tick 2 (at 2s), Tick 3 (at 3s)
+```
 
-// setImmediate - run after current I/O events (Node.js only)
+<!-- Speaker notes: Timers in Node.js work similarly to browser timers. setTimeout and setInterval work the same way you know from browser JavaScript. In practice, you will mostly use setTimeout and setInterval. -->
+
+---
+
+## Timers - Node.js Specific
+
+```javascript
+// setImmediate - run after current I/O events
 setImmediate(() => {
   console.log('Runs after current I/O cycle');
 });
 
-// process.nextTick - runs before any I/O (Node.js only)
+// process.nextTick - runs before any I/O
 process.nextTick(() => {
   console.log('Runs before everything else in queue');
 });
@@ -356,7 +428,10 @@ process.nextTick(() => {
 
 **Priority**: `process.nextTick` > `setImmediate` > `setTimeout(fn, 0)`
 
-<!-- Speaker notes: Timers in Node.js work similarly to browser timers but with some additions. setTimeout and setInterval work the same way you know from browser JavaScript. setImmediate is Node.js specific - it executes after the current event loop cycle completes all I/O events. process.nextTick is even higher priority - it runs before the event loop continues. The priority order is important: process.nextTick callbacks run first, then promise callbacks, then setImmediate, then setTimeout with 0 delay. In practice, you will mostly use setTimeout and setInterval. Use process.nextTick sparingly as it can starve the event loop if overused. -->
+- `setImmediate` - Node.js only, runs after current I/O cycle
+- `process.nextTick` - highest priority, use sparingly
+
+<!-- Speaker notes: setImmediate is Node.js specific - it executes after the current event loop cycle completes all I/O events. process.nextTick is even higher priority - it runs before the event loop continues. The priority order is important: process.nextTick callbacks run first, then promise callbacks, then setImmediate, then setTimeout with 0 delay. Use process.nextTick sparingly as it can starve the event loop if overused. -->
 
 ---
 
@@ -377,27 +452,22 @@ fs.readFile('students.txt', 'utf8', (err, data) => {
   }
   console.log(data);
 });
-
 console.log('This runs BEFORE file is read!');
 ```
 
-### Node.js Callback Convention: Error-First
+### Error-First Convention
 
-```javascript
-function callback(error, result) {
-  // First argument is always the error (null if success)
-  // Second argument is the result
-}
-```
+- First argument is always the error (`null` if success)
+- Second argument is the result
 
-<!-- Speaker notes: Callbacks are the original way Node.js handles asynchronous operations. The convention in Node.js is error-first callbacks - the first parameter of the callback is always the error object (null if no error), and the second parameter is the result. This is different from browser event handlers. Notice that the synchronous version (readFileSync) blocks the entire thread until the file is read. The async version with a callback does not block - 'This runs BEFORE file is read' prints first because Node.js continues executing while waiting for the file I/O to complete. When the file is read, the callback function is called with the data. -->
+<!-- Speaker notes: Callbacks are the original way Node.js handles asynchronous operations. The convention in Node.js is error-first callbacks - the first parameter of the callback is always the error object (null if no error), and the second parameter is the result. Notice that the synchronous version (readFileSync) blocks the entire thread until the file is read. The async version with a callback does not block - 'This runs BEFORE file is read' prints first because Node.js continues executing while waiting for the file I/O to complete. -->
 
 ---
 
-## Callback Hell Problem
+## Callback Hell - "Pyramid of Doom"
 
 ```javascript
-// Reading data, processing, and saving - gets deeply nested!
+// Deeply nested callbacks - hard to read and maintain!
 fs.readFile('students.json', 'utf8', (err, data) => {
   if (err) return console.error(err);
   const students = JSON.parse(data);
@@ -417,20 +487,11 @@ fs.readFile('students.json', 'utf8', (err, data) => {
 });
 ```
 
-```
-  Problem: "Pyramid of Doom"
-  =========================
-  callback(              <-- Level 1
-    callback(            <-- Level 2
-      callback(          <-- Level 3
-        callback(        <-- Level 4
-        )
-      )
-    )
-  )
-```
+- Each async step adds another nesting level
+- Error handling repeated at every level
+- Solution: **Promises** and **async/await**
 
-<!-- Speaker notes: When you have multiple asynchronous operations that depend on each other, callbacks create deeply nested code that is very hard to read and maintain. This is called 'callback hell' or the 'pyramid of doom'. Each callback adds another level of indentation. Error handling must be repeated at every level. If you need to add a step in the middle, you have to restructure the entire nested code. This was a major pain point in early Node.js development and led to the creation of Promises and later async/await. The solution is to flatten this pyramid, which we will see in the next slides. -->
+<!-- Speaker notes: When you have multiple asynchronous operations that depend on each other, callbacks create deeply nested code that is very hard to read and maintain. This is called 'callback hell' or the 'pyramid of doom'. Each callback adds another level of indentation. Error handling must be repeated at every level. This was a major pain point in early Node.js development and led to the creation of Promises and later async/await. -->
 
 ---
 
@@ -474,32 +535,27 @@ readStudentFile('students.json')
 ```javascript
 const fs = require('fs').promises;
 
-// async function always returns a Promise
 async function processStudents() {
   try {
-    // await pauses until Promise resolves
     const data = await fs.readFile('students.json', 'utf8');
     const students = JSON.parse(data);
-
     const itStudents = students.filter(s => s.branch === 'IT');
     console.log('IT Students:', itStudents);
 
     await fs.writeFile('it-students.json',
-      JSON.stringify(itStudents, null, 2)
-    );
+      JSON.stringify(itStudents, null, 2));
     console.log('File saved!');
   } catch (err) {
     console.error('Error:', err.message);
   }
 }
-
 processStudents();
 ```
 
-- `async` keyword marks a function as asynchronous
+- `async` marks a function as asynchronous (always returns a Promise)
 - `await` pauses execution until the Promise resolves
 - Use `try/catch` for error handling (familiar from Java!)
-- Reads like synchronous code but is non-blocking
+- Reads like synchronous code but is **non-blocking**
 
 <!-- Speaker notes: async/await is syntactic sugar over Promises introduced in ES2017. It makes asynchronous code look and behave like synchronous code. The async keyword before a function means the function always returns a Promise. The await keyword pauses the function execution until the Promise resolves, and returns the resolved value. If the Promise rejects, await throws an error, which you catch with try/catch - just like exception handling in Java. This is the preferred way to write asynchronous code in modern Node.js. Notice we use require('fs').promises to get the Promise-based version of the fs module. Behind the scenes, the event loop is still working the same way - await does NOT block the thread, it just pauses the function and lets other code run. -->
 
@@ -513,7 +569,7 @@ processStudents();
 
 ---
 
-## What is MongoDB & NoSQL?
+## What is NoSQL?
 
 ### NoSQL = "Not Only SQL"
 
@@ -522,20 +578,24 @@ processStudents();
 - Column Family (Cassandra) - wide columns
 - Graph (Neo4j) - nodes and edges
 
-### Why MongoDB?
+<!-- Speaker notes: You know Oracle DB which is a Relational Database Management System or RDBMS. It stores data in tables with fixed schemas. MongoDB is a NoSQL database, specifically a document database. Instead of rows in tables, it stores documents in collections. Each document is a JSON-like object. -->
+
+---
+
+## Why MongoDB?
 
 - **Flexible schema** - no ALTER TABLE needed
 - **JSON-like documents** - natural for JavaScript
 - **Horizontal scaling** - distribute data across servers
 - **High performance** for reads and writes
-- Most popular NoSQL database (used by Google, Facebook, eBay)
+- Most popular NoSQL database (Google, Facebook, eBay)
 
 ### When NOT to use MongoDB?
 
 - Complex joins and transactions (use RDBMS)
 - Financial systems requiring strict ACID compliance
 
-<!-- Speaker notes: You know Oracle DB which is a Relational Database Management System or RDBMS. It stores data in tables with fixed schemas - you define columns and data types upfront. MongoDB is a NoSQL database, specifically a document database. Instead of rows in tables, it stores documents in collections. Each document is a JSON-like object. The key advantage is schema flexibility - different documents in the same collection can have different fields. This is very useful in web development where data structures evolve frequently. In Oracle, adding a column requires ALTER TABLE and affects all rows. In MongoDB, you just start storing documents with the new field. However, MongoDB is not a replacement for RDBMS everywhere - for banking systems or complex relational data, Oracle/PostgreSQL is still better. -->
+<!-- Speaker notes: The key advantage is schema flexibility - different documents in the same collection can have different fields. This is very useful in web development where data structures evolve frequently. In Oracle, adding a column requires ALTER TABLE and affects all rows. In MongoDB, you just start storing documents with the new field. However, MongoDB is not a replacement for RDBMS everywhere - for banking systems or complex relational data, Oracle/PostgreSQL is still better. -->
 
 ---
 
@@ -594,25 +654,18 @@ processStudents();
 ## MongoDB Document Example
 
 ```javascript
-// A student document in MongoDB
 {
   "_id": ObjectId("65f2a1b3c4d5e6f7a8b9c0d1"),
   "name": "Ravi Kumar",
   "rollNo": "21B01A1201",
   "branch": "IT",
   "semester": 4,
-  "email": "ravi.kumar@college.edu",
   "cgpa": 8.5,
   "subjects": [
     { "code": "CS401", "name": "FSWAD", "credits": 4 },
-    { "code": "CS402", "name": "ML", "credits": 3 },
-    { "code": "CS403", "name": "CC", "credits": 3 }
+    { "code": "CS402", "name": "ML", "credits": 3 }
   ],
-  "address": {
-    "city": "Hyderabad",
-    "state": "Telangana",
-    "pincode": "500001"
-  },
+  "address": { "city": "Hyderabad", "state": "Telangana" },
   "isActive": true,
   "enrolledDate": ISODate("2021-08-15T00:00:00Z")
 }
@@ -620,7 +673,7 @@ processStudents();
 
 Compare: In Oracle, this would need **3 tables** (students, subjects, addresses) with JOINs!
 
-<!-- Speaker notes: Let us look at a more complete student document. The _id is automatically generated by MongoDB as an ObjectId - a 12-byte unique identifier. Notice the data types: strings, numbers (integer and float), arrays of objects, nested objects, booleans, and dates. In Oracle, to store this same data, you would need a students table, a student_subjects junction table (because one student has many subjects), and possibly an addresses table. To retrieve all this data, you would need to write a JOIN query across all three tables. In MongoDB, it is all in one document - one read operation gets everything. This is the power of the document model for read-heavy applications. -->
+<!-- Speaker notes: Let us look at a more complete student document. The _id is automatically generated by MongoDB as an ObjectId - a 12-byte unique identifier. Notice the data types: strings, numbers, arrays of objects, nested objects, booleans, and dates. In Oracle, to store this same data, you would need a students table, a student_subjects junction table, and possibly an addresses table. In MongoDB, it is all in one document - one read operation gets everything. -->
 
 ---
 
@@ -640,25 +693,18 @@ show dbs                           // List all databases
 use studentDB                     // Switch to / create database
 show collections                  // List collections in current db
 db.getName()                      // Current database name
-
-// Database is created when you first insert data
-db.students.insertOne({
-  name: "Ravi Kumar", branch: "IT"
-})
-
-show dbs                          // Now studentDB appears!
-
 db.students.countDocuments()      // Count documents
-db.dropDatabase()                 // Delete entire database (careful!)
+db.dropDatabase()                 // Delete entire database!
 ```
 
-> `mongosh` is the modern MongoDB Shell (replaces the old `mongo` shell)
+- Database is auto-created when you first insert data
+- `mongosh` is the modern MongoDB Shell (replaces old `mongo` shell)
 
-<!-- Speaker notes: mongosh is the MongoDB Shell - it is an interactive JavaScript interface to MongoDB. When you install MongoDB 7.0, mongosh comes with it. You start it by typing mongosh in the terminal. By default, it connects to localhost on port 27017. You can also specify a connection string directly. The use command switches to a database - if it does not exist, MongoDB will create it when you first insert data. This is a key difference from Oracle where you must explicitly CREATE DATABASE. The show commands let you explore databases and collections. db refers to the current database, and db.collectionName gives you access to a collection. Everything in mongosh is JavaScript, so you can use variables, loops, and all JavaScript features. -->
+<!-- Speaker notes: mongosh is the MongoDB Shell - it is an interactive JavaScript interface to MongoDB. When you install MongoDB 7.0, mongosh comes with it. You start it by typing mongosh in the terminal. By default, it connects to localhost on port 27017. The use command switches to a database - if it does not exist, MongoDB will create it when you first insert data. This is a key difference from Oracle where you must explicitly CREATE DATABASE. Everything in mongosh is JavaScript, so you can use variables, loops, and all JavaScript features. -->
 
 ---
 
-## CRUD - insertOne & insertMany
+## CRUD - insertOne
 
 ```javascript
 // Insert a single document
@@ -669,7 +715,19 @@ db.students.insertOne({
   semester: 4,
   cgpa: 8.5
 })
+// Returns: { acknowledged: true, insertedId: ObjectId(...) }
+```
 
+- `_id` is auto-generated if not provided
+- Collection is auto-created on first insert
+
+<!-- Speaker notes: Insert operations add new documents to a collection. insertOne takes a single document object and inserts it. If the collection does not exist, MongoDB creates it automatically on the first insert. Notice that we do not specify _id - MongoDB generates a unique ObjectId automatically. Compare this to Oracle: you would need a CREATE TABLE statement first with all column definitions. -->
+
+---
+
+## CRUD - insertMany
+
+```javascript
 // Insert multiple documents
 db.students.insertMany([
   { name: "Priya Sharma", rollNo: "21B01A1202",
@@ -681,13 +739,10 @@ db.students.insertMany([
   { name: "Karthik Rao", rollNo: "21B01A1205",
     branch: "CSE", semester: 4, cgpa: 8.2 }
 ])
+// Returns: { acknowledged: true, insertedIds: {...} }
 ```
 
-- `insertOne()` returns: `{ acknowledged: true, insertedId: ObjectId(...) }`
-- `insertMany()` returns: `{ acknowledged: true, insertedIds: {...} }`
-- `_id` is auto-generated if not provided
-
-<!-- Speaker notes: Insert operations add new documents to a collection. insertOne takes a single document object and inserts it. insertMany takes an array of documents. If the collection does not exist, MongoDB creates it automatically on the first insert. Notice that we do not specify _id - MongoDB generates a unique ObjectId automatically. You CAN provide your own _id if you want, but it must be unique within the collection. The return value tells you if the operation was acknowledged and gives you the generated IDs. Compare this to Oracle: you would need a CREATE TABLE statement first with all column definitions, then use INSERT INTO with exact column names and types. MongoDB is much more flexible. -->
+<!-- Speaker notes: insertMany takes an array of documents. You CAN provide your own _id if you want, but it must be unique within the collection. The return value tells you if the operation was acknowledged and gives you the generated IDs. -->
 
 ---
 
@@ -703,18 +758,20 @@ db.students.find({ branch: "IT" })
 // Find one document
 db.students.findOne({ rollNo: "21B01A1201" })
 
-// Projection - select specific fields (SELECT col1, col2)
+// Projection - select specific fields
 db.students.find(
   { branch: "CSE" },              // Filter (WHERE)
   { name: 1, cgpa: 1, _id: 0 }   // Projection (SELECT)
 )
-// Output:
 // { name: "Priya Sharma", cgpa: 9.1 }
 // { name: "Karthik Rao", cgpa: 8.2 }
-
-// Pretty print
-db.students.find().pretty()
 ```
+
+<!-- Speaker notes: find() is the MongoDB equivalent of SELECT. Without arguments, it returns all documents like SELECT *. The first argument is the filter - equivalent to the WHERE clause. findOne returns just the first matching document instead of a cursor. The second argument is the projection - it controls which fields to include or exclude. Use 1 to include a field and 0 to exclude. -->
+
+---
+
+## find - SQL Comparison
 
 | Oracle SQL | MongoDB |
 |-----------|---------|
@@ -722,7 +779,11 @@ db.students.find().pretty()
 | `SELECT * FROM students WHERE branch='IT'` | `db.students.find({branch:"IT"})` |
 | `SELECT name, cgpa FROM students WHERE branch='CSE'` | `db.students.find({branch:"CSE"}, {name:1, cgpa:1, _id:0})` |
 
-<!-- Speaker notes: find() is the MongoDB equivalent of SELECT. Without arguments, it returns all documents like SELECT *. The first argument is the filter - equivalent to the WHERE clause. findOne returns just the first matching document instead of a cursor. The second argument is the projection - it controls which fields to include or exclude. Use 1 to include a field and 0 to exclude. By default, _id is always included unless you explicitly exclude it with _id: 0. You cannot mix includes and excludes (except for _id). The comparison table at the bottom shows Oracle SQL equivalents so you can map your existing knowledge. In Oracle, you write SQL strings. In MongoDB, everything is JavaScript objects. -->
+- Use `1` to include a field, `0` to exclude
+- `_id` is always included unless you set `_id: 0`
+- Cannot mix includes and excludes (except `_id`)
+
+<!-- Speaker notes: The comparison table shows Oracle SQL equivalents so you can map your existing knowledge. In Oracle, you write SQL strings. In MongoDB, everything is JavaScript objects. By default, _id is always included unless you explicitly exclude it with _id: 0. You cannot mix includes and excludes (except for _id). -->
 
 ---
 
@@ -746,19 +807,33 @@ db.students.updateMany(
   {},                              // Empty filter = all docs
   { $set: { university: "JNTUH" } }
 )
+```
 
+- **Must use `$set`** - without it, the entire document is replaced!
+
+<!-- Speaker notes: Update operations modify existing documents. updateOne modifies the first document matching the filter. updateMany modifies all matching documents. The key thing to remember is the $set operator - you MUST use it to update specific fields. If you write updateOne without $set, it will REPLACE the entire document! Notice how easy it is to add a new field to all documents - in Oracle, you would need ALTER TABLE first. -->
+
+---
+
+## Update Operators
+
+```javascript
 // Increment a numeric field
 db.students.updateOne(
   { rollNo: "21B01A1203" },
-  { $inc: { cgpa: 0.5 } }         // Amit's cgpa + 0.5
+  { $inc: { cgpa: 0.5 } }         // cgpa + 0.5
 )
 ```
 
-| Oracle SQL | MongoDB |
-|-----------|---------|
-| `UPDATE students SET cgpa=8.7 WHERE rollNo='21B01A1201'` | `db.students.updateOne({rollNo:"21B01A1201"}, {$set:{cgpa:8.7}})` |
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `$set` | Set field value | `{ $set: { cgpa: 9.0 } }` |
+| `$inc` | Increment number | `{ $inc: { cgpa: 0.5 } }` |
+| `$push` | Add to array | `{ $push: { subjects: "AI" } }` |
+| `$pull` | Remove from array | `{ $pull: { subjects: "ML" } }` |
+| `$unset` | Remove a field | `{ $unset: { email: "" } }` |
 
-<!-- Speaker notes: Update operations modify existing documents. updateOne modifies the first document matching the filter. updateMany modifies all matching documents. The key thing to remember is the $set operator - you MUST use it to update specific fields. If you write updateOne({rollNo: "21B01A1201"}, {cgpa: 8.7}) without $set, it will REPLACE the entire document with just {cgpa: 8.7}, removing all other fields! This is a very common mistake. Other useful update operators include $inc for incrementing numbers, $push for adding to arrays, $pull for removing from arrays, and $unset for removing a field entirely. Notice how easy it is to add a new field (university) to all documents - in Oracle, you would need ALTER TABLE first. -->
+<!-- Speaker notes: Other useful update operators include $inc for incrementing numbers, $push for adding to arrays, $pull for removing from arrays, and $unset for removing a field entirely. These operators make MongoDB updates very flexible compared to SQL UPDATE statements. -->
 
 ---
 
@@ -767,61 +842,67 @@ db.students.updateOne(
 ```javascript
 // Delete one document
 db.students.deleteOne({ rollNo: "21B01A1205" })
-// Removes Karthik Rao
 
-// Delete many documents matching a condition
+// Delete many matching a condition
 db.students.deleteMany({ branch: "ECE" })
-// Removes all ECE students (Sneha Patel)
 
 // Delete ALL documents (careful!)
-db.students.deleteMany({})
-// Empty filter = delete everything!
+db.students.deleteMany({})  // Empty filter = delete all!
 
 // Drop entire collection
 db.students.drop()
 ```
 
-| Operation | Oracle SQL | MongoDB |
-|-----------|-----------|---------|
-| Delete one | `DELETE FROM students WHERE rollNo='21B01A1205'` | `db.students.deleteOne({rollNo:"21B01A1205"})` |
-| Delete many | `DELETE FROM students WHERE branch='ECE'` | `db.students.deleteMany({branch:"ECE"})` |
-| Delete all | `DELETE FROM students` | `db.students.deleteMany({})` |
-| Drop table | `DROP TABLE students` | `db.students.drop()` |
+| Oracle SQL | MongoDB |
+|-----------|---------|
+| `DELETE FROM ... WHERE rollNo='...'` | `deleteOne({rollNo:"..."})` |
+| `DELETE FROM ... WHERE branch='ECE'` | `deleteMany({branch:"ECE"})` |
+| `DELETE FROM students` | `deleteMany({})` |
+| `DROP TABLE students` | `db.students.drop()` |
 
-<!-- Speaker notes: Delete operations remove documents from a collection. deleteOne removes the first document that matches the filter. deleteMany removes all documents matching the filter. Be very careful with deleteMany({}) with an empty filter - it deletes ALL documents in the collection, like TRUNCATE TABLE in Oracle. The drop() method removes the entire collection including its indexes, like DROP TABLE. There is no UNDO in MongoDB - once deleted, the data is gone unless you have backups. In production, you often use soft deletes instead, adding an isDeleted: true field rather than actually removing documents. The return value includes deletedCount telling you how many documents were removed. -->
+<!-- Speaker notes: Delete operations remove documents from a collection. deleteOne removes the first document that matches the filter. deleteMany removes all documents matching the filter. Be very careful with deleteMany with an empty filter - it deletes ALL documents. The drop method removes the entire collection including its indexes. There is no UNDO in MongoDB - once deleted, the data is gone unless you have backups. -->
 
 ---
 
-## Query Operators
+## Query Operators - Comparison
 
 ```javascript
-// Comparison Operators
-db.students.find({ cgpa: { $eq: 8.5 } })    // Equal to
-db.students.find({ cgpa: { $gt: 8.0 } })    // Greater than
-db.students.find({ cgpa: { $gte: 8.0 } })   // Greater than or equal
-db.students.find({ cgpa: { $lt: 9.0 } })    // Less than
-db.students.find({ cgpa: { $lte: 9.0 } })   // Less than or equal
-db.students.find({ cgpa: { $ne: 8.5 } })    // Not equal
+db.students.find({ cgpa: { $eq: 8.5 } })   // Equal to
+db.students.find({ cgpa: { $gt: 8.0 } })   // Greater than
+db.students.find({ cgpa: { $gte: 8.0 } })  // Greater than or equal
+db.students.find({ cgpa: { $lt: 9.0 } })   // Less than
+db.students.find({ cgpa: { $lte: 9.0 } })  // Less than or equal
+db.students.find({ cgpa: { $ne: 8.5 } })   // Not equal
 
 // $in - match any value in array (like SQL IN)
 db.students.find({ branch: { $in: ["IT", "CSE"] } })
+```
 
-// Logical Operators
-// $and
+<!-- Speaker notes: MongoDB query operators start with a dollar sign. The comparison operators work inside field filters. For example, cgpa: {$gt: 8.0} means cgpa greater than 8.0, which is like WHERE cgpa > 8.0 in Oracle SQL. The $in operator is equivalent to SQL's IN clause. -->
+
+---
+
+## Query Operators - Logical
+
+```javascript
+// $and - all conditions must be true
 db.students.find({
   $and: [{ branch: "IT" }, { cgpa: { $gt: 8.0 } }]
 })
 
-// $or
+// $or - at least one condition must be true
 db.students.find({
   $or: [{ branch: "IT" }, { branch: "CSE" }]
 })
 
-// Implicit $and (shorthand)
+// Implicit $and (shorthand - most common)
 db.students.find({ branch: "IT", cgpa: { $gt: 8.0 } })
 ```
 
-<!-- Speaker notes: MongoDB query operators start with a dollar sign. The comparison operators work inside field filters. For example, cgpa: {$gt: 8.0} means cgpa greater than 8.0, which is like WHERE cgpa > 8.0 in Oracle SQL. The $in operator is equivalent to SQL's IN clause - it matches any of the values in the array. For logical operators, $and requires ALL conditions to be true, $or requires at least one. There is a shorthand for $and - when you put multiple conditions in the same filter object, they are implicitly ANDed together. So {branch: "IT", cgpa: {$gt: 8.0}} is the same as using $and explicitly. Other useful operators include $exists to check if a field exists, $regex for pattern matching (like LIKE in SQL), and $not for negation. -->
+- Multiple conditions in same object are implicitly `$and`
+- Other operators: `$exists`, `$regex`, `$not`
+
+<!-- Speaker notes: For logical operators, $and requires ALL conditions to be true, $or requires at least one. There is a shorthand for $and - when you put multiple conditions in the same filter object, they are implicitly ANDed together. Other useful operators include $exists to check if a field exists, $regex for pattern matching (like LIKE in SQL), and $not for negation. -->
 
 ---
 
@@ -830,75 +911,72 @@ db.students.find({ branch: "IT", cgpa: { $gt: 8.0 } })
 ```javascript
 // Sort ascending (1) or descending (-1)
 db.students.find().sort({ cgpa: -1 })
-// Priya (9.1), Sneha (8.9), Ravi (8.5), Karthik (8.2), Amit (7.8)
 
 // Sort by multiple fields
 db.students.find().sort({ branch: 1, cgpa: -1 })
 
 // Limit results
 db.students.find().limit(3)
-// Returns first 3 documents
-
-// Skip + Limit = Pagination!
-db.students.find()
-  .sort({ cgpa: -1 })
-  .skip(0)                // Page 1: skip 0
-  .limit(2)
-// Returns: Priya (9.1), Sneha (8.9)
-
-db.students.find()
-  .sort({ cgpa: -1 })
-  .skip(2)                // Page 2: skip 2
-  .limit(2)
-// Returns: Ravi (8.5), Karthik (8.2)
 
 // Count documents
 db.students.countDocuments({ branch: "IT" })  // 2
 ```
 
-<!-- Speaker notes: Sorting and limiting are essential for building real applications. sort() takes a document where 1 means ascending and -1 means descending. You can sort by multiple fields - it sorts by the first field, then by the second for ties. limit() restricts the number of results returned. skip() skips a number of documents. Combining skip and limit gives you pagination - the same pattern you see on websites with page numbers. For page N with pageSize items, use skip((N-1) * pageSize).limit(pageSize). countDocuments() returns the count of matching documents. In Oracle SQL, sorting is ORDER BY, limiting is WHERE ROWNUM <= N, and pagination is more complex with OFFSET/FETCH or ROW_NUMBER. MongoDB makes it simpler with method chaining. -->
+<!-- Speaker notes: Sorting and limiting are essential for building real applications. sort() takes a document where 1 means ascending and -1 means descending. You can sort by multiple fields. limit() restricts the number of results returned. countDocuments() returns the count of matching documents. -->
+
+---
+
+## Pagination with skip & limit
+
+```javascript
+// Page 1: skip 0, limit 2
+db.students.find()
+  .sort({ cgpa: -1 })
+  .skip(0)
+  .limit(2)
+// Returns: Priya (9.1), Sneha (8.9)
+
+// Page 2: skip 2, limit 2
+db.students.find()
+  .sort({ cgpa: -1 })
+  .skip(2)
+  .limit(2)
+// Returns: Ravi (8.5), Karthik (8.2)
+```
+
+- **Formula**: `skip((page - 1) * pageSize).limit(pageSize)`
+- In Oracle: more complex with `OFFSET/FETCH` or `ROW_NUMBER`
+
+<!-- Speaker notes: Combining skip and limit gives you pagination - the same pattern you see on websites with page numbers. For page N with pageSize items, use skip((N-1) * pageSize).limit(pageSize). In Oracle SQL, pagination is more complex with OFFSET/FETCH or ROW_NUMBER. MongoDB makes it simpler with method chaining. -->
 
 ---
 
 ## MongoDB Node.js Driver - Connecting
 
-### Install the Driver
-
-```
-$ npm install mongodb
-```
-
-### Connect to MongoDB
+### Install: `npm install mongodb`
 
 ```javascript
 const { MongoClient } = require('mongodb');
-
-const uri = 'mongodb://localhost:27017';
-const client = new MongoClient(uri);
+const client = new MongoClient('mongodb://localhost:27017');
 
 async function main() {
   try {
     await client.connect();
     console.log('Connected to MongoDB!');
-
     const db = client.db('studentDB');
     const students = db.collection('students');
-
-    // Now use the 'students' collection...
     const count = await students.countDocuments();
     console.log(`Total students: ${count}`);
-
   } catch (err) {
     console.error('Connection failed:', err.message);
   } finally {
     await client.close();
   }
 }
-
 main();
 ```
 
-<!-- Speaker notes: To use MongoDB from a Node.js application, you need the official MongoDB Node.js driver package. Install it with npm install mongodb. The MongoClient class is the main entry point. You create a client with the connection URI - for local MongoDB, it is mongodb://localhost:27017. The connect() method returns a Promise, so we use async/await. Once connected, client.db('databaseName') gives you a database reference, and db.collection('collectionName') gives you a collection reference. Always use try/catch for error handling and close the connection in the finally block. In production, you would typically connect once when the application starts and reuse the connection. The driver handles connection pooling automatically. -->
+<!-- Speaker notes: To use MongoDB from a Node.js application, you need the official MongoDB Node.js driver package. The MongoClient class is the main entry point. The connect() method returns a Promise, so we use async/await. Once connected, client.db gives you a database reference, and db.collection gives you a collection reference. Always close the connection in the finally block. The driver handles connection pooling automatically. -->
 
 ---
 
