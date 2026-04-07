@@ -1,9 +1,5 @@
-flowchart TB
-    PL["Presentation Layer<br/>@Controller / @RestController<br/>Handles HTTP requests"]
-    SL["Service Layer<br/>@Service<br/>Business logic, validation"]
-    DL["Data Access Layer<br/>@Repository / MongoRepository<br/>Database operations"]
-    DB[("Database<br/>MongoDB")]
-    PL --> SL --> DL --> DB
+flowchart LR
+    PL["Presentation Layer\n@Controller / @RestController"] --> SL["Service Layer\n@Service"] --> DL["Data Access Layer\n@Repository"] --> DB[("MongoDB")]
     style PL fill:#4CAF50,color:#fff,stroke:#388E3C
     style SL fill:#FF9800,color:#fff,stroke:#E65100
     style DL fill:#9C27B0,color:#fff,stroke:#6A1B9A

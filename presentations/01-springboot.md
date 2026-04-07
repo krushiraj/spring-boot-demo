@@ -787,9 +787,9 @@ public class PageController {
 
 ## Spring Boot Layered Architecture
 
-![w:700](images/sb-layers.png)
+![w:900](images/sb-layers.png)
 
-Each layer only talks to the layer directly below it.
+Each layer only talks to the layer directly next to it.
 
 ---
 
