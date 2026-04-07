@@ -1,0 +1,9 @@
+flowchart LR
+    E["User Event<br/>(click, type)"] --> SU["setState<br/>useState setter"]
+    SU --> RR["Re-render<br/>Component"]
+    RR --> UI["Updated UI"]
+    UI --> E
+    style E fill:#FF9800,color:#fff
+    style SU fill:#4CAF50,color:#fff
+    style RR fill:#2196F3,color:#fff
+    style UI fill:#9C27B0,color:#fff

@@ -76,23 +76,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Virtual DOM - The Secret Sauce
 
-```
-   Real DOM (Browser)          Virtual DOM (React)
-  +------------------+       +------------------+
-  |     <html>       |       |   JS Object Tree  |
-  |   +----------+   |       |   +----------+    |
-  |   |  <body>  |   |       |   | vNode    |    |
-  |   | +------+ |   |       |   | +------+ |    |
-  |   | | <div>| |   |  <--  |   | | vDiv | |    |
-  |   | +------+ |   |       |   | +------+ |    |
-  |   +----------+   |       |   +----------+    |
-  +------------------+       +------------------+
-
-  Step 1: React creates a Virtual DOM copy
-  Step 2: When state changes, a NEW Virtual DOM is created
-  Step 3: React DIFFS old vs new Virtual DOM
-  Step 4: Only CHANGED elements update in Real DOM
-```
+![w:900](images/react-vdom.png)
 
 <!-- Speaker notes: Draw this on the whiteboard step by step. The key insight is that DOM manipulation is expensive - React batches and minimizes actual DOM updates. Use the analogy: "Imagine editing a Word document vs rewriting the whole thing every time you change a word." Do a live demo showing how many DOM nodes a simple page has using document.querySelectorAll('*').length in the console. -->
 
@@ -100,23 +84,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## How Virtual DOM Diffing Works
 
-```
-  Old Virtual DOM         New Virtual DOM
-  +----------+            +----------+
-  |   App    |            |   App    |
-  +----+-----+            +----+-----+
-       |                       |
-  +----+-----+            +----+-----+
-  | Header   |            | Header   |  (no change)
-  +----+-----+            +----+-----+
-       |                       |
-  +----+-----+            +----+-----+
-  | Counter  |            | Counter  |
-  | count: 5 |  ------->  | count: 6 |  ** CHANGED **
-  +----------+            +----------+
-
-  React only updates the Counter text in the Real DOM!
-```
+![w:900](images/react-vdom.png)
 
 - This process is called **Reconciliation**
 - Makes React extremely fast even with complex UIs
@@ -127,22 +95,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## SPA vs Traditional Websites
 
-```
-  Traditional Website              Single Page Application (SPA)
-  ==================              ===========================
-
-  Browser        Server            Browser           Server
-    |               |                |                  |
-    |--GET /home--->|                |--GET /index.html->|
-    |<--Full HTML---|                |<--HTML+JS+CSS-----|
-    |               |                |                  |
-    |--GET /about-->|                | (Click "About")  |
-    |<--Full HTML---|                | React re-renders  |
-    |               |                | (No server call!) |
-    | Page RELOADS  |                |                  |
-    | every time!   |                |--API /data------->|
-    |               |                |<--JSON only-------|
-```
+![w:900](images/react-spa-vs-mpa.png)
 
 - **Traditional**: Server sends full HTML on every navigation
 - **SPA**: Load once, React handles navigation client-side
@@ -485,23 +438,7 @@ const student = { name: "Alice", grade: "A" };
 
 Building complex UIs from simple components:
 
-```
-         +------------------+
-         |       App        |
-         +--------+---------+
-                  |
-     +------------+------------+
-     |                         |
-+----+-----+           +------+------+
-|  Header  |           | StudentList |
-+----+-----+           +------+------+
-     |                        |
-+----+-----+         +-------+-------+
-| NavBar   |         |               |
-+----------+   +-----+----+  +------+-----+
-               |StudentCard|  |StudentCard  |
-               +-----------+  +------------+
-```
+![w:700](images/react-component-tree.png)
 
 > "Think in components" - Break UI into small, reusable pieces
 
@@ -840,15 +777,7 @@ function NameInput() {
 }
 ```
 
-```
-  User types "A"
-      |
-      v
-  onChange fires --> setName("A") --> Re-render
-      |                                   |
-      v                                   v
-  Input shows "A" <-- value={name} = "A"
-```
+![w:700](images/react-state-cycle.png)
 
 - **Single source of truth**: State is the source, input reflects it
 
@@ -1159,25 +1088,7 @@ function StudentDetail() {
 
 ## Building a Complete SPA
 
-```
-  URL                    Component         Data Flow
-  ===                    =========         =========
-
-  /                      Home              Static
-
-  /students              StudentList       GET /api/students
-                          |
-                          +-- StudentCard   Props from list
-                          |
-                          +-- AddStudent    POST /api/students
-                               Form
-
-  /students/:id          StudentDetail     GET /api/students/:id
-
-  /about                 About             Static
-
-  /*                     NotFound          Static
-```
+![w:900](images/fullstack-arch.png)
 
 ### SPA Architecture:
 1. **React Router** handles URL changes
@@ -1332,12 +1243,7 @@ function App() {
 }
 ```
 
-```
-        App (owns students state)
-       /    \
-  AddForm    StudentList
-  (onAdd)    (students)
-```
+![w:500](images/react-data-flow.png)
 
 <!-- Speaker notes: This is a crucial React pattern. When two components need the same data, move the state to their closest common parent. The parent owns the state and passes it down as props. The child can "send data up" by calling a callback function (onAdd) passed as a prop. Draw the diagram on the whiteboard. Ask: "What if deeply nested components need the same data?" - That's where Context API comes in (advanced topic). -->
 

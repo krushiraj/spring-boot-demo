@@ -1,0 +1,9 @@
+flowchart TB
+    P["Parent Component<br/>(owns state)"]
+    P -->|"props"| C1["Child A"]
+    P -->|"props"| C2["Child B"]
+    C1 -->|"callback prop"| P
+    C2 -->|"callback prop"| P
+    style P fill:#1a73e8,color:#fff
+    style C1 fill:#4CAF50,color:#fff
+    style C2 fill:#4CAF50,color:#fff

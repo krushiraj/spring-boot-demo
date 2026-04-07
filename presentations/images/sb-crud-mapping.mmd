@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph HTTP["HTTP Methods"]
+        POST["POST<br/>(Create)"]
+        GET["GET<br/>(Read)"]
+        PUT["PUT<br/>(Update)"]
+        DELETE["DELETE<br/>(Delete)"]
+    end
+    subgraph Spring["Spring Data"]
+        S["save()"]
+        F["findAll()<br/>findById()"]
+        U["save()<br/>(existing ID)"]
+        D["deleteById()"]
+    end
+    subgraph Mongo["MongoDB"]
+        I["insertOne()"]
+        FI["find()"]
+        UP["updateOne()"]
+        DE["deleteOne()"]
+    end
+    POST --> S --> I
+    GET --> F --> FI
+    PUT --> U --> UP
+    DELETE --> D --> DE
+    style POST fill:#4CAF50,color:#fff
+    style GET fill:#2196F3,color:#fff
+    style PUT fill:#FF9800,color:#fff
+    style DELETE fill:#f44336,color:#fff

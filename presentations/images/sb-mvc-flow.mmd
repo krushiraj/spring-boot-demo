@@ -1,0 +1,13 @@
+flowchart LR
+    C["Client<br/>(Browser/Postman)"] --> DS["DispatcherServlet"]
+    DS --> CT["@Controller<br/>@RestController"]
+    CT --> SV["@Service"]
+    SV --> RP["@Repository<br/>MongoRepository"]
+    RP --> DB[("MongoDB")]
+    DB --> RP --> SV --> CT --> DS --> C
+    style C fill:#E3F2FD,stroke:#1565C0
+    style DS fill:#BBDEFB,stroke:#1565C0
+    style CT fill:#4CAF50,color:#fff,stroke:#388E3C
+    style SV fill:#FF9800,color:#fff,stroke:#E65100
+    style RP fill:#9C27B0,color:#fff,stroke:#6A1B9A
+    style DB fill:#607D8B,color:#fff,stroke:#37474F

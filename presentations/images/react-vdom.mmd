@@ -1,0 +1,12 @@
+flowchart LR
+    S["State Change"] --> VD["Virtual DOM<br/>(New Tree)"]
+    VD --> DIFF["Diff Algorithm<br/>Compare Trees"]
+    OVD["Virtual DOM<br/>(Previous Tree)"] --> DIFF
+    DIFF --> PATCH["Minimal Updates"]
+    PATCH --> RD["Real DOM<br/>(Browser)"]
+    style S fill:#FF9800,color:#fff
+    style VD fill:#4CAF50,color:#fff
+    style OVD fill:#9E9E9E,color:#fff
+    style DIFF fill:#2196F3,color:#fff
+    style PATCH fill:#9C27B0,color:#fff
+    style RD fill:#f44336,color:#fff

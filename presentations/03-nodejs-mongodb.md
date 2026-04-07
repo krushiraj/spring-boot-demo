@@ -75,24 +75,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Node.js Architecture - Event Loop
 
-```
-   +--------------------------------------------------+
-   |                   Node.js Process                 |
-   |                                                   |
-   |  +--------+    +-----------------------------+    |
-   |  | V8     |    |        libuv                |    |
-   |  | Engine |    |                             |    |
-   |  +--------+    |  +-------+   +-----------+  |   |
-   |       |        |  | Event |   | Thread    |  |   |
-   |       v        |  | Loop  |   | Pool (4)  |  |   |
-   |  +---------+   |  |       |   | - File I/O|  |   |
-   |  | Call    |   |  | Poll  |   | - DNS     |  |   |
-   |  | Stack   |<--+->| Check |   | - Crypto  |  |   |
-   |  |         |   |  | Close |   |           |  |   |
-   |  +---------+   |  +-------+   +-----------+  |   |
-   |                +-----------------------------+    |
-   +--------------------------------------------------+
-```
+![w:900](images/node-event-loop.png)
 
 - **Single thread** handles all incoming requests
 - Heavy tasks (file I/O, crypto) go to the **thread pool**
@@ -104,19 +87,7 @@ GitHub: github.com/krushiraj/spring-boot-demo
 
 ## Node.js vs Traditional Multi-threaded Server
 
-```
-  Traditional (e.g., Java/PHP)         Node.js
-  ========================          ========================
-
-  Request 1 --> [Thread 1]          Request 1 --|
-  Request 2 --> [Thread 2]          Request 2 --|
-  Request 3 --> [Thread 3]          Request 3 --|--> [Single Thread]
-  Request 4 --> [Thread 4]          Request 4 --|      + Event Loop
-  Request 5 --> [WAITING...]        Request 5 --|
-                                                |
-  Each thread: ~2MB RAM             Thread Pool (for heavy I/O)
-  1000 requests = ~2GB RAM          1000 requests = ~50MB RAM
-```
+![w:900](images/node-vs-traditional.png)
 
 - Traditional: **one thread per request** (blocks until done)
 - Node.js: **one thread, many requests** (non-blocking)

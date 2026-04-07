@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph SQL["SQL (Oracle)"]
+        direction TB
+        T1["Database"]
+        T2["Table"]
+        T3["Row"]
+        T4["Column"]
+        T5["PRIMARY KEY"]
+        T6["JOIN"]
+    end
+    subgraph NoSQL["MongoDB"]
+        direction TB
+        M1["Database"]
+        M2["Collection"]
+        M3["Document"]
+        M4["Field"]
+        M5["_id"]
+        M6["Embedded / $lookup"]
+    end
+    T1 -.->|"same"| M1
+    T2 -.->|"→"| M2
+    T3 -.->|"→"| M3
+    T4 -.->|"→"| M4
+    T5 -.->|"→"| M5
+    T6 -.->|"→"| M6
+    style SQL fill:#E3F2FD,stroke:#1565C0
+    style NoSQL fill:#E8F5E9,stroke:#2E7D32

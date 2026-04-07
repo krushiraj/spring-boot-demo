@@ -1,0 +1,14 @@
+flowchart TB
+    REQ["Incoming Requests"] --> EL["Event Loop<br/>(Single Thread)"]
+    EL --> CB["Callback Queue"]
+    EL --> TM["Timers"]
+    EL --> IO["I/O Operations<br/>(File, Network, DB)"]
+    IO --> TP["Thread Pool<br/>(libuv - 4 threads)"]
+    TP -->|"Callback"| CB
+    CB --> EL
+    style REQ fill:#FF9800,color:#fff
+    style EL fill:#4CAF50,color:#fff
+    style CB fill:#2196F3,color:#fff
+    style TM fill:#9C27B0,color:#fff
+    style IO fill:#607D8B,color:#fff
+    style TP fill:#f44336,color:#fff

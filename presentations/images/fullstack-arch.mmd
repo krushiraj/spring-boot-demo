@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph Frontend["React Frontend (Port 5173)"]
+        RC["React Components"]
+        SS["studentService.js"]
+        RC --> SS
+    end
+    subgraph Backend["Spring Boot Backend (Port 8080)"]
+        CORS["CORS Filter"]
+        CT["StudentController"]
+        SV["StudentService"]
+        RP["StudentRepository"]
+        CORS --> CT --> SV --> RP
+    end
+    subgraph Database["MongoDB (Port 27017)"]
+        DB[("students collection")]
+    end
+    SS -->|"HTTP API calls<br/>(fetch)"| CORS
+    RP --> DB
+    style Frontend fill:#E8F5E9,stroke:#2E7D32
+    style Backend fill:#E3F2FD,stroke:#1565C0
+    style Database fill:#FFF3E0,stroke:#E65100

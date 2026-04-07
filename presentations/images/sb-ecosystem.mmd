@@ -1,0 +1,13 @@
+flowchart TB
+    SB["Spring Boot<br/>(Auto-config, Starters, Embedded Server)"]
+    SW["Spring Web<br/>(MVC, REST)"]
+    SS["Spring Security"]
+    SD["Spring Data<br/>(MongoDB, JPA)"]
+    SF["Spring Framework Core<br/>(IoC Container, DI, AOP)"]
+    SB --> SW & SS & SD
+    SW & SS & SD --> SF
+    style SB fill:#4CAF50,color:#fff,stroke:#388E3C
+    style SW fill:#2196F3,color:#fff,stroke:#1565C0
+    style SS fill:#FF9800,color:#fff,stroke:#E65100
+    style SD fill:#9C27B0,color:#fff,stroke:#6A1B9A
+    style SF fill:#607D8B,color:#fff,stroke:#37474F

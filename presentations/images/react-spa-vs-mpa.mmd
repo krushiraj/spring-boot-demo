@@ -1,0 +1,17 @@
+flowchart TB
+    subgraph MPA["Traditional Multi-Page App"]
+        direction LR
+        B1["Browser"] -->|"Request /page1"| S1["Server"]
+        S1 -->|"Full HTML"| B1
+        B1 -->|"Request /page2"| S1
+        S1 -->|"Full HTML"| B1
+    end
+    subgraph SPA["Single Page Application (React)"]
+        direction LR
+        B2["Browser"] -->|"Request / (once)"| S2["Server"]
+        S2 -->|"HTML + JS Bundle"| B2
+        B2 -->|"API calls only"| S2
+        S2 -->|"JSON data"| B2
+    end
+    style MPA fill:#FFEBEE,stroke:#C62828
+    style SPA fill:#E8F5E9,stroke:#2E7D32
