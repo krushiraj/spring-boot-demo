@@ -94,6 +94,7 @@ spring-boot-demo/
 ## Quick Links
 
 ### Theory Notes
+- [MVC Architecture — Spring Boot vs Express (with real-world examples)](docs/mvc-architecture.md)
 - [Spring Boot Introduction](docs/springboot/01-introduction.md)
 - [Spring Boot Architecture](docs/springboot/02-spring-initializr.md)
 - [Dependency Injection](docs/springboot/03-dependency-injection.md)
