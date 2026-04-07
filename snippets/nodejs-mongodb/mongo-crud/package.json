@@ -1,0 +1,17 @@
+{
+  "name": "mongo-crud",
+  "version": "1.0.0",
+  "description": "MongoDB CRUD operations from Node.js",
+  "scripts": {
+    "connect": "node 01-connect.js",
+    "insert": "node 02-insert.js",
+    "find": "node 03-find.js",
+    "update": "node 04-update.js",
+    "delete": "node 05-delete.js",
+    "api": "node 06-express-api.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  }
+}

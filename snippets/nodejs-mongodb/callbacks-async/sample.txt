@@ -1,0 +1,4 @@
+Hello from sample.txt!
+This file is used to demonstrate asynchronous file reading in Node.js.
+Line 3: Callbacks, Promises, and Async/Await are different ways to handle async operations.
+Line 4: Each approach has its own advantages.

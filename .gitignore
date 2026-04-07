@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+target/
+dist/
+build/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Maven wrapper (keep the properties)
+!.mvn/wrapper/maven-wrapper.properties
+
+# Package lock files (students will generate their own)
+package-lock.json
