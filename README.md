@@ -60,6 +60,12 @@ spring-boot-demo/
 |   |-- 02-react.md
 |   +-- 03-nodejs-mongodb.md
 |
+|-- exams/                        # Offline exam scaffolds (instructor only)
+|   |-- README.md                 # Instructor prep guide for exam day
+|   |-- springboot-login-register/    # Login/Register exam scaffold
+|   |-- springboot-crud-mongodb/      # CRUD REST API exam scaffold
+|   +-- fullstack-student-app/        # Full-stack exam scaffold (React frontend)
+|
 |-- demo/                         # Spring Boot demo project (contacts app)
 |-- spring-contacts-app/          # Spring Boot + React contacts app
 +-- my-app/                       # React starter app (Vite)
@@ -81,6 +87,7 @@ spring-boot-demo/
 1. **[Teaching Plan](docs/teaching-plan.md)** - Session-by-session guide with checklist
 2. **[Presentations](presentations/)** - Slide decks with speaker notes
 3. **[Lab Experiments](labs/)** - Each has starter code + solution + instructions
+4. **[Exam Scaffolds](exams/)** - Offline exam projects with question papers and machine prep guide
 
 ---
 
