@@ -5,6 +5,11 @@ node_modules/
 target/
 dist/
 build/
+*.class
+*.jar
+*.jar.original
+*.war
+*.tgz
 
 # IDE
 .idea/
