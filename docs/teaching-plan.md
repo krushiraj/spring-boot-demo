@@ -13,7 +13,7 @@ This document covers **Units III, IV, and V** only (Spring Boot, React, Node.js 
 ## Table of Contents
 
 - [0. Code and Directory Reference Guide](#0-code-and-directory-reference-guide)
-- [1. Theory Sessions (T1-T10) -- Detailed Instructor Plans](#1-theory-sessions-t1-t10----detailed-instructor-plans)
+- [1. Theory Sessions (T1-T6) -- Detailed Instructor Plans](#1-theory-sessions-t1-t10----detailed-instructor-plans)
 - [2. Lab Sessions (L1-L7) -- Detailed Instructor Plans](#2-lab-sessions-l1-l7----detailed-instructor-plans)
 - [3. Teaching Flow](#3-teaching-flow)
 - [4. Lab Session Mapping](#4-lab-session-mapping)
@@ -97,7 +97,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 ---
 
-## 1. Theory Sessions (T1-T10) -- Detailed Instructor Plans
+## 1. Theory Sessions (T1-T6) -- Detailed Instructor Plans
 
 ---
 
@@ -1971,28 +1971,24 @@ The teaching sequence is designed around three principles:
 
 ```mermaid
 flowchart LR
-    subgraph UnitIII["Unit III: Spring Boot (4 weeks)"]
+    subgraph UnitIII["Unit III: Spring Boot (3 sessions)"]
         direction TB
-        T1["T1: Spring Framework\nand Spring Boot Intro"]
-        T2["T2: Spring Initializr\nand Project Setup"]
-        T3["T3: Dependency Injection\nand Annotations"]
-        T4["T4: REST APIs with\nSpring Web"]
-        T5["T5: Spring Data\nMongoDB"]
-        T6["T6: Spring Security\nand Authentication"]
-        T1 --> T2 --> T3 --> T4 --> T5 --> T6
+        T1["T1: Spring Intro +\nInitializr + Setup"]
+        T2["T2: DI + REST APIs"]
+        T3["T3: MongoDB +\nSpring Security"]
+        T1 --> T2 --> T3
     end
 
-    subgraph UnitIV["Unit IV: React (2 weeks)"]
+    subgraph UnitIV["Unit IV: React (2 sessions)"]
         direction TB
-        T7["T7: React Intro,\nJSX, Components"]
-        T8["T8: State, Events,\nForms"]
-        T9["T9: API Integration\nand Full-Stack"]
-        T7 --> T8 --> T9
+        T4["T4: React Intro, JSX,\nComponents, Props"]
+        T5["T5: State, Events,\nForms, SPA, Full-Stack"]
+        T4 --> T5
     end
 
-    subgraph UnitV["Unit V: Node.js + MongoDB (1 week)"]
+    subgraph UnitV["Unit V: Node.js + MongoDB (1 session)"]
         direction TB
-        T10["T10: Node.js Runtime\nand MongoDB Access"]
+        T6["T6: Node.js Runtime\nand MongoDB Access"]
     end
 
     UnitIII --> UnitIV --> UnitV
@@ -2004,12 +2000,25 @@ flowchart LR
 
 ### Pacing Guidelines
 
+> **Note:** This plan compresses 10 topics into 6 theory sessions. All content and concepts are preserved — each session covers more ground. Use the detailed session plans above for time splits within each session. You may adjust pacing based on student understanding.
+
 | Unit | Theory Sessions | Lab Sessions | Calendar Weeks |
 |------|----------------|-------------|----------------|
-| III - Spring Boot | T1 through T6 (6 sessions) | L1, L2, L3 (3 labs) | Weeks 1-4 |
-| IV - React | T7 through T9 (3 sessions) | L4, L5, L6 (3 labs) | Weeks 5-6 |
-| V - Node.js + MongoDB | T10 (1 session) | L7 (1 lab) | Week 7 |
-| **Buffer / Revision** | -- | -- | Week 8 |
+| III - Spring Boot | T1 through T3 (3 sessions) | L1, L2, L3 (3 labs) | Weeks 1-3 |
+| IV - React | T4 through T5 (2 sessions) | L4, L5, L6 (3 labs) | Weeks 4-5 |
+| V - Node.js + MongoDB | T6 (1 session) | L7 (1 lab) | Week 6 |
+| **Buffer / Revision** | -- | -- | Week 7-8 |
+
+### Session Mapping (Old → New)
+
+| New Session | Covers Old Sessions | Topics |
+|-------------|-------------------|--------|
+| T1 | Old T1 + T2 | Spring Intro, Spring Boot, Spring Initializr, Project Setup |
+| T2 | Old T3 + T4 | Dependency Injection, Annotations, REST APIs, HTTP Methods |
+| T3 | Old T5 + T6 | Spring Data MongoDB, CRUD, Spring Security, Login/Register |
+| T4 | Old T7 + T8 (part) | React Intro, JSX, Components, Props, Composition |
+| T5 | Old T8 (rest) + T9 | State, Events, Forms, useEffect, API Integration, SPA |
+| T6 | Old T10 | Node.js, Events, Callbacks, MongoDB, Express API |
 
 ---
 
@@ -2019,16 +2028,12 @@ Each lab session depends on specific theory sessions being completed first. The 
 
 ```mermaid
 flowchart TD
-    T1["T1: Spring Boot Intro"]
-    T2["T2: Spring Initializr"]
-    T3["T3: Dependency Injection"]
-    T4["T4: REST APIs"]
-    T5["T5: Spring Data MongoDB"]
-    T6["T6: Spring Security"]
-    T7["T7: React Intro"]
-    T8["T8: React State & Forms"]
-    T9["T9: React API Integration"]
-    T10["T10: Node.js + MongoDB"]
+    T1["T1: Spring Intro +\nInitializr + Setup"]
+    T2["T2: DI + REST APIs"]
+    T3["T3: MongoDB +\nSpring Security"]
+    T4["T4: React Intro, JSX,\nComponents, Props"]
+    T5["T5: State, Events, Forms,\nSPA, Full-Stack"]
+    T6["T6: Node.js + MongoDB"]
 
     L1["L1: Environment Setup\nand Hello World"]
     L2["L2: Registration & Login\n(Lab Experiment 1)"]
@@ -2039,19 +2044,16 @@ flowchart TD
     L7["L7: Node.js MongoDB\nHands-On"]
 
     T1 --> L1
-    T2 --> L1
+    T2 --> L2
     T3 --> L2
-    T4 --> L2
-    T6 --> L2
-    T4 --> L3
-    T5 --> L3
-    T7 --> L4
-    T8 --> L4
-    T9 --> L5
+    T2 --> L3
+    T3 --> L3
+    T4 --> L4
+    T5 --> L5
     L3 --> L5
     L4 --> L5
     L5 --> L6
-    T10 --> L7
+    T6 --> L7
 
     style L1 fill:#BBDEFB,stroke:#1565C0
     style L2 fill:#BBDEFB,stroke:#1565C0
@@ -2064,26 +2066,22 @@ flowchart TD
     style T1 fill:#E3F2FD,stroke:#1565C0
     style T2 fill:#E3F2FD,stroke:#1565C0
     style T3 fill:#E3F2FD,stroke:#1565C0
-    style T4 fill:#E3F2FD,stroke:#1565C0
-    style T5 fill:#E3F2FD,stroke:#1565C0
-    style T6 fill:#E3F2FD,stroke:#1565C0
-    style T7 fill:#E8F5E9,stroke:#2E7D32
-    style T8 fill:#E8F5E9,stroke:#2E7D32
-    style T9 fill:#E8F5E9,stroke:#2E7D32
-    style T10 fill:#FFF3E0,stroke:#E65100
+    style T4 fill:#E8F5E9,stroke:#2E7D32
+    style T5 fill:#E8F5E9,stroke:#2E7D32
+    style T6 fill:#FFF3E0,stroke:#E65100
 ```
 
 ### Dependency Summary Table
 
 | Lab Session | Required Theory Sessions | Must Complete Labs |
 |-------------|------------------------|--------------------|
-| L1: Environment Setup | T1, T2 | -- |
-| L2: Registration & Login | T3, T4, T6 | -- |
-| L3: CRUD with MongoDB | T4, T5 | -- |
-| L4: React Components | T7, T8 | -- |
-| L5: Full-Stack App | T9 | L3, L4 |
-| L6: Polish & Filters | T9 | L5 |
-| L7: Node.js + MongoDB | T10 | -- |
+| L1: Environment Setup | T1 | -- |
+| L2: Registration & Login | T2, T3 | -- |
+| L3: CRUD with MongoDB | T2, T3 | -- |
+| L4: React Components | T4 | -- |
+| L5: Full-Stack App | T5 | L3, L4 |
+| L6: Polish & Filters | T5 | L5 |
+| L7: Node.js + MongoDB | T6 | -- |
 
 ---
 
@@ -2100,15 +2098,14 @@ flowchart TD
 ### Suggested Schedule
 
 ```
-Week 1  [T1, T2, L1] ..........................................
-Week 2  [T3, T4, L2] .............. Quiz 1 (end of week) .....
-Week 3  [T5, T6, L3] .............. Assignment 1 (due) .......
+Week 1  [T1, L1] .................. Spring Intro + Setup ......
+Week 2  [T2, L2] .................. DI + REST + Quiz 1 .......
+Week 3  [T3, L3] .................. MongoDB + Security + Assignment 1
 Week 4  [Revision] ................ INTERNAL TEST 1 ..........
-Week 5  [T7, T8, L4] .............. Quiz 2 (end of week) .....
-Week 6  [T9, L5, L6] .............. Assignment 2 (due) .......
-Week 7  [T10, L7] ................. Quiz 3 (end of week) .....
-Week 7  [continued] ............... Assignment 3 (due) .......
-Week 8  [Revision] ................ INTERNAL TEST 2 ..........
+Week 5  [T4, L4, L5] .............. React + Quiz 2 + Assignment 2
+Week 6  [T5, T6, L6, L7] ......... SPA + Node.js + Quiz 3 + Assignment 3
+Week 7  [Revision] ................ INTERNAL TEST 2 ..........
+Week 8  [Buffer] .................. Revision / Catch-up .......
 ```
 
 ### Assessment Details
@@ -2334,11 +2331,11 @@ flowchart TD
 
     START --> SETUP["PREREQUISITES.md\nInstall JDK, Maven,\nMongoDB, Node.js, VS Code"]
 
-    SETUP --> SB["SPRING BOOT\n6 theory sessions\n3 lab sessions"]
+    SETUP --> SB["SPRING BOOT\n3 theory sessions\n3 lab sessions"]
 
     SB --> SB_CHECK{"Internal Test 1\n+ Quiz 1\n+ Assignment 1"}
 
-    SB_CHECK --> REACT["REACT\n3 theory sessions\n3 lab sessions"]
+    SB_CHECK --> REACT["REACT\n2 theory sessions\n3 lab sessions"]
 
     REACT --> REACT_CHECK{"Quiz 2\n+ Assignment 2"}
 
