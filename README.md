@@ -94,6 +94,7 @@ spring-boot-demo/
 ## Quick Links
 
 ### Theory Notes
+- [REST, HTTP & Request-Response Cycle (every app is CRUD)](docs/rest-and-http.md)
 - [MVC Architecture — Spring Boot vs Express (with real-world examples)](docs/mvc-architecture.md)
 - [Spring Boot Introduction](docs/springboot/01-introduction.md)
 - [Spring Boot Architecture](docs/springboot/02-spring-initializr.md)
