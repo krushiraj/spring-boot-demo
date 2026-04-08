@@ -6,6 +6,7 @@
 
 ## Table of Contents
 
+- [Why Do We Need a Database?](#why-do-we-need-a-database)
 - [Introduction to Spring Data MongoDB](#introduction-to-spring-data-mongodb)
 - [Adding MongoDB Dependency](#adding-mongodb-dependency)
 - [Configuring MongoDB Connection](#configuring-mongodb-connection)
@@ -18,6 +19,37 @@
 - [MongoTemplate for Advanced Queries](#mongotemplate-for-advanced-queries)
 - [Complete Example: Student Management](#complete-example-student-management)
 - [Key Takeaways](#key-takeaways)
+- [What Comes Next?](#what-comes-next)
+
+---
+
+## Why Do We Need a Database?
+
+In the previous section, we stored students in an `ArrayList`. It worked -- we could add, edit, and delete students through the web interface. But when we restarted the server, **all data was lost**.
+
+This is the fundamental problem with in-memory storage: it only lives as long as the application process is running. In the real world, servers restart for many reasons -- deployments, crashes, maintenance, scaling. Your users' data cannot disappear every time that happens.
+
+A database gives us **persistent storage** -- data survives server restarts, crashes, and deployments. The data is written to disk (or a remote server), so it exists independently of your application.
+
+```mermaid
+flowchart LR
+    subgraph InMemory["In-Memory (ArrayList)"]
+        A1["Add students"] --> A2["Server restart<br/>(Ctrl+C)"]
+        A2 --> A3["Data GONE"]
+    end
+
+    subgraph Database["Database (MongoDB)"]
+        B1["Add students"] --> B2["Server restart<br/>(Ctrl+C)"]
+        B2 --> B3["Data STILL THERE"]
+    end
+
+    style InMemory fill:#FFEBEE,stroke:#C62828
+    style Database fill:#E8F5E9,stroke:#2E7D32
+    style A3 fill:#EF5350,color:#fff
+    style B3 fill:#66BB6A,color:#fff
+```
+
+We will now replace the `ArrayList` with **MongoDB**. The beautiful part? **Only the data layer changes.** The controller and templates stay almost the same. Instead of `students.add(student)`, we will call `studentRepository.save(student)`. Instead of `students.get(index)`, we will call `studentRepository.findById(id)`. The web pages, forms, and user experience remain identical -- but now the data persists.
 
 ---
 
@@ -1057,4 +1089,12 @@ db.students.findOne({ rollNumber: "21IT001" })
 
 ---
 
-[Back to Spring Boot Topics](./)
+## What Comes Next?
+
+Now that we have a full working app with Thymeleaf and MongoDB, you might notice something: every time you add, edit, or delete a student, the **ENTIRE page reloads**. Open the browser's Network tab (F12 -> Network) and watch -- a full HTML page is fetched every time. The server re-renders the complete page, sends it to the browser, and the browser replaces everything on screen.
+
+What if we could send and receive just the **data** (JSON) instead of full HTML pages? What if the browser could update only the parts that changed, without reloading the entire page? In the next section, we will learn about **REST APIs**, which do exactly that -- and they are the foundation for building modern frontends with React.
+
+---
+
+[Previous: Building Web Pages](04-building-web-pages.md) | [Next: REST APIs](06-rest-apis.md)

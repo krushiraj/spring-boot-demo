@@ -32,9 +32,10 @@ This table maps every topic to its exact resources in the repository. Use this a
 | Spring Boot Introduction | [docs/springboot/01-introduction.md](../docs/springboot/01-introduction.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | -- | -- |
 | Spring Initializr | [docs/springboot/02-spring-initializr.md](../docs/springboot/02-spring-initializr.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | -- | -- |
 | Dependency Injection | [docs/springboot/03-dependency-injection.md](../docs/springboot/03-dependency-injection.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) | -- | -- |
-| Web Applications and REST | [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) | -- | -- |
+| Building Web Pages (Thymeleaf) | [docs/springboot/04-building-web-pages.md](../docs/springboot/04-building-web-pages.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/thymeleaf-inmemory/](../snippets/springboot/thymeleaf-inmemory/) | -- | -- |
 | Database Connectivity | [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) | [labs/springboot-crud-mongodb/](../labs/springboot-crud-mongodb/) | [exams/springboot-crud-mongodb/](../exams/springboot-crud-mongodb/) |
-| Registration and Login | [docs/springboot/qa.md](../docs/springboot/qa.md) (Q40: Security) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | -- | [labs/springboot-login-register/](../labs/springboot-login-register/) | [exams/springboot-login-register/](../exams/springboot-login-register/) |
+| REST APIs | [docs/springboot/06-rest-apis.md](../docs/springboot/06-rest-apis.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) | -- | -- |
+| Registration and Login | [docs/springboot/qa.md](../docs/springboot/qa.md) | [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) | -- | [labs/springboot-login-register/](../labs/springboot-login-register/) | [exams/springboot-login-register/](../exams/springboot-login-register/) |
 | React Introduction | [docs/react/01-introduction.md](../docs/react/01-introduction.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) | -- | -- |
 | JSX and Rendering | [docs/react/02-jsx-rendering.md](../docs/react/02-jsx-rendering.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/jsx-basics/](../snippets/react/jsx-basics/) | -- | -- |
 | Components and Props | [docs/react/03-components-props.md](../docs/react/03-components-props.md) | [presentations/02-react.pptx](../presentations/02-react.pptx) | [snippets/react/components-props/](../snippets/react/components-props/) | -- | -- |
@@ -57,6 +58,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 |---------------|-----------|
 | [snippets/springboot/hello-world/](../snippets/springboot/hello-world/) | `pom.xml`, `src/main/java/com/demo/HelloApplication.java`, `src/main/java/com/demo/HelloController.java` |
 | [snippets/springboot/dependency-injection/](../snippets/springboot/dependency-injection/) | `pom.xml`, `src/main/java/com/demo/DiApplication.java`, `src/main/java/com/demo/service/GreetingService.java`, `EnglishGreetingService.java`, `TeluguGreetingService.java`, `src/main/java/com/demo/controller/ConstructorInjectionController.java`, `FieldInjectionController.java`, `SetterInjectionController.java` |
+| [snippets/springboot/thymeleaf-inmemory/](../snippets/springboot/thymeleaf-inmemory/) | `pom.xml`, `src/main/java/com/demo/ThymeleafApplication.java`, `src/main/java/com/demo/Student.java`, `src/main/java/com/demo/StudentController.java`, `src/main/resources/templates/students.html` |
 | [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) | `pom.xml`, `src/main/java/com/demo/RestControllerApplication.java`, `src/main/java/com/demo/Message.java`, `src/main/java/com/demo/MessageController.java` |
 | [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) | `pom.xml`, `src/main/java/com/demo/MongoApplication.java`, `src/main/java/com/demo/Student.java`, `src/main/java/com/demo/StudentRepository.java`, `src/main/java/com/demo/StudentController.java`, `src/main/resources/application.properties` |
 
@@ -353,7 +355,7 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. DI means the Spring container creates and injects dependencies -- you never use `new` for Spring-managed beans
   2. Use `@Service`, `@Repository`, `@Controller` to register beans by layer
   3. Constructor injection is preferred; `@Autowired` on fields is the shortcut
-- "Before next class, read: [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md)"
+- "Before next class, read: [docs/springboot/04-building-web-pages.md](../docs/springboot/04-building-web-pages.md)"
 - "Try adding a third implementation (HindiGreetingService) to the DI snippet and making it the default with `@Primary`."
 
 **Checklist:**
@@ -364,17 +366,17 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 ---
 
-### Session T4: Building Web Applications - REST APIs
+### Session T4: Building Web Pages with Thymeleaf
 
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
-- [docs/springboot/04-web-application.md](../docs/springboot/04-web-application.md) (theory reference)
-- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- REST/Web section)
+- [docs/springboot/04-building-web-pages.md](../docs/springboot/04-building-web-pages.md) (theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- Thymeleaf/Web section)
 - [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
-- [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) folder in IDE
-- Terminal ready in [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/)
-- Postman installed and open (or browser ready for GET requests)
+- [snippets/springboot/thymeleaf-inmemory/](../snippets/springboot/thymeleaf-inmemory/) folder in IDE
+- Terminal ready in [snippets/springboot/thymeleaf-inmemory/](../snippets/springboot/thymeleaf-inmemory/)
+- Browser ready
 
 **Step-by-step instruction:**
 
@@ -383,92 +385,89 @@ This table maps every topic to its exact resources in the repository. Use this a
   1. DI = Spring creates objects and injects them for you
   2. `@Service`, `@Repository`, `@Controller` register beans by layer
   3. Constructor injection is preferred
-- Ask: "If I type google.com in my browser, what happens behind the scenes?" Let students discuss briefly.
-- Say: "Today you will learn how to build the backend that responds to those browser requests."
+- Ask: "So far our controller returned plain text. But real web apps have HTML pages with forms and tables. How do we build those with Spring Boot?"
+- Say: "Today you will build a Student Management web app with real HTML pages, a form to add students, and a table to display them -- all using Thymeleaf."
 
-**[0:05 - 0:20] Slides: REST Concepts and HTTP Methods**
+**[0:05 - 0:15] Slides: @Controller, Thymeleaf, and Server-Side Rendering**
 - Cover in this order:
-  1. **What is REST?** (3 min) -- "REpresentational State Transfer. A style of building web APIs where everything is a resource (student, book, user) and you use HTTP methods to act on them."
-  2. **HTTP Methods** (5 min) -- draw this table on board:
-
-     | Method | Purpose | Example |
-     |--------|---------|---------|
-     | GET | Read data | GET /students |
-     | POST | Create data | POST /students |
-     | PUT | Update data | PUT /students/123 |
-     | DELETE | Remove data | DELETE /students/123 |
-
-     Ask: "Which method does your browser use when you type a URL?" (Answer: GET)
-  3. **JSON** (3 min) -- "REST APIs send and receive data in JSON format, not HTML."
+  1. **@Controller vs @RestController** (3 min) -- "`@RestController` returns raw data (text, JSON). `@Controller` returns the name of an HTML template. Thymeleaf fills in the data and sends the complete HTML page to the browser."
+  2. **What is Thymeleaf?** (3 min) -- "A server-side template engine. You write HTML with special `th:` attributes. Spring Boot fills in the data before sending the page to the browser."
      Show example:
-     ```json
-     {"id": "1", "name": "Ravi", "department": "IT"}
+     ```html
+     <p th:text="${student.name}">Placeholder</p>
      ```
-  4. **Spring Boot REST annotations** (4 min):
-     - `@RestController` = `@Controller` + `@ResponseBody` -- "Returns data directly, not a HTML page"
-     - `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping` -- "Shorthand for `@RequestMapping(method=...)`"
-     - `@RequestBody` -- "Converts incoming JSON to a Java object"
-     - `@PathVariable` -- "Captures a value from the URL path"
-     - `@RequestParam` -- "Captures a value from the query string (?name=Ravi)"
+     "At runtime, Spring replaces `Placeholder` with the actual student name."
+  3. **Model and View** (2 min) -- "The controller adds data to a `Model` object. Thymeleaf reads from the model to render the HTML."
+     Draw on board:
+     ```
+     Browser request -> @Controller -> adds data to Model -> Thymeleaf template -> HTML response
+     ```
+  4. **In-memory storage** (2 min) -- "We will store students in an ArrayList for now. No database yet. This keeps things simple so we can focus on the web page."
 
-**[0:20 - 0:40] Live Coding Demo**
-- Open [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) in IDE
+**[0:15 - 0:35] Live Coding Demo**
+- Open [snippets/springboot/thymeleaf-inmemory/](../snippets/springboot/thymeleaf-inmemory/) in IDE
 - Walk through files in this order:
-  1. **`src/main/java/com/demo/Message.java`** (3 min)
-     - "This is a simple Java class (POJO). It holds data."
-     - Point out fields, constructor, getters/setters
-     - "When Spring returns this object, it automatically converts it to JSON. That is Jackson library at work."
-  2. **`src/main/java/com/demo/MessageController.java`** (10 min)
+  1. **`pom.xml`** (2 min)
+     - Point out `spring-boot-starter-web` and `spring-boot-starter-thymeleaf` -- "Two starters: one for web, one for templates."
+  2. **`src/main/java/com/demo/Student.java`** (2 min)
+     - "A simple Java class. Fields: id, name, rollNumber, department, email."
+     - "No database annotations yet. This is just a plain object."
+  3. **`src/main/java/com/demo/StudentController.java`** (10 min)
+     - Point out `@Controller` (not `@RestController`) -- "We return view names, not data."
+     - Show the `ArrayList<Student>` field -- "Our in-memory storage. Simple but temporary."
      - Walk through each method:
-       - `@GetMapping("/messages")` -- "Returns a list of all messages"
-       - `@GetMapping("/messages/{id}")` -- "Returns one message by ID. The `{id}` in the URL maps to `@PathVariable`."
-       - `@PostMapping("/messages")` -- "Creates a new message. The JSON body maps to `@RequestBody Message message`."
-       - `@PutMapping("/messages/{id}")` -- "Updates an existing message."
-       - `@DeleteMapping("/messages/{id}")` -- "Removes a message."
-     - For each method, explain: what annotation, what it receives, what it returns.
-  3. **`src/main/java/com/demo/RestControllerApplication.java`** (1 min)
-     - "Same `@SpringBootApplication` entry point as before."
-- Run the application: `cd snippets/springboot/rest-controller && mvn spring-boot:run`
-- Test with Postman (or browser for GET):
-  1. **GET** `http://localhost:8080/messages` -- show empty list or seeded data
-  2. **POST** `http://localhost:8080/messages` with JSON body `{"text": "Hello from Postman", "author": "Instructor"}` -- show 201 response
-  3. **GET** `http://localhost:8080/messages` again -- show the new message appears
-  4. **GET** `http://localhost:8080/messages/1` -- show single message
-  5. **PUT** `http://localhost:8080/messages/1` with updated body -- show update works
-  6. **DELETE** `http://localhost:8080/messages/1` -- show deletion
-  7. **GET** again to confirm deletion
-- **Error demo** (2 min): Send a POST with missing fields or invalid JSON. Show the 400 error. "This is what happens when the client sends bad data."
+       - `@GetMapping("/students")` -- "Adds the student list to the model, returns the template name `students`."
+       - `@PostMapping("/students")` -- "Reads form data, creates a Student, adds to the list, redirects back to `/students`."
+     - Point out `model.addAttribute("students", studentList)` -- "This is how data gets from Java to HTML."
+     - Point out `"redirect:/students"` -- "After adding, redirect to the list page so the browser does a fresh GET."
+  4. **`src/main/resources/templates/students.html`** (6 min)
+     - Show `th:each="student : ${students}"` -- "Loops over the student list, like a for-each."
+     - Show `th:text="${student.name}"` -- "Displays the student's name."
+     - Show the `<form>` with `th:action="@{/students}"` and `method="post"` -- "Submits the form data to our POST endpoint."
+     - Show `<input name="name">` -- "The `name` attribute must match the Student field name. Spring maps them automatically."
+- Run the application: `cd snippets/springboot/thymeleaf-inmemory && mvn spring-boot:run`
+- Demo in browser:
+  1. Open `http://localhost:8080/students` -- show the empty page with the form
+  2. Fill in the form: name "Ravi Kumar", roll "21B01A1234", dept "IT", email "ravi@example.com" -- submit
+  3. Show the student appears in the table below the form
+  4. Add 2-3 more students -- show the table growing
+  5. **The key demo moment:** Stop the server (Ctrl+C). Restart it (`mvn spring-boot:run`). Go to `http://localhost:8080/students` again.
+  6. "Where did the students go? They are gone. Because we stored them in memory -- in an ArrayList. When the server stopped, the memory was cleared."
+  7. "This is why we need a database. That is what we cover next session."
 
-**[0:40 - 0:48] Interactive**
-- Ask: "If I want to add a search endpoint -- GET /messages/search?author=Ravi -- which annotation would I use for the `author` parameter?" (Answer: `@RequestParam`)
-- Ask: "What is the difference between `@PathVariable` and `@RequestParam`?" (Answer: PathVariable is part of the URL path, RequestParam is a query parameter after `?`)
-- Quick exercise: "In your head, design the endpoints for a Library Book API. What would the URLs and methods be?" Let 2-3 students answer.
+**[0:35 - 0:45] Interactive**
+- Ask: "What is the difference between `@Controller` and `@RestController`?" (Answer: `@Controller` returns view names for template rendering; `@RestController` returns data directly as JSON/text)
+- Ask: "What happens to our student data when the server restarts?" (Answer: It disappears because it is stored in an ArrayList in memory)
+- Ask: "What does `th:each` do?" (Answer: Loops over a collection, rendering the HTML block once for each item)
+- Ask: "How does form data get from HTML to our Java controller?" (Answer: The `name` attribute on input fields matches the Java object's field names; Spring binds them automatically)
 
-**[0:48 - 0:50] Wrap up**
+**[0:45 - 0:50] Wrap up**
 - Key takeaways:
-  1. `@RestController` handles web requests and returns JSON
-  2. Use GET/POST/PUT/DELETE for Read/Create/Update/Delete
-  3. `@RequestBody` converts JSON to objects; `@PathVariable` captures URL segments
+  1. `@Controller` + Thymeleaf = server-rendered HTML pages with dynamic data
+  2. `model.addAttribute()` passes data from controller to template; `th:each` and `th:text` display it
+  3. In-memory storage (ArrayList) works but data is lost on restart -- we need a database
 - "Before next class, read: [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md)"
-- "Try adding a `/messages/search?text=hello` endpoint to the rest-controller snippet."
+- "Think about this: if we had 1000 students in our app and the server crashed, we would lose all of them. How would you solve this?"
 
 **Checklist:**
 - [ ] Session completed
-- [ ] Tested all CRUD endpoints with Postman or browser
-- [ ] Students understand GET vs POST vs PUT vs DELETE
-- [ ] Students can distinguish @PathVariable from @RequestParam
+- [ ] Students saw a working Thymeleaf web page with form and table
+- [ ] Students understand @Controller vs @RestController
+- [ ] Demonstrated data loss on server restart (the "aha" moment for why databases matter)
 
 ---
 
-### Session T5: Database Connectivity - Spring Data MongoDB
+### Session T5: Database Connectivity and REST APIs
 
 **Duration:** 50 minutes
 
 **Before class -- open these files/tabs ready:**
 - [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md) (theory reference)
-- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- MongoDB section)
+- [docs/springboot/06-rest-apis.md](../docs/springboot/06-rest-apis.md) (REST API theory reference)
+- [presentations/01-springboot.pptx](../presentations/01-springboot.pptx) (slides -- MongoDB and REST sections)
 - [presentations/01-springboot.md](../presentations/01-springboot.md) (speaker notes)
 - [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) folder in IDE
+- [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) folder in IDE
 - Terminal ready in [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/)
 - MongoDB running locally (`mongosh` should connect)
 - MongoDB Compass open (or `mongosh` in a second terminal)
@@ -476,89 +475,101 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **Step-by-step instruction:**
 
-**[0:00 - 0:05] Opening and Recap**
+**[0:00 - 0:05] Opening and Recap -- The "Data is Gone" Moment**
 - Recap bullets from T4:
-  1. `@RestController` handles web requests and returns JSON
-  2. HTTP methods map to CRUD operations
-  3. `@RequestBody`, `@PathVariable`, `@RequestParam` bind data from requests
-- Ask: "In our last demo, what happened to the data when we stopped the server?" (Answer: It disappeared -- it was stored in memory.)
-- Say: "Today we connect to a real database so data persists across server restarts."
+  1. `@Controller` + Thymeleaf = server-rendered HTML pages
+  2. `model.addAttribute()` passes data to templates
+  3. In-memory ArrayList storage works but data is lost on restart
+- Ask: "Remember what happened when we restarted the server last time?" (Answer: All the students we added were gone.)
+- Say: "Today we fix that. First, we connect to MongoDB so data survives restarts. Then we learn a new way to send data -- REST APIs -- that will set us up for React later."
 
-**[0:05 - 0:15] Slides: MongoDB and Spring Data**
+**[0:05 - 0:15] Part 1 Slides: MongoDB and Spring Data**
 - Cover in this order:
-  1. **MongoDB quick review** (3 min) -- "MongoDB stores data as JSON-like documents in collections. No tables, no rows, no SQL."
+  1. **Why we need a database** (2 min) -- "Our Thymeleaf app stored data in an ArrayList. Server stops, data vanishes. A database stores data on disk -- it survives crashes, restarts, and even power failures."
+  2. **MongoDB quick review** (2 min) -- "MongoDB stores data as JSON-like documents in collections. No tables, no rows, no SQL."
      ```
      Database -> Collection -> Document
      (like)    (like table)   (like row, but flexible)
      ```
-  2. **Spring Data MongoDB** (3 min) -- "Spring Data provides a standard way to talk to databases. `spring-boot-starter-data-mongodb` gives us everything we need."
-  3. **Key concepts** (4 min):
+  3. **Spring Data MongoDB** (2 min) -- "Spring Data provides a standard way to talk to databases. `spring-boot-starter-data-mongodb` gives us everything we need."
+  4. **Key concepts** (4 min):
      - `@Document(collection = "students")` -- "Maps a Java class to a MongoDB collection"
      - `@Id` -- "Marks the primary key field"
      - `MongoRepository<Student, String>` -- "An interface that gives us free CRUD methods: save, findAll, findById, deleteById"
      - `application.properties` -- "Where we specify the MongoDB connection URI"
-  4. **How it works** (draw on board):
+  5. **How it works** (draw on board):
      ```
      Controller -> Service -> Repository -> MongoDB
-     (REST API)   (logic)   (MongoRepository)  (database)
+     (@Controller)  (logic)   (MongoRepository)  (database)
      ```
 
-**[0:15 - 0:35] Live Coding Demo**
+**[0:15 - 0:30] Part 1 Live Coding: MongoDB Connection**
 - Open [snippets/springboot/mongo-connection/](../snippets/springboot/mongo-connection/) in IDE
 - Walk through files in this order:
   1. **`src/main/resources/application.properties`** (2 min)
      - Show the MongoDB URI: `spring.data.mongodb.uri=mongodb://localhost:27017/demo_db`
      - "This tells Spring Boot where MongoDB is running and which database to use."
      - "Spring Boot auto-configures the MongoDB connection -- no manual MongoClient setup needed."
-  2. **`src/main/java/com/demo/Student.java`** (5 min)
+  2. **`src/main/java/com/demo/Student.java`** (3 min)
      - `@Document(collection = "students")` -- "This class maps to the `students` collection in MongoDB."
      - `@Id private String id` -- "MongoDB will auto-generate this if you do not set it."
-     - Other fields: name, rollNumber, department, email
-     - "This is our data model. Every student document in MongoDB will have these fields."
-  3. **`src/main/java/com/demo/StudentRepository.java`** (5 min)
+     - "Compare this to our Thymeleaf demo -- same Student class, but now with database annotations."
+  3. **`src/main/java/com/demo/StudentRepository.java`** (3 min)
      - "This is an interface -- we do not write any implementation code."
      - `extends MongoRepository<Student, String>` -- "Student is the document type, String is the ID type."
      - "MongoRepository gives us these methods for free: `save()`, `findAll()`, `findById()`, `deleteById()`."
-     - Show any custom query methods (e.g., `findByDepartment(String department)`) -- "Spring Data creates the query from the method name. No SQL, no query language."
-  4. **`src/main/java/com/demo/StudentController.java`** (8 min)
-     - Walk through each endpoint:
-       - POST `/api/students` -- calls `repository.save(student)`, returns saved student with generated ID
-       - GET `/api/students` -- calls `repository.findAll()`, returns list
-       - GET `/api/students/{id}` -- calls `repository.findById(id)`, handles not-found case
-       - PUT `/api/students/{id}` -- finds existing, updates fields, calls `save()`
-       - DELETE `/api/students/{id}` -- calls `repository.deleteById(id)`
+     - Show custom query methods (e.g., `findByDepartment(String department)`) -- "Spring Data creates the query from the method name."
+  4. **`src/main/java/com/demo/StudentController.java`** (5 min)
+     - Walk through each endpoint briefly (POST, GET all, GET by id, PUT, DELETE)
      - "Notice the controller injects the repository using `@Autowired` -- that is the DI we learned in T3."
 - Run the application: `cd snippets/springboot/mongo-connection && mvn spring-boot:run`
-- Test with Postman:
+- Quick test with Postman:
   1. **POST** `http://localhost:8080/api/students` with body:
      ```json
      {"name": "Ravi Kumar", "rollNumber": "21B01A1234", "department": "IT", "email": "ravi@example.com"}
      ```
-     Show the response includes a generated `id`.
-  2. **POST** another student with different data.
-  3. **GET** `http://localhost:8080/api/students` -- show both students returned.
-  4. Switch to **MongoDB Compass** (or `mongosh`): run `use demo_db` then `db.students.find()` -- show the same documents in the database. "The data is real. It is in MongoDB."
-  5. **Stop the server** (Ctrl+C), then restart it. **GET** `/api/students` again -- "Data is still there. It persists."
-  6. **PUT** to update a student, **GET** to verify, **DELETE** to remove, **GET** to confirm.
+  2. **GET** `http://localhost:8080/api/students` -- show student returned.
+  3. Switch to **MongoDB Compass** (or `mongosh`): show the document in the database. "The data is real."
+  4. **Stop the server** (Ctrl+C), restart it. **GET** `/api/students` again -- "Data is still there! Unlike our Thymeleaf ArrayList app, this survives restarts."
 
-**[0:35 - 0:45] Interactive**
-- Ask: "What is the difference between `findAll()` and `findById()`? What does findById return?" (Answer: `Optional<Student>` -- it might not find anything.)
-- Ask: "If I want to find all students in the IT department, what method would I add to the repository interface?" (Answer: `List<Student> findByDepartment(String department)`)
-- Show quickly: add `findByDepartment` to the repository, add a new endpoint, restart, test. "Spring Data derived this query from the method name."
+**[0:30 - 0:35] Transition: Why REST APIs?**
+- Say: "Our Thymeleaf app works with MongoDB now. But notice something: every time you click a button or submit a form, the entire page reloads. Watch."
+- (If time allows, briefly show or describe a Thymeleaf page reloading on form submit.)
+- "What if we could send just the data and let the browser update only the part that changed? That is what REST APIs do. Instead of returning full HTML pages, we return JSON data."
+- "This is what makes modern apps like Instagram and Zomato feel fast -- they use REST APIs behind the scenes."
 
-**[0:45 - 0:50] Wrap up**
+**[0:35 - 0:43] Part 2: REST API Concepts**
+- Open [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) in IDE
+- Quick comparison:
+  - `@Controller` returns view names -> Thymeleaf renders HTML -> browser gets full page
+  - `@RestController` returns objects -> Spring converts to JSON -> browser gets just data
+- Walk through [snippets/springboot/rest-controller/](../snippets/springboot/rest-controller/) briefly:
+  - Show `@RestController` annotation
+  - Show `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`
+  - Show `@RequestBody` -- "Converts incoming JSON to a Java object"
+  - Show `@PathVariable` -- "Captures a value from the URL path"
+- If time: run the rest-controller snippet and test a GET in Postman. Show JSON response vs the Thymeleaf HTML response.
+- "In the next unit, we will build a React frontend that calls these REST APIs. React handles the UI, Spring Boot handles the data."
+
+**[0:43 - 0:48] Interactive**
+- Ask: "What is the difference between our Thymeleaf app and a REST API?" (Answer: Thymeleaf returns full HTML pages; REST returns JSON data. Thymeleaf reloads the page; REST lets the frontend update parts.)
+- Ask: "What does `findById` return?" (Answer: `Optional<Student>` -- it might not find anything.)
+- Ask: "If I want to find all IT students, what method name would I add to the repository?" (Answer: `List<Student> findByDepartment(String department)`)
+
+**[0:48 - 0:50] Wrap up**
 - Key takeaways:
-  1. `spring-boot-starter-data-mongodb` + `application.properties` = database connection
-  2. `@Document` maps class to collection; `MongoRepository` gives free CRUD
-  3. Custom queries are derived from method names -- no SQL needed
+  1. `spring-boot-starter-data-mongodb` + `application.properties` = persistent data that survives restarts
+  2. `@Document` maps class to collection; `MongoRepository` gives free CRUD methods
+  3. `@RestController` returns JSON data (not HTML) -- the foundation for modern frontend frameworks like React
 - "Before next class, read the security section in [docs/springboot/qa.md](../docs/springboot/qa.md) (Q40)"
-- "Try adding a `findByName(String name)` method to the Student repository and a search endpoint."
+- "Review both [docs/springboot/05-database-connectivity.md](../docs/springboot/05-database-connectivity.md) and [docs/springboot/06-rest-apis.md](../docs/springboot/06-rest-apis.md)"
 
 **Checklist:**
 - [ ] Session completed
 - [ ] Students verified MongoDB is running locally
-- [ ] Demonstrated data appearing in MongoDB Compass or mongosh
-- [ ] Data persisted across server restarts
+- [ ] Demonstrated data persisting across server restarts (contrast with T4 ArrayList)
+- [ ] Students understand @Controller (Thymeleaf/HTML) vs @RestController (JSON/REST)
+- [ ] Students see the teaching narrative: in-memory -> database -> REST API -> React (next unit)
 
 ---
 
@@ -579,9 +590,9 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **[0:00 - 0:05] Opening and Recap**
 - Recap bullets from T5:
-  1. `@Document` + `MongoRepository` = database CRUD with zero SQL
-  2. Custom queries from method names
-  3. Data persists in MongoDB
+  1. MongoDB + `@Document` + `MongoRepository` = persistent data that survives restarts
+  2. `@RestController` returns JSON data; `@Controller` returns HTML pages
+  3. REST APIs are the foundation for connecting to React frontends
 - Ask: "Our REST API is wide open right now. Anyone with the URL can read, create, or delete data. Is that okay for a real application?" (Answer: No, we need security.)
 - Say: "Today we add authentication -- login and registration -- so only authorized users can access the application."
 
@@ -955,6 +966,75 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 ---
 
+### Grand Finale Demo -- Full-Stack Student Management System
+
+**Duration:** 15-20 minutes (run at the end of T9 if time permits, or as the opening of T10 before Node.js)
+
+**Purpose:** Connect the entire teaching narrative by running the complete full-stack application. Students see every layer they have learned -- Thymeleaf, MongoDB, REST APIs, and React -- working together in one system.
+
+**Before the demo -- prepare:**
+- [labs/fullstack-student-app/solution/backend/](../labs/fullstack-student-app/solution/backend/) ready in IDE
+- [labs/fullstack-student-app/solution/frontend/](../labs/fullstack-student-app/solution/frontend/) ready in IDE
+- MongoDB running locally
+- Two terminals ready
+- Browser with Network tab accessible
+- MongoDB Compass open (optional but recommended)
+- Reference docs to call back to: [docs/rest-and-http.md](../docs/rest-and-http.md), [docs/mvc-architecture.md](../docs/mvc-architecture.md)
+
+**Setup (2 min):**
+- Terminal 1: `cd labs/fullstack-student-app/solution/backend && mvn spring-boot:run`
+- Terminal 2: `cd labs/fullstack-student-app/solution/frontend && yarn install && yarn dev`
+- Verify MongoDB is running (`mongosh` connects)
+
+**Demo flow (15 min):**
+
+1. **Open the React app** at `http://localhost:5173` -- show the student list (pre-loaded from DataInitializer if present, or add a student via Postman first).
+   - "This is the React frontend you will build in Labs L4-L6."
+
+2. **Add a new student** via the React form -- show it appears instantly in the list.
+   - "Notice: no page reload. React updated just the list."
+
+3. **Search for a student** by name -- show filtered results appearing as you type.
+   - "The search happens on the frontend -- React filters the array."
+
+4. **Filter by department** dropdown -- show only matching students.
+   - "Search and filter working together."
+
+5. **Edit a student** -- show the form pre-fills with existing data, update and save.
+   - "The PUT request goes to Spring Boot, which updates MongoDB."
+
+6. **Delete a student** -- confirm and remove from the list.
+   - "DELETE request to the API. React removes the card from state."
+
+7. **Open MongoDB Compass** (or `mongosh`) -- show the data is in the database.
+   - `use student_db` -> `db.students.find().pretty()`
+   - "Everything you just did through the React UI is stored permanently in MongoDB."
+
+8. **Open the browser Network tab** (F12 -> Network) -- repeat an action (add or delete a student). Show that only JSON API calls (`/api/students`) are made, not full page loads.
+   - "See? Only small JSON requests. No HTML pages being reloaded. This is why the app feels fast."
+
+9. **Connect to the Thymeleaf experience** -- "Remember our Thymeleaf app in T4? Every time you submitted the form, the entire page reloaded. Now React handles the UI, Spring Boot handles the data, and MongoDB stores it. The page never reloads."
+
+**Connect the dots (3 min):**
+- Draw the final architecture on the board:
+  ```
+  React (port 5173) --fetch/JSON--> Spring Boot REST API (port 8080) --Spring Data--> MongoDB (port 27017)
+  ```
+- "The React frontend talks to Spring Boot via REST API (fetch sends JSON)"
+- "Spring Boot talks to MongoDB via Spring Data (MongoRepository)"
+- "This is how modern web apps work -- the same pattern used by Instagram, Zomato, and every startup"
+- "You have now seen the complete journey: plain text (@RestController in T1) -> HTML pages (Thymeleaf in T4) -> data persistence (MongoDB in T5) -> JSON APIs (REST in T5) -> dynamic frontend (React in T7-T9)"
+
+**Checklist:**
+- [ ] Grand Finale Demo completed
+- [ ] Students saw the full Create/Read/Update/Delete flow in the React app
+- [ ] Students saw data in MongoDB Compass or mongosh
+- [ ] Network tab showed JSON API calls (not page reloads)
+- [ ] Students understand the three-layer architecture: React -> Spring Boot -> MongoDB
+- [ ] Connected back to the Thymeleaf "page reload" experience from T4
+
+---
+
 ### Session T10: Node.js and MongoDB
 
 **Duration:** 50 minutes
@@ -1190,7 +1270,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **Duration:** 2 hours
 
-**Prerequisite Theory:** T3, T4, T6
+**Prerequisite Theory:** T3, T5, T6
 
 **Objective:** Build a registration and login system using Spring Boot, Spring Security, Thymeleaf, and MongoDB.
 
@@ -1302,7 +1382,7 @@ This table maps every topic to its exact resources in the repository. Use this a
 
 **Prerequisite Theory:** T4, T5
 
-**Objective:** Build a full CRUD REST API for a Student Management System with MongoDB.
+**Objective:** Build a full CRUD REST API for a Student Management System with MongoDB. (Students use @RestController and MongoDB from T5.)
 
 **Before the lab -- prepare:**
 - [labs/springboot-crud-mongodb/README.md](../labs/springboot-crud-mongodb/README.md) projected or printed
@@ -1974,8 +2054,8 @@ flowchart LR
     subgraph UnitIII["Unit III: Spring Boot (3 sessions)"]
         direction TB
         T1["T1: Spring Intro +\nInitializr + Setup"]
-        T2["T2: DI + REST APIs"]
-        T3["T3: MongoDB +\nSpring Security"]
+        T2["T2: DI + Thymeleaf\nWeb Pages"]
+        T3["T3: MongoDB + REST APIs\n+ Spring Security"]
         T1 --> T2 --> T3
     end
 
@@ -2014,8 +2094,8 @@ flowchart LR
 | New Session | Covers Old Sessions | Topics |
 |-------------|-------------------|--------|
 | T1 | Old T1 + T2 | Spring Intro, Spring Boot, Spring Initializr, Project Setup |
-| T2 | Old T3 + T4 | Dependency Injection, Annotations, REST APIs, HTTP Methods |
-| T3 | Old T5 + T6 | Spring Data MongoDB, CRUD, Spring Security, Login/Register |
+| T2 | Old T3 + T4 | Dependency Injection, Annotations, @Controller, Thymeleaf, In-Memory Web App |
+| T3 | Old T5 + T6 | MongoDB (persistent storage), REST APIs (@RestController, JSON), Spring Security, Login/Register |
 | T4 | Old T7 + T8 (part) | React Intro, JSX, Components, Props, Composition |
 | T5 | Old T8 (rest) + T9 | State, Events, Forms, useEffect, API Integration, SPA |
 | T6 | Old T10 | Node.js, Events, Callbacks, MongoDB, Express API |
@@ -2029,8 +2109,8 @@ Each lab session depends on specific theory sessions being completed first. The 
 ```mermaid
 flowchart TD
     T1["T1: Spring Intro +\nInitializr + Setup"]
-    T2["T2: DI + REST APIs"]
-    T3["T3: MongoDB +\nSpring Security"]
+    T2["T2: DI + Thymeleaf\nWeb Pages"]
+    T3["T3: MongoDB + REST APIs\n+ Spring Security"]
     T4["T4: React Intro, JSX,\nComponents, Props"]
     T5["T5: State, Events, Forms,\nSPA, Full-Stack"]
     T6["T6: Node.js + MongoDB"]
@@ -2099,8 +2179,8 @@ flowchart TD
 
 ```
 Week 1  [T1, L1] .................. Spring Intro + Setup ......
-Week 2  [T2, L2] .................. DI + REST + Quiz 1 .......
-Week 3  [T3, L3] .................. MongoDB + Security + Assignment 1
+Week 2  [T2, L2] .................. DI + Thymeleaf + Quiz 1 ..
+Week 3  [T3, L3] .................. MongoDB + REST + Security + Assignment 1
 Week 4  [Revision] ................ INTERNAL TEST 1 ..........
 Week 5  [T4, L4, L5] .............. React + Quiz 2 + Assignment 2
 Week 6  [T5, T6, L6, L7] ......... SPA + Node.js + Quiz 3 + Assignment 3
@@ -2112,15 +2192,15 @@ Week 8  [Buffer] .................. Revision / Catch-up .......
 
 #### Quiz 1 (Week 2 end) -- Spring Boot Fundamentals
 - [ ] Conducted
-- **Coverage:** T1 through T4 (Spring Boot intro, Initializr, DI, REST APIs)
+- **Coverage:** T1 through T4 (Spring Boot intro, Initializr, DI, Thymeleaf web pages)
 - **Format:** 10 MCQs + 2 short answer (5 marks, 15 minutes)
 - **Sample topics:** Identify the correct annotation, explain IoC, match HTTP methods to annotations
 
 #### Quiz 2 (Week 5 end) -- Spring Boot Advanced and React Basics
 - [ ] Conducted
-- **Coverage:** T5 through T8 (MongoDB connectivity, Security, React intro, state/forms)
+- **Coverage:** T5 through T8 (MongoDB connectivity, REST APIs, Security, React intro, state/forms)
 - **Format:** 10 MCQs + 2 short answer (5 marks, 15 minutes)
-- **Sample topics:** MongoRepository methods, @Document annotation, JSX vs HTML, useState syntax
+- **Sample topics:** MongoRepository methods, @Document annotation, @Controller vs @RestController, JSX vs HTML, useState syntax
 
 #### Quiz 3 (Week 7 end) -- React Integration and Node.js
 - [ ] Conducted
@@ -2185,16 +2265,16 @@ Week 8  [Buffer] .................. Revision / Catch-up .......
 | Q4. What is auto-configuration? | Introduction | T1 |
 | Q5. What is @SpringBootApplication? | Introduction | T1 |
 | Q14. What is Spring Initializr? | Project setup | T2 |
-| Q18. What is @RestController? | REST APIs | T4 |
-| Q19. Difference between @Controller and @RestController? | REST APIs | T4 |
+| Q18. What is @RestController? | REST APIs | T5 |
+| Q19. Difference between @Controller and @RestController? | REST APIs | T5 |
 | Q25. What is Dependency Injection? | DI | T3 |
 | Q26. What is Inversion of Control? | DI | T3 |
 | Q28. What is @Autowired? | DI | T3 |
 | Q32. What is Spring Data MongoDB? | Database | T5 |
 | Q33. What is MongoRepository? | Database | T5 |
 | Q34. What is @Document? | Database | T5 |
-| Q41. Difference between @GetMapping and @RequestMapping? | REST APIs | T4 |
-| Q42. Difference between @PathVariable and @RequestParam? | REST APIs | T4 |
+| Q41. Difference between @GetMapping and @RequestMapping? | REST APIs | T5 |
+| Q42. Difference between @PathVariable and @RequestParam? | REST APIs | T5 |
 
 **Essay questions (10 marks each) -- pick 2 from these:**
 
@@ -2203,7 +2283,7 @@ Week 8  [Buffer] .................. Revision / Catch-up .......
 | Q11. Compare Spring Framework vs Spring Boot | Introduction | T1 |
 | Q12. Explain Spring Boot architecture with diagram | Architecture | T1-T2 |
 | Q16. Steps to create a project using Spring Initializr | Project setup | T2 |
-| Q22. Build a REST API with Spring Boot (code) | REST APIs | T4 |
+| Q22. Build a REST API with Spring Boot (code) | REST APIs | T5 |
 | Q30. Explain DI with types and examples | DI | T3 |
 | Q37. Database connectivity with MongoDB (code) | Database | T5 |
 | Q38. CRUD operations using Spring Boot and MongoDB (code) | Database | T5 |
@@ -2264,7 +2344,7 @@ These are the most likely viva questions. Students should be able to answer all 
 |---|----------|--------|----------------------|
 | 1 | What is Spring Boot and how is it different from Spring? | SB qa.md Q2, Q3 | 3-4 sentences |
 | 2 | Explain Dependency Injection with an example. | SB qa.md Q25, Q30 | 4-5 sentences + code |
-| 3 | What is @RestController and how is it different from @Controller? | SB qa.md Q18, Q19 | 2-3 sentences |
+| 3 | What is @RestController and how is it different from @Controller? | SB qa.md Q18, Q19 | 2-3 sentences (covered in T4 for @Controller, T5 for @RestController) |
 | 4 | Explain the Spring Boot layered architecture. | SB qa.md Q13 | 4-5 sentences |
 | 5 | How does MongoRepository work? What methods does it provide? | SB qa.md Q33, Q38 | 3-4 sentences |
 | 6 | What is auto-configuration in Spring Boot? | SB qa.md Q4 | 2-3 sentences |
@@ -2291,7 +2371,7 @@ These are the most likely viva questions. Students should be able to answer all 
 
 1. **Open with a question.** Begin every session with a real-world question or a quick recap question from the previous session. Examples:
    - T1: "How many of you have heard of Spring? What do you think it does?"
-   - T4: "If I type google.com in my browser, what happens behind the scenes?"
+   - T4: "So far our controller returned plain text. How do we build real HTML pages with forms?"
    - T7: "Why do modern web apps feel faster than traditional websites?"
    - T10: "We used Java to talk to MongoDB. Can JavaScript do the same?"
 
