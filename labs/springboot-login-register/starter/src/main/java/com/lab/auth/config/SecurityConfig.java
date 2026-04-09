@@ -14,50 +14,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
-    /**
-     * Define the password encoder bean.
-     * Use BCryptPasswordEncoder for hashing passwords.
-     *
-     * @return PasswordEncoder instance
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        // TODO: Return a BCryptPasswordEncoder instance
-        return null;
-    }
-
-    /**
-     * Configure the security filter chain.
-     * - Permit access to: "/register", "/login", "/css/**"
-     * - All other requests require authentication
-     * - Configure form login with loginPage("/login"), defaultSuccessUrl("/home"), permitAll
-     * - Configure logout with logoutSuccessUrl("/login?logout"), permitAll
-     *
-     * @param http the HttpSecurity object
-     * @return SecurityFilterChain
-     * @throws Exception if configuration fails
-     */
+    // TODO: @Bean PasswordEncoder passwordEncoder() — return new BCryptPasswordEncoder()
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // TODO: Configure HTTP security
-        // Hint: Use http.csrf().disable() for simplicity (not recommended for production)
-        // Hint: Use http.authorizeRequests() to define access rules
-        // Hint: Use .formLogin() to configure the login page
-        // Hint: Use .logout() to configure logout behavior
-        // Hint: Return http.build()
+        // TODO: csrf().disable(), authorizeRequests: permit "/register","/login","/css/**", authenticate rest
+        // TODO: formLogin: loginPage("/login"), defaultSuccessUrl("/home", true), permitAll
+        // TODO: logout: logoutSuccessUrl("/login?logout"), permitAll
         return http.build();
     }
-
-    /**
-     * Configure authentication manager to use custom UserDetailsService and password encoder.
-     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // TODO: Configure auth to use userDetailsService and passwordEncoder
-        // Hint: auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
+        // TODO: auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
     }
 }

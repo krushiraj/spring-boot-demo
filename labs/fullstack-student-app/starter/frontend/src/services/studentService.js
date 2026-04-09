@@ -1,79 +1,32 @@
-const API_URL = 'http://localhost:8080/api/students';
+const API = "http://localhost:8080/api/students";
 
-/**
- * Get all students from the backend API.
- * @returns {Promise<Array>} array of student objects
- */
-export async function getAllStudents() {
-  // TODO: Fetch all students from API_URL
-  // Hint: Use fetch(API_URL) and return response.json()
-  return [];
-}
+// TODO: Implement each function using fetch(API)
+// Each function should return fetch(...).then(r => r.json())
 
-/**
- * Get a single student by ID.
- * @param {string} id - the student ID
- * @returns {Promise<Object>} the student object
- */
-export async function getStudentById(id) {
-  // TODO: Fetch a student by ID from API_URL/{id}
-  // Hint: Use fetch(`${API_URL}/${id}`) and return response.json()
-  return {};
-}
+export const getAll = () => {
+  // TODO: fetch(API).then(r => r.json())
+};
 
-/**
- * Create a new student.
- * @param {Object} student - the student data { name, rollNumber, department, email }
- * @returns {Promise<Object>} the created student
- */
-export async function createStudent(student) {
-  // TODO: Send a POST request to API_URL with the student data
-  // Hint: Use fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(student) })
-  // Hint: Return response.json()
-  return {};
-}
+export const getById = (id) => {
+  // TODO: fetch(`${API}/${id}`).then(r => r.json())
+};
 
-/**
- * Update an existing student.
- * @param {string} id - the student ID
- * @param {Object} student - the updated student data
- * @returns {Promise<Object>} the updated student
- */
-export async function updateStudent(id, student) {
-  // TODO: Send a PUT request to API_URL/{id} with the student data
-  // Hint: Use fetch(`${API_URL}/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(student) })
-  // Hint: Return response.json()
-  return {};
-}
+export const create = (student) => {
+  // TODO: fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(student) }).then(r => r.json())
+};
 
-/**
- * Delete a student by ID.
- * @param {string} id - the student ID
- * @returns {Promise<void>}
- */
-export async function deleteStudent(id) {
-  // TODO: Send a DELETE request to API_URL/{id}
-  // Hint: Use fetch(`${API_URL}/${id}`, { method: 'DELETE' })
-}
+export const update = (id, student) => {
+  // TODO: fetch(`${API}/${id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(student) }).then(r => r.json())
+};
 
-/**
- * Search students by name.
- * @param {string} name - the search query
- * @returns {Promise<Array>} array of matching students
- */
-export async function searchByName(name) {
-  // TODO: Fetch students matching the name from API_URL/search?name={name}
-  // Hint: Use fetch(`${API_URL}/search?name=${name}`) and return response.json()
-  return [];
-}
+export const remove = (id) => {
+  // TODO: fetch(`${API}/${id}`, { method: "DELETE" })
+};
 
-/**
- * Filter students by department.
- * @param {string} department - the department name
- * @returns {Promise<Array>} array of students in the department
- */
-export async function filterByDepartment(department) {
-  // TODO: Fetch students by department from API_URL/department/{department}
-  // Hint: Use fetch(`${API_URL}/department/${department}`) and return response.json()
-  return [];
-}
+export const searchByName = (name) => {
+  // TODO: fetch(`${API}/search?name=${name}`).then(r => r.json())
+};
+
+export const filterByDept = (dept) => {
+  // TODO: fetch(`${API}/department/${dept}`).then(r => r.json())
+};

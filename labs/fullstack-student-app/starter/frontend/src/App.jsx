@@ -1,19 +1,22 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { Routes, Route, Link } from 'react-router-dom';
 import StudentList from './pages/StudentList';
-import AddStudent from './pages/AddStudent';
-import EditStudent from './pages/EditStudent';
+import StudentForm from './pages/StudentForm';
+import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <Navbar />
+      <nav className="navbar">
+        <Link to="/">Student Manager</Link>
+        <div>
+          <Link to="/">Students</Link> | <Link to="/add">Add Student</Link>
+        </div>
+      </nav>
       <div className="container">
         <Routes>
           <Route path="/" element={<StudentList />} />
-          <Route path="/add" element={<AddStudent />} />
-          <Route path="/edit/:id" element={<EditStudent />} />
+          <Route path="/add" element={<StudentForm />} />
+          <Route path="/edit/:id" element={<StudentForm />} />
         </Routes>
       </div>
     </div>

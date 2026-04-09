@@ -14,35 +14,20 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
+        http.csrf().disable()
             .authorizeRequests()
                 .antMatchers("/register", "/login", "/css/**").permitAll()
                 .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/home", true)
-                .permitAll()
-            .and()
-            .logout()
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
-
+            .and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).permitAll()
+            .and().logout().logoutSuccessUrl("/login?logout").permitAll();
         return http.build();
     }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());

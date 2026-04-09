@@ -1,95 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import StudentCard from '../components/StudentCard';
-import SearchBar from '../components/SearchBar';
-import { getAllStudents, deleteStudent, searchByName, filterByDepartment } from '../services/studentService';
+import { getAll, remove, searchByName, filterByDept } from '../services/studentService';
 
 /**
- * StudentList page - displays all students with search and filter.
+ * TODO: Build the StudentList component
  *
- * State:
- *   - students: array of student objects
- *   - searchTerm: current search input
- *   - department: currently selected department filter
- *   - loading: boolean for loading state
+ * State needed:
+ *   const [students, setStudents] = useState([]);
+ *   const [search, setSearch] = useState('');
+ *   const [dept, setDept] = useState('');
  *
- * Behavior:
- *   - On mount, fetch all students
- *   - When searchTerm changes, search by name (or fetch all if empty)
- *   - When department changes, filter by department (or fetch all if empty)
- *   - On delete, remove the student and refresh the list
+ * Departments array: ['Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Electrical']
+ *
+ * Functions to implement:
+ *   1. loadStudents() - call getAll(), then setStudents(data)
+ *   2. useEffect to call loadStudents() on mount
+ *   3. handleSearch(name) - setSearch(name), setDept(''), then call searchByName or getAll
+ *   4. handleDept(d) - setDept(d), setSearch(''), then call filterByDept or getAll
+ *   5. handleDelete(id) - call remove(id), then loadStudents()
+ *
+ * JSX structure:
+ *   - <h2>Students</h2>
+ *   - Search input + department <select> in a div.search-bar
+ *   - <table> with thead (Name, Roll No, Department, Email, Actions)
+ *   - tbody: students.map() -> <tr> with <td>s and Edit link + Delete button
  */
 function StudentList() {
-  const [students, setStudents] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [department, setDepartment] = useState('');
-  const [loading, setLoading] = useState(true);
+  // TODO: Add state variables
 
-  const departments = ['Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Electrical'];
-
-  // TODO: Implement useEffect to fetch students on component mount
-  // Hint: Call fetchStudents() inside useEffect with [] dependency array
-  useEffect(function () {
-    // TODO: Call a function to load all students
-    // Hint: fetchStudents();
-    setLoading(false);
-  }, []);
-
-  // TODO: Implement fetchStudents function
-  // Hint: async function that calls getAllStudents(), then setStudents() and setLoading(false)
-  async function fetchStudents() {
-    // TODO: Implement this function
-  }
-
-  // TODO: Implement handleSearchChange function
-  // Hint: Update searchTerm, clear department filter
-  // If name is not empty, call searchByName(name) and update students
-  // If name is empty, call fetchStudents()
-  async function handleSearchChange(name) {
-    // TODO: Implement search logic
-  }
-
-  // TODO: Implement handleDepartmentChange function
-  // Hint: Update department, clear searchTerm
-  // If dept is not empty, call filterByDepartment(dept) and update students
-  // If dept is empty, call fetchStudents()
-  async function handleDepartmentChange(dept) {
-    // TODO: Implement department filter logic
-  }
-
-  // TODO: Implement handleDelete function
-  // Hint: Call deleteStudent(id), then call fetchStudents() to refresh the list
-  async function handleDelete(id) {
-    // TODO: Implement delete logic
-  }
-
-  if (loading) {
-    return <div className="loading">Loading students...</div>;
-  }
+  // TODO: Add useEffect and handler functions
 
   return (
     <div>
-      <div className="page-header">
-        <h2>Students</h2>
-        <Link to="/add" className="btn btn-primary">Add Student</Link>
-      </div>
-
-      <SearchBar
-        searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-        department={department}
-        onDepartmentChange={handleDepartmentChange}
-        departments={departments}
-      />
-
-      {students.length === 0 ? (
-        <div className="empty-message">No students found.</div>
-      ) : (
-        <div className="student-grid">
-          {/* TODO: Map over students array and render a StudentCard for each */}
-          {/* Hint: students.map(function(student) { return <StudentCard key={student.id} student={student} onDelete={handleDelete} />; }) */}
-        </div>
-      )}
+      <h2>Students</h2>
+      {/* TODO: Add search input and department select */}
+      {/* TODO: Add table with student rows */}
     </div>
   );
 }

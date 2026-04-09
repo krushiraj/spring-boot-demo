@@ -1,99 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import StudentCard from '../components/StudentCard';
-import SearchBar from '../components/SearchBar';
-import { getAllStudents, deleteStudent, searchByName, filterByDepartment } from '../services/studentService';
+import { getAll, remove, searchByName, filterByDept } from '../services/studentService';
 
 function StudentList() {
   const [students, setStudents] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [department, setDepartment] = useState('');
-  const [loading, setLoading] = useState(true);
-
+  const [search, setSearch] = useState('');
+  const [dept, setDept] = useState('');
   const departments = ['Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Electrical'];
 
-  useEffect(function () {
-    fetchStudents();
-  }, []);
+  useEffect(function () { loadStudents(); }, []);
 
-  async function fetchStudents() {
-    try {
-      const data = await getAllStudents();
-      setStudents(data);
-    } catch (err) {
-      console.error('Failed to fetch students:', err);
-    } finally {
-      setLoading(false);
-    }
+  async function loadStudents() {
+    var data = await getAll();
+    setStudents(data);
   }
 
-  async function handleSearchChange(name) {
-    setSearchTerm(name);
-    setDepartment('');
-    if (name.trim() !== '') {
-      try {
-        const data = await searchByName(name);
-        setStudents(data);
-      } catch (err) {
-        console.error('Search failed:', err);
-      }
-    } else {
-      fetchStudents();
-    }
+  async function handleSearch(name) {
+    setSearch(name);
+    setDept('');
+    setStudents(name ? await searchByName(name) : await getAll());
   }
 
-  async function handleDepartmentChange(dept) {
-    setDepartment(dept);
-    setSearchTerm('');
-    if (dept !== '') {
-      try {
-        const data = await filterByDepartment(dept);
-        setStudents(data);
-      } catch (err) {
-        console.error('Filter failed:', err);
-      }
-    } else {
-      fetchStudents();
-    }
+  async function handleDept(d) {
+    setDept(d);
+    setSearch('');
+    setStudents(d ? await filterByDept(d) : await getAll());
   }
 
   async function handleDelete(id) {
-    try {
-      await deleteStudent(id);
-      fetchStudents();
-    } catch (err) {
-      console.error('Delete failed:', err);
-    }
-  }
-
-  if (loading) {
-    return <div className="loading">Loading students...</div>;
+    await remove(id);
+    loadStudents();
   }
 
   return (
     <div>
-      <div className="page-header">
-        <h2>Students</h2>
-        <Link to="/add" className="btn btn-primary">Add Student</Link>
+      <h2>Students</h2>
+      <div className="search-bar">
+        <input placeholder="Search by name..." value={search}
+          onChange={function (e) { handleSearch(e.target.value); }} />
+        <select value={dept} onChange={function (e) { handleDept(e.target.value); }}>
+          <option value="">All Departments</option>
+          {departments.map(function (d) { return <option key={d} value={d}>{d}</option>; })}
+        </select>
       </div>
-
-      <SearchBar
-        searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-        department={department}
-        onDepartmentChange={handleDepartmentChange}
-        departments={departments}
-      />
-
-      {students.length === 0 ? (
-        <div className="empty-message">No students found.</div>
-      ) : (
-        <div className="student-grid">
-          {students.map(function (student) {
-            return <StudentCard key={student.id} student={student} onDelete={handleDelete} />;
+      <table>
+        <thead><tr><th>Name</th><th>Roll No</th><th>Department</th><th>Email</th><th>Actions</th></tr></thead>
+        <tbody>
+          {students.map(function (s) {
+            return (
+              <tr key={s.id}>
+                <td>{s.name}</td><td>{s.rollNumber}</td><td>{s.department}</td><td>{s.email}</td>
+                <td>
+                  <Link to={'/edit/' + s.id} className="btn btn-primary">Edit</Link>{' '}
+                  <button className="btn btn-danger" onClick={function () { handleDelete(s.id); }}>Delete</button>
+                </td>
+              </tr>
+            );
           })}
-        </div>
-      )}
+        </tbody>
+      </table>
     </div>
   );
 }
